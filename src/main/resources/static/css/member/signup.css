@@ -1,0 +1,64 @@
+@charset "UTF-8";
+
+.signup {
+	width: 580px;
+	margin: 0 auto;
+	padding: 100px 0;
+}
+
+.signup p {
+	padding-bottom: 50px;
+	font-weight: 400;
+	font-size: 36px;
+	line-height: 42px;
+	text-align: center;
+}
+
+.signup form ul li label {
+	width: 110px;
+	display: inline-block;
+	text-align: left;
+	font: normal normal normal 18px/22px Spoqa Han Sans Neo;
+	letter-spacing: -0.45px;
+	line-height: 60px;
+	height: 60px;
+	margin-right: 17px;
+}
+
+.signup form ul li input {
+	width: 450px;
+	height: 60px;
+	padding: 0px 55px 0 20px;
+	border: 1px solid #e0e0e0;
+	border-radius: 4px;
+	font-size: 18px;
+	line-height: 60px;
+}
+.signup form ul li {
+	position: relative;
+	display: flex;
+	margin-bottom: 5px;
+}
+
+.signup form ul li button {
+	cursor: pointer;
+	margin-top: 40px;
+	width: 100%;
+	height: 60px;
+	font-size: 20px;
+	line-height: 60px;
+	border-color: #cc0001;
+	background-color: #cc0001;
+	color: rgb(232, 230, 227);
+	border: 1px solid #cc0001;
+	border-radius: 4px;
+}
+.signup form ul li button:disabled{
+	border-color: gray;
+	background-color: gray;
+	color: rgb(232, 230, 227);
+	border: 1px solid gray;
+}
+input:focus {
+	border: 3px solid #cc0001;
+}

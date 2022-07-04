@@ -1,0 +1,148 @@
+@charset "UTF-8";
+
+@import url("../index.css");
+
+.signin {
+	width: 580px;
+	margin: 0 auto;
+	padding: 100px 0;
+}
+
+.signin p {
+	padding-bottom: 50px;
+	font-weight: 400;
+	font-size: 36px;
+	line-height: 42px;
+	text-align: center;
+}
+
+.signin form ul li input {
+	width: 100%;
+	height: 60px;
+	padding: 0px 55px 0 20px;
+	border: 1px solid #e0e0e0;
+	border-radius: 4px;
+	font-size: 18px;
+	line-height: 60px;
+	margin-bottom: 10px;
+}
+
+.signin form li button {
+	margin-top: 40px;
+	width: 100%;
+	height: 60px;
+	font-size: 20px;
+	line-height: 60px;
+	border-color: #6ba543;
+	background-color: #cc0001;
+	color: rgb(232, 230, 227);
+	border: 1px solid #cc0001;
+	border-radius: 4px;
+	cursor: pointer;
+}
+
+.signin form ul li div:first-child {
+	position: relative;
+}
+
+.signin form ul li div .check {
+	display: none;
+}
+
+.signin form ul li div .check+label {
+	display: inline-block;
+	cursor: pointer;
+	padding-left: 30px;
+}
+
+.signin form ul li div .check+label:before {
+	width: 24px;
+	content: '✔';
+	color: lightgray;
+	text-align: center;
+	border-radius: 12px;
+	background-color: gray;
+	position: absolute;
+	margin-right: 10px;
+	left: 0;
+}
+
+.signin form ul li div .check:checked+label:before {
+	background-color: #6ba543;
+}
+
+.signin form ul li div a:first-child {
+	margin-right: 5px;
+}
+
+.signin form ul li div a:nth-child(2) {
+	margin-left: 5px;
+}
+
+.signin form ul li div {
+	color: gray;
+}
+
+.social-icon {
+	display: inline-block;
+	width: 100%;
+	padding: 50px 50px 0;
+}
+
+.social-icon li div p {
+	font-size: 16px;
+	text-align: center;
+}
+
+.social-icon li div:first-child button {
+	margin-left: 5px;
+}
+
+.social-icon li div:last-child {
+	padding-right: 20px;
+}
+
+.btn-social-login {
+	cursor: pointer;
+	transition: all .2s;
+	outline: 0;
+	border: 1px solid transparent;
+	padding: .5rem !important;
+	border-radius: 50%;
+	color: #fff;
+	transition: all .2s;
+}
+
+.btn-social-login:focus {
+	box-shadow: 0 0 0 .2rem rgba(0, 123, 255, .25);
+}
+
+.text-dark {
+	color: #343a40 !important;
+}
+
+.singin-bottom li p a {
+	font-size: 20px;
+}
+
+.singin-bottom li p a:last-child {
+	font-size: 20px;
+	color: #333;
+	font-weight: 800;
+}
+
+.welcome.msg {
+	margin-top: -30px;
+	padding-bottom: 20px;
+	text-align: center;
+	padding: 0.5em 0;
+	font-size: 18px;
+}
+
+.error {
+	margin-top: -30px;
+	padding-bottom: 20px;
+	text-align: center;
+	color: red;
+	font-size: 18px;
+}
