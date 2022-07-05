@@ -47,10 +47,10 @@
 	height: 60px;
 	font-size: 20px;
 	line-height: 60px;
-	border-color: #cc0001;
-	background-color: #cc0001;
+	border-color: #FFBA00;
+	background-color: #FFBA00;
 	color: rgb(232, 230, 227);
-	border: 1px solid #cc0001;
+	border: 1px solid #FFBA00;
 	border-radius: 4px;
 }
 .signup form ul li button:disabled{
@@ -60,5 +60,5 @@
 	border: 1px solid gray;
 }
 input:focus {
-	border: 3px solid #cc0001;
+	border: 3px solid #FFBA00;
 }

@@ -4,6 +4,7 @@ th:replace="~{layout/layout2 :: layout(~{::head}, ~{::main})}">
 <head>
 	<link rel="stylesheet" href="/css/member/signin.css">
 	<link rel="stylesheet" href="/css/reset.css">
+	<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
@@ -27,6 +28,7 @@ th:replace="~{layout/layout2 :: layout(~{::head}, ~{::main})}">
 					<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" >
 					<button type="submit">로그인</button>
 				</li>
+				<a href="/oauth2/authorization/google">구글로그인</a>
 			</ul>
 		</form>
 	</div>

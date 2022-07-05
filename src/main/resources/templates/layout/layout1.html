@@ -10,18 +10,12 @@
 <!-- default header name is X-CSRF-TOKEN -->
 <meta name="_csrf_header" th:content="${_csrf.headerName}" />
 <!-- include libraries(jQuery, bootstrap) -->
-<link
-	href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
-	rel="stylesheet">
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"rel="stylesheet">
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script
-	src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <!-- summernote -->
-<link
-	href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css"
-	rel="stylesheet">
-<script
-	src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css"rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
 <script type="text/javascript">
 	$(function() {
 		$('#summernote').summernote();
@@ -38,24 +32,24 @@
 	<header>
 		<h1>헤더</h1>
 		<div id="__next" data-reactroot="">
-			<div class="sc-jSgvzq hkmVvH">
+			<div class="sc-jSgvzq top-menu">
 				<div class="top">
 					<div class="logo-wrap">
-						<a><img class="logo"
-							src="/img/logo/mainLogo.png"
-							alt="직방"></a>
+						<a href="">
+							<img class="logo"src="/img/logo/mainLogo.png"alt="직방">
+						</a>
 					</div>
 					<div class="gnb">
 						<ul id="gnb-container">
 							<li class="has_d2 ">
-								<a>
+								<a href="/customer/board">
 									<span>아파트</span>
 									<span class="small">매매/전월세/신축분양</span>
 								</a>
 								<div class="depth2_bx">
-									<a class=" ">매매/전·월세</a>
-									<a class=" ">신축분양</a>
-									<a class=" ">인구흐름</a>
+									<a href="/customer/board" class=" ">매매/전·월세</a>
+									<a href="/customer/board" class=" ">신축분양</a>
+									<a href="/customer/board" class=" ">인구흐름</a>
 								</div>
 							</li>
 							<li class="has_d2 ">
@@ -107,12 +101,16 @@
 					</div>
 					<div class="top_btn">
 						<div class="top_btn_menu">
-							<div class="bx_user">
-								<button type="button" class="i_account">로그인 및 회원가입</button>
+							<div sec:authorize="isAnonymous" class="bx_user">
+								<a href="/customer/login" class="i_account">로그인 및 회원가입</a>
+							</div>
+							<div sec:authorize="isAuthenticated()" class="bx_user">
+								<a sec:authentication="name" href="/mypage"></a>
+								<button style="margin-left: 15px;" id="btn-logout">로그아웃</button>
 							</div>
 						</div>
 						<div class="top_btn_menu">
-							<a href="/home/RegisterInfo" class="i_img_link">
+							<a href="/customer/registerInfo" class="i_img_link">
 							<img src="https://s.zigbang.com/v1/web/main/ceo_ad_img.png"
 								width="126" height="38" alt="중개사무소 가입 및 광고문의">
 							</a>
@@ -146,10 +144,11 @@
 				<h1>유저메뉴</h1>
 				<div class="wrap">
 					<ul class="util_info flex">
-						<li sec:authorize="isAnonymous"><a href="/customer/login">로그인</a>
+						<li sec:authorize="isAnonymous">
+							<a href="/customer/login">로그인</a>
 						</li>
-						<li sec:authorize="isAuthenticated()"><a
-							sec:authentication="name" href="/mypage"></a>
+						<li sec:authorize="isAuthenticated()">
+							<a sec:authentication="name" href="/mypage"></a>
 							<button style="margin-left: 15px;" id="btn-logout">로그아웃</button>
 						</li>
 						<li><a href="/customer/newMember">회원가입</a></li>
@@ -159,29 +158,29 @@
 					</ul>
 				</div>
 			</section>
+		</div>
+			-->
 			<script type="text/javascript">
 				$(function() {
 					$("#btn-logout").click(
-							function() {
-								var token = $("meta[name='_csrf']").attr(
-										"content");
-								var header = $("meta[name='_csrf_header']")
-										.attr("content");
-								$.ajax({
-									beforeSend : function(xhr) {
-										xhr.setRequestHeader(header, token);
-									},
-									url : "/logout",
-									type : "post",
-									success : function() {
-										location.href = "/";
-									}
-								});
-							});
+						function() {
+							var token = $("meta[name='_csrf']").attr(
+									"content");
+							var header = $("meta[name='_csrf_header']")
+									.attr("content");
+							$.ajax({
+								beforeSend : function(xhr) {
+									xhr.setRequestHeader(header, token);
+								},
+								url : "/logout",
+								type : "post",
+								success : function() {
+									location.href = "/";
+								}
+						});
+					});
 				});
 			</script>
-		</div>
-		-->
 	</header>
 	<main th:replace="${main}">
 		<!-- main-area -->
@@ -189,25 +188,25 @@
 	<footer>
 		<h1>하단영역</h1>
 		<div class="wrap">
-			<div class="sc-gKseQn hyuSqH">
+			<div class="foot-copy">
 				<div class="wrap-600">
 					<p class="i-links">
 						<a href="//company.zigbang.com" target="_blank">회사소개</a>
 						<!-- -->
 						|<a
-							href="//career.zigbang.com/?utm_source=zigbang_home&amp;utm_medium=homepage&amp;utm_campaign=usual"
+							href="#"
 							target="_blank">채용정보</a>
 						<!-- -->
-						|<a href="//static.zigbang.com/terms/terms-of-use/latest/"
+						|<a href="#"
 							target="_blank">이용약관</a>
 						<!-- -->
-						|<a href="//static.zigbang.com/terms/user-privacy/latest/"
+						|<a href="#"
 							target="_blank"><strong>개인정보 처리방침</strong></a>
 						<!-- -->
-						|<a href="//static.zigbang.com/terms/location-service/latest/"
+						|<a href="#"
 							target="_blank">위치기반 서비스 이용약관</a>
 						<!-- -->
-						|<a href="//ceo.zigbang.com" target="_blank">중개사 사이트 바로가기</a>
+						|<a href="/customer/registerInfo" target="_blank">중개사 사이트 바로가기</a>
 					</p>
 					<div class="i-copyright">
 						상호 : (주)빈방 &nbsp;|&nbsp; 대표 : 박종진 &nbsp;|&nbsp; 사업자등록번호:
@@ -216,10 +215,10 @@
 						: 제0000-서울노원-00000호<br>서비스 이용문의 : 1661-8734 &nbsp;|&nbsp; 이메일
 						:
 						<!-- -->
-						<a href="mailto:cs@zigbang.com">biboxkl@naver.com </a> &nbsp;|&nbsp;
+						<a href="mailto:biboxkl@naver.com">biboxkl@naver.com </a> &nbsp;|&nbsp;
 						서비스제휴문의 :
 						<!-- -->
-						<a href="mailto:partnership@zigbang.com">biboxkl@naver.com</a>
+						<a href="mailto:biboxkl@naver.com">biboxkl@naver.com</a>
 						<p>
 							<a href="https://www.facebook.com/zigbangpage" target="_blank">
 								<img src="//s.zigbang.com/v1/web/common/ico_t2_sns1.png" alt="">
@@ -234,8 +233,9 @@
 								<img src="//s.zigbang.com/v1/web/common/ico_t2_sns4.png" alt="">
 							</a>
 						</p>
-						<div class="copyright">Copyright © BINBANG. All Rights
-							Reserved.</div>
+						<div class="copyright">
+							Copyright © BINBANG. All Rights Reserved.
+						</div>
 					</div>
 				</div>
 			</div>

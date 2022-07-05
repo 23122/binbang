@@ -23,11 +23,13 @@ public class CustomUserDetailsService implements UserDetailsService{
 	@Override
 	public UserDetails loadUserByUsername(String memberEmail) throws UsernameNotFoundException {
 		System.out.println(memberEmail);
-		Optional<MemberEntity> result = memberRepository.findByMemberEmailAndMemberAbsence(memberEmail,false);
+		Optional<MemberEntity> result = memberRepository.findByMemberEmailAndMemberAbsenceAndMemberSocial(memberEmail,false,false);
+		//memberAbsence : true=탈퇴회원, false=정상회원
+		//memberSocial : true=소셜회원, false=일반회원
 		if(result.isEmpty()) {
 			throw new UsernameNotFoundException("존재하지 않거나 탈퇴회원");
 		}
-		return new MyUserDetails(result.get());
+		return new CustomUserDetails(result.get());
 	}
 
 }

@@ -34,9 +34,9 @@
 	font-size: 20px;
 	line-height: 60px;
 	border-color: #6ba543;
-	background-color: #cc0001;
-	color: rgb(232, 230, 227);
-	border: 1px solid #cc0001;
+	background-color: #FFBA00;
+	color:  #5b5b5b;
+	border: 1px solid #FFBA00;
 	border-radius: 4px;
 	cursor: pointer;
 }

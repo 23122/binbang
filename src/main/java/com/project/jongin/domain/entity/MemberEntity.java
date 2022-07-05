@@ -40,9 +40,10 @@ public class MemberEntity extends BaseTimeEntity{
 	private String memberName;
 	@Column(nullable = false)
 	private String memberIp;
-	@Column(nullable = false)
+	@Column
 	private boolean memberAbsence;//true : 탈퇴회원
-	
+	@Column
+	private boolean memberSocial;//true : 소셜회원
 	@Builder.Default
 	@Enumerated(EnumType.STRING)//DB데이터타입
 	@ElementCollection(fetch = FetchType.EAGER)//동시처리
