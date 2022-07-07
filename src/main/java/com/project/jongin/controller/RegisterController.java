@@ -4,12 +4,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-@RequestMapping("/register")
+@RequestMapping("/admin")
 @Controller
 public class RegisterController {
 	
-	@GetMapping("/board")
+	@GetMapping("/home")
 	public String login() {
-		return "/register/regBoard";
+		return "/admin/default";
 	}
 }

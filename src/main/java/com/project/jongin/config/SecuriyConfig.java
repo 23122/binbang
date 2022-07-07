@@ -50,8 +50,8 @@ public class SecuriyConfig{
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
             .authorizeHttpRequests((authz) -> authz
-            		.antMatchers("/","/customer/**").permitAll()
-            		.antMatchers("/register/**").hasAnyRole("ADMIN")
+            		.antMatchers("/","/customer/**","/register/**").permitAll()
+            		.antMatchers("/admin/**").hasAnyRole("ADMIN")
             		.anyRequest().authenticated()
             		);
         http

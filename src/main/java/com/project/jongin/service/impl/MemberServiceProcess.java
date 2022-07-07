@@ -10,6 +10,7 @@ import com.project.jongin.domain.dto.member.memberInsertDTO;
 import com.project.jongin.domain.repository.MemberRepository;
 import com.project.jongin.securiy.MemberRole;
 import com.project.jongin.service.MemberService;
+import com.project.jongin.utils.ClientIP;
 
 @Service
 public class MemberServiceProcess implements MemberService {
@@ -24,7 +25,7 @@ public class MemberServiceProcess implements MemberService {
 		//패스워드 인코딩
 		dto.passEncode(encoder);
 		//ip
-		dto.setMemberIp(request.getRemoteAddr());
+		dto.setMemberIp(ClientIP.getClientIP(request));
 		memberRepository.save(dto.toEntity().addMemberRole(MemberRole.USER));
 		return "redirect:/customer/login";
 	}

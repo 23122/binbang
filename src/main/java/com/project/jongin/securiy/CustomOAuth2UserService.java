@@ -3,6 +3,8 @@ package com.project.jongin.securiy;
 import java.util.Map;
 import java.util.Optional;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService;
 import org.springframework.security.oauth2.client.userinfo.OAuth2UserRequest;
@@ -12,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import com.project.jongin.domain.entity.MemberEntity;
 import com.project.jongin.domain.repository.MemberRepository;
+import com.project.jongin.utils.ClientIP;
 
 import lombok.RequiredArgsConstructor;
 
@@ -21,6 +24,7 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
 
 	private final MemberRepository memberRepository;
 	private final PasswordEncoder passwordEncoder;
+	private final HttpServletRequest httpServletRequest;
 	
 	@Override
 	public OAuth2User loadUser(OAuth2UserRequest userRequest) throws OAuth2AuthenticationException {
@@ -70,7 +74,7 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
 				.memberName(name)
 				.memberPass(passwordEncoder.encode(pass))
 				.memberSocial(true)
-				.memberIp("127.0.0.1")
+				.memberIp(ClientIP.getClientIP(httpServletRequest))
 				.build().addMemberRole(MemberRole.USER));
 		
 		return new CustomUserDetails(entity);
