@@ -1,5 +1,6 @@
 package com.project.jongin.securiy;
 
+import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -34,22 +35,28 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
 	private OAuth2User saveSocialUser(OAuth2User oAuth2User, String registrationId) {
 		String name=null;
 		String email=null;
-		String sub=null;
+		String pass=null;
 		if(registrationId.equals("google")) {//구글로그인
 			name=oAuth2User.getAttribute("name");
 			email=oAuth2User.getAttribute("email");
-			sub=oAuth2User.getAttribute("sub");
+			pass=oAuth2User.getAttribute("sub");
 			/*
 			Map<String, Object> userInfo=oAuth2User.getAttributes();
 			userInfo.keySet().forEach(e->{
 				System.out.println(e+":"+userInfo.get(e));
-			});*/
+			});
+			*/
 		}else if(registrationId.equals("naver")) {//네이버로그인
-			
+			Map<String, Object> response = oAuth2User.getAttribute("response");
+			name=(String) response.get("name");
+			email=(String) response.get("email");
+			pass=(String) response.get("id");
 		}else if(registrationId.equals("kakao")) {//카카오로그인
-			
-		}else if(registrationId.equals("facebook")) {//페이스북로그인
-			
+			Map<String, Object> response = oAuth2User.getAttribute("properties")	;
+			Map<String, Object> response2 = oAuth2User.getAttribute("kakao_account");
+			name=(String) response.get("nickname");
+			email=(String) "(kakao)"+response2.get("email");
+			pass=oAuth2User.getAttribute("connected_at");
 		}
 		//중복회원체크
 		Optional<CustomUserDetails> result=memberRepository.findByMemberEmail(email).map(CustomUserDetails::new);
@@ -61,7 +68,7 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
 		MemberEntity entity=memberRepository.save(MemberEntity.builder()
 				.memberEmail(email)
 				.memberName(name)
-				.memberPass(passwordEncoder.encode(sub))
+				.memberPass(passwordEncoder.encode(pass))
 				.memberSocial(true)
 				.memberIp("127.0.0.1")
 				.build().addMemberRole(MemberRole.USER));

@@ -13,7 +13,18 @@
 	line-height: 42px;
 	text-align: center;
 }
-
+.signup form ul li:nth-child(2){
+	margin-left:127px;
+	margin-bottom: 17px;
+}
+.signup form ul li:nth-child(2) button{
+	margin: 0;
+	width: 150px;
+}
+.signup form ul li:nth-child(2) input{
+	margin-left: 17px;
+	width: 283px;
+}
 .signup form ul li label {
 	width: 110px;
 	display: inline-block;
@@ -47,10 +58,10 @@
 	height: 60px;
 	font-size: 20px;
 	line-height: 60px;
-	border-color: #FFBA00;
-	background-color: #FFBA00;
+	border-color: #ffa409;
+	background-color: #ffa409;
 	color: rgb(232, 230, 227);
-	border: 1px solid #FFBA00;
+	border: 1px solid #ffa409;
 	border-radius: 4px;
 }
 .signup form ul li button:disabled{
@@ -60,5 +71,5 @@
 	border: 1px solid gray;
 }
 input:focus {
-	border: 3px solid #FFBA00;
+	border: 3px solid #ffa409;
 }

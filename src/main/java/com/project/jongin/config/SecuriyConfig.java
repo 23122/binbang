@@ -51,6 +51,7 @@ public class SecuriyConfig{
         http
             .authorizeHttpRequests((authz) -> authz
             		.antMatchers("/","/customer/**").permitAll()
+            		.antMatchers("/register/**").hasAnyRole("ADMIN")
             		.anyRequest().authenticated()
             		);
         http

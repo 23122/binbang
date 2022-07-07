@@ -1,0 +1,384 @@
+@charset "UTF-8";
+.register-add {
+    width: 100%;
+    overflow: hidden;
+    background: white;
+    margin-top: 23px;
+    border-top: 1px solid #ffae2d;
+}
+
+.register-add .register-step {
+    padding: 60px 0 85px;
+    min-width: 950px;
+    background: #fff6e5;
+    text-align: center;
+}
+
+.register-add .register-content {
+    width: 950px;
+    margin: 77px auto 0;
+}
+
+.register-add .register-text {
+    min-width: 950px;
+    padding: 40px 0 45px;
+    background: #ffb147;
+    text-align: center;
+}
+
+.register-add .item-add {
+    margin-bottom: 60px;
+    background: #fdfcfa;
+    border-top: 1px solid #f4f0ea;
+}
+
+.register-add .item-add th {
+    padding-left: 20px;
+    width: 210px;
+    border-bottom: 1px solid #f4f0ea;
+    text-align: left;
+    color: #6c665e;
+    font-size: 16px;
+}
+
+.register-add .item-add td {
+    padding: 10px;
+    border-bottom: 1px solid #f4f0ea;
+    color: #6c665e;
+}
+
+.register-add .item-add select {
+    height: 38px;
+    font-size: 14px;
+    color: #6c665e;
+    border: 1px solid #f0ece6;
+    background: white;
+    box-sizing: border-box;
+}
+
+.register-add .item-add .text {
+    width: 100%;
+    height: 38px;
+    padding: 0 10px;
+    font-size: 14px;
+    color: #6c665e;
+    border: 1px solid #f0ece6;
+    background: white;
+    box-sizing: border-box;
+}
+
+.register-add .item-tit {
+    overflow: hidden;
+}
+
+.register-add .item-tit span {
+    display: block;
+    width: 100%;
+    height: 100%;
+    background: url(//s.zigbang.com/v1/web/register/ir_agent.png) no-repeat 0 0;
+}
+
+.register-add .item-tit.item-tit1 {
+    width: 538px;
+    height: 60px;
+    margin: 0 0 20px 20px;
+}
+
+.register-add .item-tit.item-tit1 span {
+    background-position: 0 0;
+}
+
+.register-add .item-tit.item-tit2 {
+    width: 451px;
+    height: 60px;
+    margin: 0 0 20px 20px;
+}
+
+.register-add .item-tit.item-tit2 span {
+    background-position: 0 -60px;
+}
+
+.register-add .item-tit.item-tit3 {
+    width: 63px;
+}
+
+.register-add .item-tit.item-tit3 span {
+    background-position: 0 -138px;
+}
+
+.register-add .item-tit.item-tit4 {
+    width: 244px;
+}
+
+.register-add .item-tit.item-tit4 span {
+    background-position: -70px -138px;
+}
+
+.register-add .item-tit.item-tit5 {
+    width: 200px;
+}
+
+.register-add .item-tit.item-tit5 span {
+    background-position: -317px -138px;
+}
+
+.register-add .item-check .item-tit {
+    float: left;
+    height: 15px;
+    margin-bottom: 14px;
+}
+
+.register-add .item-check label {
+    float: right;
+}
+
+.register-add .item-check div {
+    clear: both;
+    margin-bottom: 30px;
+    border: 1px solid #d2d2d2;
+    background: #fafafa;
+    box-sizing: border-box;
+}
+
+.register-add .item-check div iframe {
+    width: 100%;
+    border: 0;
+}
+
+.register-add .item-submit {
+    padding: 60px 0 80px;
+    text-align: center;
+}
+
+.register-add .item-submit .i-txt {
+    display: block;
+    width: 487px;
+    height: 45px;
+    margin: 0 auto 30px;
+}
+
+.register-add .item-submit .i-txt span {
+    background-position: 0 -154px;
+}
+
+.register-add .item-submit .i-submit {
+    display: block;
+    width: 482px;
+    height: 93px;
+    margin: 0 auto 30px;
+}
+
+.register-add .item-submit .i-submit span {
+    background-position: -558px 0;
+}
+
+.register-add .item-submit .i-product {
+    display: block;
+    width: 335px;
+    height: 93px;
+    margin: 0 auto 30px;
+}
+
+.register-add .item-submit .i-product span {
+    background-position: -703px -300px;
+}
+
+.register-add .item-submit .i-back {
+    display: inline-block;
+    width: 135px;
+    height: 16px;
+    margin-right: 10px;
+}
+
+.register-add .item-submit .i-back span {
+    background-position: 0 -120px;
+}
+
+.register-add .item-submit .i-call {
+    display: inline-block;
+    width: 292px;
+    height: 16px;
+}
+
+.register-add .item-submit .i-call span {
+    background-position: -145px -121px;
+}
+
+.register-info-new .item-top-banner {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    padding: 29px 0;
+    background: #fb741b;
+    text-align: center;
+    z-index: 999;
+    height: 81px;
+    box-sizing: border-box;
+    font-size: 23.5px;
+    color: white;
+    border: 0;
+    font-weight: bold;
+}
+
+.register-info-new .web-main-bg {
+    position: relative;
+    width: 1920px;
+    text-align: center;
+    margin: 0 0 0 -960px;
+    left: 50%;
+}
+
+.register-info-new .register-main-component .register {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    background-color: #fb741b;
+    width: 435px;
+    height: 85px;
+    border-radius: 10px 10px 0 0;
+    color: white;
+    font-size: 23.5px;
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+.register-info-new .register-main-component .intro_prod {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 0 10px 10px 10px;
+    position: relative;
+    padding: 20px 10px 22px 46px;
+    height: 150px;
+    width: 950px;
+    background-color: white;
+    box-sizing: border-box;
+    -webkit-box-shadow: 0px 17px 30px 0px rgba(0, 0, 0, 0.15);
+    -moz-box-shadow: 0px 17px 30px 0px rgba(0, 0, 0, 0.15);
+    box-shadow: 0px 17px 30px 0px rgba(0, 0, 0, 0.15);
+}
+
+.register-info-new .register-main-component .intro_prod .intro-link {
+    position: relative;
+    height: 108px;
+    width: 262px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 26px;
+    box-sizing: border-box;
+    white-space: nowrap;
+}
+
+.register-info-new .register-main-component .intro_prod .intro-link-title {
+    font-size: 21.5px;
+    font-weight: bold;
+    color: black;
+    margin-bottom: 19px;
+    line-height: 21px;
+    display: flex;
+    align-items: center;
+}
+
+.register-info-new .register-main-component .intro_prod .intro-link-title .arrow {
+    width: 7px;
+    height: 13px;
+    margin-left: 13px;
+    background: url("//s.zigbang.com/v1/web/register/image-arrow.png") no-repeat;
+}
+
+.register-info-new .register-main-component .intro_prod .intro-link-detail {
+    font-size: 16px;
+    color: #5a5a5a;
+}
+
+.register-info-new .register-main-component .intro_prod .intro-link:hover .intro-link-title {
+    color: #fb741b;
+}
+
+.register-info-new .register-main-component .intro_prod .intro-link:hover .intro-link-title .arrow {
+    background: url("//s.zigbang.com/v1/web/register/image-arrow-hover.png") no-repeat;
+}
+
+.register-info-new .item-visual {
+    background-color: white;
+    position: relative;
+}
+
+.register-info-new .item-visual .i_btn_apt_prod, .register-info-new .item-visual .i_btn_else_prod, .register-info-new .item-visual .i_call_info, .register-info-new .item-visual .i_register_title {
+    margin: auto;
+    display: block;
+    overflow: hidden;
+    text-indent: -9999px;
+    background-image: url(//s.zigbang.com/v1/web/register/sprite.png);
+    background-position: 0 -199px;
+    width: 309px;
+    height: 76px;
+}
+
+.register-info-new .item-visual .i_btn_else_prod {
+    background-position: -309px -199px;
+}
+
+.register-info-new .item-visual .i_call_info {
+    background-position: 0 -275px;
+    width: 275px;
+    height: 13px;
+    margin-top: 84px;
+    font-weight: bold;
+}
+
+.register-info-new .item-visual .i_register_title {
+    background-position: 0 0;
+    width: 739px;
+    height: 107px;
+    margin-top: 160px;
+}
+
+.register-info-new .item-cont {
+    text-align: center;
+    background: white;
+}
+
+.register-info-new .item-cont .top-wrapper, .register-info-new .item-cont .bottom-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+.register-info-new .item-cont .register-main-component {
+    position: absolute;
+    top: 400px;
+}
+
+.register-info-new .item-cont img {
+    display: block;
+}
+
+.register-info-new .item-cont .i-product {
+    position: relative;
+    margin: 0 auto;
+}
+
+.register-info-new .item-cont .i-product .i-btn {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.register-info-new .item-cont .i-product .i-btn span {
+    background-position: -768px -402px;
+}
+
+.register-info-new .item-cont .i-product-btns {
+    position: absolute;
+    left: 50%;
+    bottom: 56px;
+    margin-left: -458px;
+}
+
+.register-info-new .item-cont .i-join .register-main-component {
+    position: absolute;
+    top: 276px;
+}

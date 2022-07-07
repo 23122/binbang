@@ -65,4 +65,9 @@ public class MemberEntity extends BaseTimeEntity{
 		roleSet.remove(role);
 		return this;
 	}
+	public MemberEntity socialUpdate(String name, String pass) {
+		memberName=name;
+		memberPass=pass;
+		return this;
+	}
 }

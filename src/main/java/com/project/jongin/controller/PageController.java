@@ -19,5 +19,16 @@ public class PageController {
 	public String loginProess() {
 		return "index";
 	}
-
+	@GetMapping("/customer/registerInfo")
+	public String register() {
+		return "/register/registerInfo";
+	}
+	@GetMapping("/customer/registerAdd")
+	public String registerAdd() {
+		return "/register/regAdd";
+	}
+	@GetMapping("/test")
+	public String text() {
+		return "newIndex";
+	}
 }

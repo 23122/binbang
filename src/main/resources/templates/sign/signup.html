@@ -10,13 +10,15 @@ th:replace="~{layout/layout2 :: layout(~{::head}, ~{::main})}">
 <main>
 	<h1>메인컨텐츠</h1>
 	<div class="signup wrap">
-		<div><a href="/">home</a></div>
+		<div><a href="/"><img alt="" src="/img/logo/mainLogo.png" style="height: 30px;width: 70px;"></a></div>
 		<p>회원가입</p>
 		<form action="/customer/newMember" method="post">
 			<ul>
 				<li>
 					<label>이메일</label>
 					<input type="text" name="memberEmail" placeholder="이메일 입력">
+				</li>
+				<li class="flex">
 					<button type="button">인증번호발송</button>
 					<input type="text" placeholder="인증번호 입력">
 				</li>

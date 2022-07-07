@@ -32,10 +32,10 @@
 	<header>
 		<h1>헤더</h1>
 		<div id="__next" data-reactroot="">
-			<div class="sc-jSgvzq top-menu">
+			<div class="top-menu">
 				<div class="top">
 					<div class="logo-wrap">
-						<a href="">
+						<a href="/">
 							<img class="logo"src="/img/logo/mainLogo.png"alt="직방">
 						</a>
 					</div>
@@ -107,6 +107,7 @@
 							<div sec:authorize="isAuthenticated()" class="bx_user">
 								<a sec:authentication="name" href="/mypage"></a>
 								<button style="margin-left: 15px;" id="btn-logout">로그아웃</button>
+								<a href="/register/board" class="i_account">관리자</a>
 							</div>
 						</div>
 						<div class="top_btn_menu">

@@ -1,0 +1,420 @@
+@charset "UTF-8";
+
+.register-add-new {
+	background: white;
+	font-size: 14px;
+}
+
+.register-add-new .item-header {
+	display: none;
+	height: 55px;
+	background: #ffa409;
+}
+
+.register-add-new .item-header img {
+	height: 55px;
+}
+
+.register-add-new .item-step {
+	background: #fff6e5;
+}
+
+.register-add-new .item-step img {
+	display: block;
+	width: 100%;
+	max-width: 640px;
+	margin: 0 auto;
+}
+
+.register-add-new .i-wrap {
+	max-width: 1000px;
+	margin: 0 auto;
+}
+
+.register-add-new .i-tit {
+	margin: 15px 15px 20px;
+	padding: 5px 5px 5px 10px;
+	border-left: 2px solid #ff9600;
+	color: black;
+	line-height: 1.4em;
+	font-size: 1.05em;
+}
+
+.register-add-new .i-tit h4 {
+	margin-bottom: 8px;
+	color: #ff9600;
+	font-size: 1.41em;
+	font-weight: bold;
+}
+
+.register-add-new .i-tit strong {
+	font-weight: bold;
+	margin-bottom: 3px;
+}
+
+.register-add-new .item-cont ul {
+	background: #f6f6f6;
+	padding: 0 15px;
+}
+
+.register-add-new .item-cont ul h5 {
+	margin-bottom: 10px;
+	color: black;
+	font-size: 1.16em;
+	font-weight: bold;
+}
+
+.register-add-new .item-cont ul li {
+	position: relative;
+	padding: 15px 0;
+	border-top: 1px solid #e1e1e1;
+}
+
+.register-add-new .item-cont ul li:first-child {
+	border-top: 0;
+}
+
+.register-add-new .item-cont ul li .i_2 {
+	margin-top: 15px !important;
+	display: block;
+}
+
+.register-add-new .item-cont ul li>p {
+	position: absolute;
+	left: 420px;
+	top: 43px;
+	color: #757575;
+	padding: 8px 0 4px;
+}
+
+.register-add-new .item-cont ul li>p.i_2 {
+	top: 78px !important;
+}
+
+.register-add-new .item-cont ul input.text {
+	width: 100%;
+	max-width: 400px;
+	height: 37px;
+	padding: 0 0 0 10px;
+	border: 1px solid #e1e1e1;
+	box-shadow: none;
+	-webkit-appearance: none;
+}
+
+.register-add-new .item-cont ul input.text .i_2 {
+	margin-top: 10px;
+}
+
+.register-add-new .item-cont ul select {
+	border: 1px solid #e1e1e1;
+	box-shadow: none;
+}
+
+.register-add-new .item-cont ul label {
+	color: black;
+	display: inline-block;
+	white-space: nowrap;
+	margin-right: 20px;
+}
+
+.register-add-new .item-cont ul .i-tel {
+	width: 30% !important;
+	max-width: 125px !important;
+}
+
+.register-add-new .item-cont ul .i-mail {
+	width: 47% !important;
+	max-width: 190px !important;
+}
+
+.register-add-new .item-search-box button {
+	width: 125px;
+	height: 37px;
+	background-color: #ffa409;
+	color: white;
+	font-size: 14px;
+	font-weight: normal;
+}
+
+.register-add-new .item-search-box div {
+	display: none;
+	padding-top: 10px;
+	color: black;
+	line-height: 1.7em;
+	font-size: 14px;
+}
+
+.register-add-new .item-agree {
+	position: relative;
+	padding: 18px 0;
+}
+
+.register-add-new .item-agree button {
+	position: absolute;
+	right: 0;
+	top: 25px;
+	color: #757575;
+}
+
+.register-add-new select {
+	width: 100%;
+	max-width: 400px;
+	height: 37px;
+	border: 1px solid #e1e1e1;
+	background: white;
+}
+
+.register-add-new .tt-dropdown-menu {
+	max-width: 400px;
+	width: 100%;
+	margin-top: 0;
+}
+
+.register-add-new .item-submit {
+	padding: 30px 0 50px;
+	text-align: center;
+}
+
+.register-add-new .item-submit p {
+	padding-bottom: 30px;
+	color: black;
+	text-align: center;
+	font-size: 16px;
+}
+
+.register-add-new .item-submit p strong {
+	color: #ffa409;
+	display: block;
+	padding-bottom: 10px;
+	font-size: 20px;
+}
+
+.register-add-new .item-submit p a {
+	border-bottom: 1px solid #ffa409;
+}
+
+.register-add-new .item-submit button {
+	display: block;
+	height: 48px;
+	color: white;
+	font-size: 16px;
+	font-weight: bold;
+	text-align: center;
+	background: #ffa409;
+	max-width: 360px;
+	width: 90%;
+	margin: 0 auto;
+}
+
+.register-add-new .item-submit button:hover {
+	background: #734216;
+}
+
+.register-add-new .item-search-area.apt {
+	width: auto;
+	margin-top: 30px;
+}
+
+.register-add-new .item-search-area.apt .ico_sub_title_apt {
+	margin: 0 auto 15px;
+	display: block;
+	overflow: hidden;
+	text-indent: -9999px;
+	background-image: url(//s.zigbang.com/v1/web/register/merge.png);
+	background-position: -427px 0px;
+	width: 534px;
+	height: 20px;
+}
+
+.register-add-new .item-search-area.apt .ico_tit_search {
+	display: block;
+	overflow: hidden;
+	text-indent: -9999px;
+	background-image: url(//s.zigbang.com/v1/web/register/merge.png);
+	background-position: -427px -34px;
+	width: 134px;
+	height: 48px;
+}
+.agree-layer {
+    display: none;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 9999;
+}
+
+.agree-layer .i-frame {
+    position: relative;
+    max-width: 500px;
+    height: 500px;
+    margin: 50px auto 0;
+    background: #f7f7f7;
+    z-index: 9998;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.agree-layer .i-frame iframe {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.agree-layer .i-btn {
+    width: 500px;
+    background: white;
+    margin: 0 auto;
+}
+
+.agree-layer .i-btn button {
+    height: 50px;
+    width: 100%;
+    color: #ffa409;
+    text-align: center;
+    font-size: 14px;
+}
+
+.agent-search-layer {
+    display: none;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 9999;
+    text-align: left;
+}
+
+.agent-search-layer .box {
+    position: relative;
+    top: 50%;
+    max-width: 330px;
+    margin: -145px auto 0;
+    height: 290px;
+    background: white;
+    text-align: center;
+}
+
+.agent-search-layer .box .i-title {
+    height: 50px;
+    line-height: 50px;
+    overflow: hidden;
+    border-bottom: 1px solid #eeeeee;
+    color: black;
+    padding-left: 10px;
+    text-align: left;
+    font-weight: Bold;
+    font-size: 15px;
+}
+
+.agent-search-layer .box .i-title button {
+    position: absolute;
+    right: 15px;
+    top: 13px;
+}
+
+.agent-search-layer .box .i-cont {
+    position: relative;
+    padding: 15px 15px 0;
+    height: 200px;
+}
+
+.agent-search-layer .box .i-cont input {
+    width: 100%;
+    border: 1px solid #eeeeee;
+    height: 45px;
+    text-align: left;
+    box-sizing: border-box;
+    outline: none;
+    text-indent: 15px;
+    font-size: 14px;
+}
+
+.agent-search-layer .box .i-ex {
+    padding-top: 14px;
+    color: #757575;
+    font-size: 12px;
+    line-height: 1.7em;
+    text-align: left;
+}
+
+.agent-search-layer .box .i-result {
+    display: none;
+    color: black;
+    text-align: left;
+}
+
+.agent-search-layer .box .i-result strong {
+    display: block;
+    padding-top: 10px;
+}
+
+.agent-search-layer .box .i-result button {
+    display: block;
+    width: 100%;
+    margin-top: 15px;
+    height: 45px;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
+    background-color: #ffa409;
+    color: white;
+}
+
+.agent-search-layer .box .i-result .i-tel {
+    text-overflow: ellipsis;
+    display: block;
+    overflow: hidden;
+    width: 100%;
+    white-space: nowrap;
+}
+
+.agent-search-layer .tt-dropdown-menu {
+    width: 100%;
+    max-height: 165px;
+    padding: 0;
+    text-align: left;
+    overflow: auto;
+    font-size: 12px;
+}
+
+.agent-search-layer .tt-dropdown-menu p, .agent-search-layer .tt-dropdown-menu .empty {
+    position: relative;
+    display: block;
+    padding: 8px 10px;
+    margin: 0;
+    height: auto;
+    color: black;
+    cursor: pointer;
+}
+
+.agent-search-layer .tt-dropdown-menu p:after, .agent-search-layer .tt-dropdown-menu .empty:after {
+    content: " ";
+    position: absolute;
+    left: 10px;
+    right: 10px;
+    bottom: 0;
+    height: 1px;
+    border-bottom: 1px solid #e1e1e1;
+}
+
+.agent-search-layer .tt-dropdown-menu p > span {
+    display: block;
+    color: #757575;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.agent-search-layer .tt-dropdown-menu .tt-cursor {
+    /* UPDATE: newer versions use .tt-suggestion.tt-cursor */
+    background-color: #eeeeee !important;
+}
