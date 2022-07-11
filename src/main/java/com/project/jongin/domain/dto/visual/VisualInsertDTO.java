@@ -9,6 +9,7 @@ import lombok.Setter;
 public class VisualInsertDTO extends FileData{
 	private String visualTitle;
 	private String visualSub;
+	private String visualLink;
 	
 	public VisualFileEntity toVisualFile() {
 		return VisualFileEntity.builder()
@@ -17,6 +18,7 @@ public class VisualInsertDTO extends FileData{
 				.visualOriginalName(fileOriginalName)
 				.visualSize(fileSize)
 				.visualSub(visualSub)
+				.visualLink(visualLink)
 				.build();
 	}
 

@@ -6,30 +6,100 @@
 </head>
 <main>
 	<h1>비주얼이미지 리스트</h1>
-	<div>
+	<div class="wrap">
 		<p>비주얼 이미지 리스트 페이지</p>
 		<table>
 			<thead>
 				<tr>
 					<td>관리번호</td>
 					<td>이미지</td>
+					<td>링크주소</td>
 					<td>타이틀</td>
 					<td>서브타이틀</td>
-					<td>파일사이즈</td>
+					<td>적용여부</td>	
+					<td>순서</td>
+					<td>관리</td>	
 				</tr>
 			</thead>
 			<tbody>
-				<tr th:each="dto:${list}">
-					<td>[[${dto.visualNo}]]</td>
+				<tr class="item" th:each="dto, i:${list}">
+					<td class="visualNo">[[${dto.visualNo}]]</td>
 					<td>
 						<img th:src="${dto.visualUrl+dto.visualOriginalName}" height="100px">
 					</td>
-					<td>[[${dto.visualTitle}]]</td>
-					<td>[[${dto.visualSub}]]</td>
+					<td>
+						<input class="visualLink" type="text" th:value="${dto.visualLink}" readonly>
+					</td>
+					<td>
+						<input class="visualTitle" type="text" th:value="${dto.visualTitle}" readonly>
+					</td>
+					<td>
+						<input  class="visualSub" type="text" th:value="${dto.visualSub}" readonly>
+					</td>
 					<td>[[${dto.visualSize}]]</td>
+					<td>
+						<label th:for="|cb-isShow-${i.count}|">적용 됨</label>
+						<input th:id="|cb-isShow-${i.count}|" class="cb-isShow" type="checkbox" th:checked="${dto.isShow}">
+					</td>	
+					<td>[[${dto.num}]]</td>
+					<td>
+						<button type="button">삭제</button>
+					</td>			
 				</tr>
 			</tbody>
 		</table>
+		<script type="text/javascript">
+			$(function(){
+				$(".visualTitle,.visualSub,.visualLink").focus(function(){
+					$(this).removeAttr("readonly");
+				});
+				$(".visualTitle,.visualSub,.visualLink").blur(function(){
+					$(this).attr("readonly",true);
+				});
+				
+				$(".visualTitle,.visualSub,.visualLink").change(function(){
+					var visualNo=$(this).parents("tr").find(".visualNo").text();
+					var visualSub=$(this).parents("tr").find(".visualSub").val();
+					var visualTitle=$(this).parents("tr").find(".visualTitle").val();
+					var visualLink=$(this).parents("tr").find(".visualLink").val();
+					
+					var token = $("meta[name='_csrf']").attr("content");
+	    			var header = $("meta[name='_csrf_header']").attr("content");
+					$.ajax({
+						beforeSend: function(xhr){xhr.setRequestHeader(header, token);},
+						url:"/admin/visuals/"+visualNo,
+						type:"put",
+						data: {visualTitle: visualTitle, visualSub:visualSub, visualLink:visualLink},
+						success: function(result){
+							if(result){
+								alert("수정완료");
+							}
+						}
+					});
+				});
+
+				$(".cb-isShow").change(function(){
+					//alert($(this).attr("checked"));
+					var visualNo=$(this).parents("tr").find(".visualNo").text();
+					var isShow=$(this).prop("checked");//true or false
+					
+					var token = $("meta[name='_csrf']").attr("content");
+	    			var header = $("meta[name='_csrf_header']").attr("content");
+	    			$.ajax({
+	    				beforeSend: function(xhr){xhr.setRequestHeader(header, token);},
+						url:"/admin/visuals/"+visualNo,
+						type:"post",
+						data: {"isShow": isShow},
+						success: function(result){
+							if(result){
+								alert("이미지수정완료");
+							}
+						}
+					});
+				});
+				
+			});
+		</script>
 	</div>
 </main>
 </html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<ul class="vimg-wrap flex">
+	<li class="vimg" th:each="dto:${list}">
+		<a th:href="${dto.visualLink}"class="bg" th:style="|background-image: url(${dto.visualUrl+dto.visualOriginalName});|">
+			<span class="text view-size">
+				<b class="title">[[${dto.visualTitle}]]</b>
+				<i class="sub">[[${dto.visualSub}]]</i>
+			</span>
+		</a>
+	</li>
+</ul>
+<script type="text/javascript">
+var myTimeout;
+$(function(){
+	visualResize();
+	$(window).resize(function(){
+		visualResize();
+	});
+	//화면최소화시 타이머 스탑
+	document.addEventListener("visibilitychange", function() {
+		  console.log(document.visibilityState);
+		  var state=document.visibilityState;
+		  if(state=="hidden"){
+			  stop();
+		  }else if(state=="visible"){
+			  myTimeout = setTimeout(start, 3000);//타이머로 시작
+		  }
+	});
+	//비주얼 이미지에 마우스 올라갈때
+	$(".area").hover( stop ,function(){myTimeout = setTimeout(start, 3000);});
+	
+	//처음로딩시 타이머로 이미지 시작
+	myTimeout = setTimeout(start, 3000);
+	
+});
+
+var speed=1000;
+
+function stop(){
+	clearTimeout(myTimeout);
+	console.log("timmer stop");
+}
+function start(){
+	next();
+	myTimeout = setTimeout(start, 3000);
+	console.log("timmer start");
+}
+
+function next(){
+	var first=$(".vimg:first-child");
+	var last=$(".vimg:last-child");
+	//$(".vimg-wrap").css("margin-left", "-100%");
+	$(".vimg-wrap").animate({marginLeft:"-100%"}, speed, function(){
+		last.after(first);//첫번째이미지->맨뒤로 보내기
+		$(".vimg-wrap").css("margin-left", 0);
+	});
+	
+}
+
+function visualResize(){
+	var wow=260;/* window.innerWidth; */
+	var imgs=$(".vimg");
+	console.log(imgs.length);
+	console.log(wow);
+	$(".vimg-wrap").css("width",wow * imgs.length);
+	$(".vimg").css("width",wow); //이미지1장의 크기 설정
+	$(".area").css("width",wow); //화면영역
+}
+
+</script>
+</html>

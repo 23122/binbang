@@ -6,6 +6,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import com.project.jongin.domain.dto.visual.VisualUpdateDTO;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -23,6 +25,8 @@ public class VisualFileEntity {
 	@Column
 	private String visualUrl;
 	@Column
+	private String visualLink;
+	@Column
 	private String visualOriginalName;
 	@Column
 	private String visualChangeName;
@@ -32,4 +36,20 @@ public class VisualFileEntity {
 	private String visualSub;
 	@Column
 	private long visualSize;
+	@Column
+	private int num;
+	@Column
+	private boolean isShow;
+	
+	public VisualFileEntity updateIsShow(boolean isShow) {
+		this.isShow=isShow;
+		return this;
+	}
+	
+	public VisualFileEntity updateData(VisualUpdateDTO dto) {
+		this.visualSub=dto.getVisualSub();
+		this.visualTitle=dto.getVisualTitle();
+		this.visualLink=dto.getVisualLink();
+		return this;
+	}
 }

@@ -14,4 +14,9 @@ a:hover{text-decoration:none;color: inherit;background-color: transparent;}
 .center {justify-content: center;}
 .between {justify-content: space-between;}
 .around {justify-content: space-around;}
+.left {justify-content: flex-start;}
 .right {justify-content: flex-end;}
+.view-size{width: 1180px; margin: 0 auto;}
+input:read-only {
+	border: none;
+}

@@ -5,16 +5,19 @@ import com.project.jongin.domain.entity.VisualFileEntity;
 import lombok.Getter;
 
 @Getter
-public class VisualLsitDto {
+public class VisualLsitDTO {
 	private long visualNo;
 	private String visualUrl;
 	private String visualOriginalName;
 	private String visualChangeName;
 	private String visualTitle;
 	private String visualSub;
+	private String visualLink;
 	private long visualSize;
+	private int num;
+	private boolean isShow;
 	
-	public VisualLsitDto(VisualFileEntity e) {
+	public VisualLsitDTO(VisualFileEntity e) {
 		super();
 		this.visualNo = e.getVisualNo();
 		this.visualUrl = e.getVisualUrl();
@@ -23,6 +26,9 @@ public class VisualLsitDto {
 		this.visualTitle = e.getVisualTitle();
 		this.visualSub = e.getVisualSub();
 		this.visualSize = e.getVisualSize();
+		this.visualLink = e.getVisualLink();
+		this.num=e.getNum();
+		this.isShow=e.isShow();
 	}
 	
 }
