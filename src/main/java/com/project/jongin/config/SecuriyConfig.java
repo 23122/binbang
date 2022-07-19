@@ -23,34 +23,13 @@ import lombok.RequiredArgsConstructor;
 public class SecuriyConfig{
 	
 	private final CustomOAuth2UserService customOAuth2UserService;
-//	private final CustomAuthenticationFailureHandler failureHandler;
-//	private final CustomAuthenticationSuccessHandler successHandler;
-	
-//	@Bean
-//	CustomAuthenticationFailureHandler failurlHandler() {
-//		return new CustomAuthenticationFailureHandler();
-//	}
-	
-//	@Bean
-//	CustomAuthenticationSuccessHandler successHandler() {
-//		return new CustomAuthenticationSuccessHandler();
-//	}
-	
-	/*
-	 * @Bean public UserDetailsService userDetailsService() { String
-	 * test=passwordEncoder().encode("1111"); System.out.println(">>>>>>>>>>>>>>>");
-	 * System.out.println(test); System.out.println(">>>>>>>>>>>>>>>"); String
-	 * pass="$2a$10$rQarhZnfK.v9eMqBUu05m.l0EAaJ1XR1gEKHsYjCRDBlC1qbLSHoi";
-	 * InMemoryUserDetailsManager manager = new InMemoryUserDetailsManager();
-	 * manager.createUser(User.withDefaultPasswordEncoder().username("user").
-	 * password(pass).roles("USER").build()); return manager; }
-	 */
 	
 	@Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
             .authorizeHttpRequests((authz) -> authz
             		.antMatchers("/","/customer/**","/register/**").permitAll()
+            		.antMatchers("/board/**").hasAnyRole("USER","ADMIN")
             		.antMatchers("/admin/**").hasAnyRole("ADMIN")
             		.anyRequest().authenticated()
             		);
@@ -62,8 +41,6 @@ public class SecuriyConfig{
             		.loginProcessingUrl("/customer/login")
             		.failureUrl("/customer/login?errorMsg")
             		.defaultSuccessUrl("/")
-//            		.successHandler(successHandler())
-//            		.failureHandler(failurlHandler())
             		.permitAll()
             		);
         http

@@ -250,6 +250,7 @@ body {
 	width: 40px;
 } /*!sc*/
 .top-menu .top_btn {
+	margin-right:25px;
 	float: right;
 	display: table;
 	height: 80px;
@@ -423,6 +424,7 @@ body {
 	padding: 22px 0 20px;
 	position: relative;
 	text-align: center;
+	min-width: 1200px;
 } /*!sc*/
 .foot-copy .wrap-600 {
 	width: 600px;

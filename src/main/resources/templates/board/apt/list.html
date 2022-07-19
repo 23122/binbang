@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{layout/layout1 :: layout(~{::head}, ~{::main})}">
+<head>
+<link rel="stylesheet" href="/css/board/apt/list.css">
+</head>
+<main>
+	<div class="wrap">
+		<h1>아파트매물목록</h1>
+		<section id="list-search">
+			<h1>검색영역</h1>
+			<div class="flex between">
+				<ul class="search-area flex left">
+					<li>
+						<span class="boil-wrap flex">
+	                       	<select style="margin: 30px 0;" name="boilType">
+	                           	<option selected="selected">방종류</option>
+	                           	<option value="1">원룸</option>
+	                           	<option value="2">투룸</option>
+	                           	<option value="3">쓰리룸</option>
+	                           	<option value="4">오피스텔</option>
+	                       	</select>
+	                  	</span>
+					</li>
+					<li>
+						<span class="boil-wrap flex">
+	                       	<select name="boilType">
+	                           	<option selected="selected">매물종류</option>
+	                           	<option value="1">전세</option>
+	                           	<option value="2">월세</option>
+	                           	<option value="3">매매</option>
+	                       	</select>
+	                  	</span>
+					</li>
+					<li>
+						<span class="boil-wrap flex">
+	                       	<select name="boilType">
+	                           	<option selected="selected">가격대</option>
+	                           	<option value="1">미구현</option>
+	                       	</select>
+	                  	</span>
+					</li>
+					<li>
+						<span class="boil-wrap flex">
+	                       	<select name="boilType">
+	                           	<option selected="selected">집크기</option>
+	                           	<option value="1">미구현</option>
+	                       	</select>
+	                  	</span>
+					</li>
+					<li>
+						<span class="boil-wrap flex">
+	                       	<select name="boilType">
+	                           	<option selected="selected">추가 옵션</option>
+	                            <option value="1">미구현</option>
+	                       	</select>
+	                  	</span>
+					</li>
+				</ul>
+				<ul class="search-area flex left">
+					<li>
+						<input>
+					</li>
+					<li>
+						<button>검색</button>
+					</li>
+				</ul>
+			</div>
+		</section>
+		<section class="list">
+			<div>
+				<table>
+					<thead>
+						<tr>
+							<td>지역</td>
+							<td>제목</td>
+							<td>구분</td>
+							<td>가격</td>
+							<td>등록일</td>
+							<td>수정일</td>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>지역db</td>
+							<td>제목db</td>
+							<td>구분db</td>
+							<td>가격db</td>
+							<td>등록일db</td>
+							<td>수정일db</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</section>
+		<section style="width: 1200px; margin: 0 auto;">
+			<div class="bot-btn flex right">
+				<a href="/board/aptList/write/email"><button>내글보기</button></a>
+				<a href="/board/aptList/write"><button>글쓰기</button></a>
+			</div>
+		</section>
+	</div>
+</main>
+</html>

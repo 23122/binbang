@@ -42,60 +42,46 @@
 					<div class="gnb">
 						<ul id="gnb-container">
 							<li class="has_d2 ">
-								<a href="/customer/board">
-									<span>아파트</span>
-									<span class="small">매매/전월세/신축분양</span>
+								<a>
+									<span>빈방찾기</span>
+									<span class="small">쉽고 빠른 빈방찾기</span>
 								</a>
 								<div class="depth2_bx">
-									<a href="/customer/board" class=" ">매매/전·월세</a>
-									<a href="/customer/board" class=" ">신축분양</a>
-									<a href="/customer/board" class=" ">인구흐름</a>
+									<a href="/customer/board">지도로 빈방찾기</a>
+									<a href="/customer/board/aptList">게시글로 빈방찾기</a>
 								</div>
 							</li>
 							<li class="has_d2 ">
 								<a>
-									<span>빌라, 투룸+</span>
-									<span class="small">신축분양/매매/전월세</span>
+									<span>관심목록</span>
+									<span class="small">나의관심목록</span>
+								</a>
+							</li>
+							<li class="has_d2 ">
+								<a>
+									<span>방 내놓기</span>
+									<span class="small">빈방을손쉽게</span>
 								</a>
 								<div class="depth2_bx">
-									<a class=" ">빌라, 투룸 찾기</a>
-									<a class=" ">찜한 매물</a>
-									<a class=" ">빌라 내놓기(전월세만)</a>
+									<a href="/board/aptList/write">방 내놓기</a>
+									<a class=" ">방 찾기</a>
 								</div>
 							</li>
 							<li class="has_d2 ">
 								<a>
-									<span>원룸</span>
-									<span class="small">전월세</span>
+									<span>허위매물 게시판</span>
+									<span class="small">불량이용자 신고</span>
 								</a>
 								<div class="depth2_bx">
-									<a class=" ">방 찾기</a><a class=" ">찜한 매물</a>
-									<a class=" ">방 내놓기(전월세만)</a>
+									<a class="">게시글 번호로 신고하기</a>
+									<a class="">작성자 아이디로 신고하기</a>
 								</div>
 							</li>
 							<li class="has_d2 ">
 								<a>
-									<span>오피스텔</span>
-									<span class="small">도시형생활주택/전월세</span>
+									<span>거래관리</span>
+									<span class="small">내 빈방거래</span>
 								</a>
-								<div class="depth2_bx">
-									<a class=" ">오피스텔 찾기</a>
-									<a class=" ">찜한 매물</a>
-									<a class=" ">오피스텔 내놓기(전/월세만)</a>
-								</div>
-							</li>
-							<li class="has_d2 ">
-								<a>
-									<span>창업/사무실</span>
-									<span class="small">임대/매매</span>
-								</a>
-									<div class="depth2_bx">
-									<a class=" ">상가・점포</a>
-									<a class=" coming_soon">사무실</a>
-									<a class=" coming_soon">공유오피스</a>
-									<a class=" ">찜한 매물</a>
-									<a class=" ">상가/사무실 내놓기</a>
-								</div>
 							</li>
 						</ul>
 					</div>
@@ -107,14 +93,8 @@
 							<div sec:authorize="isAuthenticated()" class="bx_user">
 								<a sec:authentication="name" href="/mypage"></a>
 								<button style="margin-left: 15px;" id="btn-logout">로그아웃</button>
-								<a href="/admin/home" class="i_account">관리자</a>
+								<a href="/admin/home" class="i_account" style="margin-right: 20px;">관리자</a>
 							</div>
-						</div>
-						<div class="top_btn_menu">
-							<a href="/customer/registerInfo" class="i_img_link">
-							<img src="https://s.zigbang.com/v1/web/main/ceo_ad_img.png"
-								width="126" height="38" alt="중개사무소 가입 및 광고문의">
-							</a>
 						</div>
 					</div>
 				</div>

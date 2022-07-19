@@ -9,7 +9,7 @@
 	<div>
 		<!-- board - main -->
 		<div id="map"
-			style="width: 100%; height: 900px; position: relative; overflow: hidden;"></div>
+			style="width: 100%; height: 860px; position: relative; overflow: hidden;"></div>
 		<div id="menu_wrap" class="bg_white">
 			<div class="option">
 				<div>
@@ -27,6 +27,7 @@
 	<script type="text/javascript"
 		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=588578978e1a4fed13de72adcc381d81&libraries=services"></script>
 	<script>
+	////////////////////////////////카카오지도 기본설정/////////////////////////
 		// 마커를 담을 배열입니다
 		var markers = [];
 
@@ -42,12 +43,43 @@
 
 		// 장소 검색 객체를 생성합니다
 		var ps = new kakao.maps.services.Places();
+		
+		// 주소-좌표 변환 객체를 생성합니다
+		var geocoder = new kakao.maps.services.Geocoder();
 
 		// 검색 결과 목록이나 마커를 클릭했을 때 장소명을 표출할 인포윈도우를 생성합니다
 		var infowindow = new kakao.maps.InfoWindow({
 			zIndex : 1
 		});
+	////////////////////////////////카카오지도 주소검색설정/////////////////////////
+	
+		// 주소로 좌표를 검색합니다
+		geocoder.addressSearch('제주특별자치도 제주시 첨단로 242', function(result, status) {
 
+		    // 정상적으로 검색이 완료됐으면 
+		     if (status === kakao.maps.services.Status.OK) {
+
+		        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+
+		        // 결과값으로 받은 위치를 마커로 표시합니다
+		        var marker = new kakao.maps.Marker({
+		            map: map,
+		            position: coords
+		        });
+
+		        // 인포윈도우로 장소에 대한 설명을 표시합니다
+		        var infowindow = new kakao.maps.InfoWindow({
+		            content: '<div style="width:150px;text-align:center;padding:6px 0;">우리회사</div>'
+		        });
+		        infowindow.open(map, marker);
+
+		        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+		        map.setCenter(coords);
+		    } 
+		});    
+		
+	////////////////////////////////카카오지도 키워드 검색설정/////////////////////////
+	
 		// 키워드로 장소를 검색합니다
 		searchPlaces();
 
@@ -88,7 +120,7 @@
 
 			}
 		}
-
+	////////////////////////////////카카오지도 마커설정/////////////////////////
 		// 검색 결과 목록과 마커를 표출하는 함수입니다
 		function displayPlaces(places) {
 
@@ -248,6 +280,22 @@
 				el.removeChild(el.lastChild);
 			}
 		}
+	////////////////////////////카카오지도 확대 컨트롤러////////////////////////
+		// 지도 확대 축소를 제어할 수 있는  줌 컨트롤을 생성합니다
+		var zoomControl = new kakao.maps.ZoomControl();
+		map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
+
+		// 지도가 확대 또는 축소되면 마지막 파라미터로 넘어온 함수를 호출하도록 이벤트를 등록합니다
+		kakao.maps.event.addListener(map, 'zoom_changed', function() {        
+		    
+		    // 지도의 현재 레벨을 얻어옵니다
+		    var level = map.getLevel();
+		    
+		    /* var message = '현재 지도 레벨은 ' + level + ' 입니다';
+		    var resultDiv = document.getElementById('result');  
+		    resultDiv.innerHTML = message; */
+		    
+		});
 	</script>
 </main>
 </html>

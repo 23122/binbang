@@ -16,6 +16,10 @@ a:hover{text-decoration:none;color: inherit;background-color: transparent;}
 .around {justify-content: space-around;}
 .left {justify-content: flex-start;}
 .right {justify-content: flex-end;}
+.flex-center{
+	justify-content: center;
+	align-items: center;
+}
 .view-size{width: 1180px; margin: 0 auto;}
 input:read-only {
 	border: none;
