@@ -1,16 +1,21 @@
 package com.project.jongin.domain.entity;
 
 import java.time.DateTimeException;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 import com.project.jongin.domain.enumes.BuildType;
+import com.project.jongin.domain.enumes.OptionType;
 import com.project.jongin.domain.enumes.PayType;
 import com.project.jongin.domain.enumes.BinbangType;
 import com.project.jongin.domain.enumes.BoilType;
@@ -31,17 +36,23 @@ public class SalesEntity extends BaseTimeEntity{
 	@Id
 	private long salesNo;
 	//종류선택
+	@Builder.Default
 	@Enumerated(EnumType.STRING)
-	private BinbangType salesType;
-	//건물유형
-	@Enumerated(EnumType.STRING)
-	private BuildType salesBuildType;
+	@ElementCollection(fetch = FetchType.EAGER)
+	private Set<BinbangType> salesType= new HashSet<>();
+//	//건물유형
+//	@Builder.Default
+//	@Enumerated(EnumType.STRING)
+//	@ElementCollection(fetch = FetchType.EAGER)
+//	private Set<BuildType> salesBuildType=new HashSet<>();
 	//집주소
 	@Column(nullable = false)
 	private String salesAddress;
 	//거래종류
-	@Enumerated(EnumType.STRING)
-	private PayType salesPayType;
+//	@Builder.Default
+//	@Enumerated(EnumType.STRING)
+//	@ElementCollection(fetch = FetchType.EAGER)
+//	private Set<PayType> salesPayType=new HashSet<>();
 	//보증금 및 전세금
 	@Column(nullable = false)
 	private int salesDeposit;
@@ -61,8 +72,10 @@ public class SalesEntity extends BaseTimeEntity{
 	@Column(nullable = false)
 	private int salesPositonFloor;
 	//난방종류
-	@Enumerated(EnumType.STRING)
-	private BoilType salesBoilType;
+//	@Builder.Default
+//	@Enumerated(EnumType.STRING)
+//	@ElementCollection(fetch = FetchType.EAGER)
+//	private Set<BoilType> salesBoilType=new HashSet<>();
 	//입주가능일
 	@Column(nullable = false)
 	private DateTimeException salesDate;
@@ -78,5 +91,10 @@ public class SalesEntity extends BaseTimeEntity{
 	//빌트인
 	@Column
 	private boolean salesBuiltIn;
+	//옵션
+//	@Builder.Default
+//	@Enumerated(EnumType.STRING)
+//	@ElementCollection(fetch = FetchType.EAGER)
+//	private Set<OptionType> salesOptionType=new HashSet<>();
 	
 }

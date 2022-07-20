@@ -28,7 +28,7 @@ public class SecuriyConfig{
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
             .authorizeHttpRequests((authz) -> authz
-            		.antMatchers("/","/customer/**","/register/**").permitAll()
+            		.antMatchers("/","/customer/**","/register/**","/request-key/*").permitAll()
             		.antMatchers("/board/**").hasAnyRole("USER","ADMIN")
             		.antMatchers("/admin/**").hasAnyRole("ADMIN")
             		.anyRequest().authenticated()
@@ -58,7 +58,7 @@ public class SecuriyConfig{
 
 	@Bean
     public WebSecurityCustomizer webSecurityCustomizer() {
-        return (web) -> web.ignoring().antMatchers("/css/**", "/js/**","/img/**","/favicon.ico*");
+        return (web) -> web.ignoring().antMatchers("/css/**", "/js/**","/img/**","/favicon.ico/*");
     }
 	
 }

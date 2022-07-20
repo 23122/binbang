@@ -190,6 +190,7 @@ main {
 }
 #section .wrap .build-size .build-sub{
 	height: 50%;
+	min-width:100px;
 	justify-content: flex-start;
 	align-items: center;
 }
@@ -366,4 +367,16 @@ main {
 }
 .seach-addr ul li:nth-child(3) input:focus{
 	outline: none;
+}
+.msg {
+	margin-left:45px;
+	margin-bottom: 10px; 
+}
+#btn-write {
+	background-color: #ffa409;
+	color: #ffffff;
+}
+#btn-write:disabled {
+    background-color: gray;
+    color: rgb(232, 230, 227);
 }

@@ -13,17 +13,26 @@
 	line-height: 42px;
 	text-align: center;
 }
-.signup form ul li:nth-child(2){
+.signup form ul .msg{
 	margin-left:127px;
-	margin-bottom: 17px;
 }
-.signup form ul li:nth-child(2) button{
+.signup form ul li {
+	position: relative;
+	display: flex;
+	margin-bottom: 5px;
+}
+
+.signup form ul li:first-child input {
+	width: 283px;
+}
+.signup form ul li:first-child button{
 	margin: 0;
+	margin-left: 17px;
 	width: 150px;
 }
-.signup form ul li:nth-child(2) input{
-	margin-left: 17px;
-	width: 283px;
+.signup form ul li:nth-child(3){
+	margin-left:127px;
+	margin-bottom: 0px;
 }
 .signup form ul li label {
 	width: 110px;
@@ -44,11 +53,6 @@
 	border-radius: 4px;
 	font-size: 18px;
 	line-height: 60px;
-}
-.signup form ul li {
-	position: relative;
-	display: flex;
-	margin-bottom: 5px;
 }
 
 .signup form ul li button {

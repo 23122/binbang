@@ -45,9 +45,7 @@ class JoinJinApplicationTests {
 			salesPayType=PayType.MONTH;
 			salesRepository.save(SalesEntity.builder()
 					.salesAddress("노원구")
-					.salesType(salesType)
-					.salesBuildType(salesBuildType)
-					.salesPayType(salesPayType).build());
+					.build());
 		});
 	}
 	

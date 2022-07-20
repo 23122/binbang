@@ -3,6 +3,7 @@
 th:replace="~{layout/layout2 :: layout(~{::head}, ~{::main})}">
 <head>
 	<link rel="stylesheet" href="/css/member/signup.css">
+	<script type="text/javascript" src="/js/member/signup.js"></script>
 	<link rel="stylesheet" href="/css/reset.css">
 <meta charset="UTF-8">
 <title>Insert title here</title>
@@ -15,28 +16,34 @@ th:replace="~{layout/layout2 :: layout(~{::head}, ~{::main})}">
 		<form action="/customer/newMember" method="post">
 			<ul>
 				<li>
-					<label>이메일</label>
-					<input type="text" name="memberEmail" placeholder="이메일 입력">
+					<label for="email">이메일</label>
+					<input type="text" id="email" name="memberEmail" placeholder="이메일 입력">
+					<button id="btn-email" type="button" disabled>인증번호발송</button>
 				</li>
-				<li class="flex">
-					<button type="button">인증번호발송</button>
-					<input type="text" placeholder="인증번호 입력">
+				<li id="emsg" class="msg"></li>
+				<li id="keyArea">
+					<input id="emailKey" type="text" placeholder="인증번호 입력">
 				</li>
+				<li id="timer" class="msg"></li>
+				<li id="ecmsg" class="msg"></li>
 				<li>
-					<label>이름</label>
-					<input type="text" name="memberName" placeholder="이름 입력">
+					<label for="name">이름</label>
+					<input type="text" id="name" name="memberName" placeholder="이름 입력">
 				</li>
+				<li id="nmsg" class="msg"></li>
 				<li>
-					<label>비밀번호</label>
-					<input type="password" name="memberPass" placeholder="비밀번호 입력">
+					<label for="pass">비밀번호</label>
+					<input type="password" id="pass" name="memberPass" placeholder="비밀번호 입력">
 				</li>
+				<li id="pmsg" class="msg"></li>
 				<li>
-					<label>비밀번호확인</label>
-					<input type="password" placeholder="비밀번호 확인">
+					<label for="passCheck">비밀번호확인</label>
+					<input type="password" id="passCheck" placeholder="비밀번호 확인">
 				</li>
+				<li id="pcmsg" class="msg"></li>
 				<li>
 					<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" >
-					<button type="submit">회원가입</button>
+					<button id="btn-join" type="submit" disabled="disabled">회원가입</button>
 				</li>
 			</ul>
 		</form>

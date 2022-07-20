@@ -8,4 +8,6 @@ public interface MemberService {
 
 	String save(memberInsertDTO dto, HttpServletRequest request);
 
+	boolean emailCheck(String memberEmail);
+
 }
