@@ -24,15 +24,15 @@
 					<span>종류 선택</span>
 				</div>
 				<div class="flex top-btn">
-					<input type="radio" id="oneRoom" name="salesType" value="ONEROOM" checked>
+					<input type="radio" id="oneRoom" name="boardHouseType" value="ONEROOM" checked>
 					<label for="oneRoom">원 룸</label>
-					<input type="radio" id="twoRoom" name="salesType" value="TWOROOM">
+					<input type="radio" id="twoRoom" name="boardHouseType" value="TWOROOM">
 					<label for="twoRoom">투 룸</label>
-					<input type="radio" id="threeRoom" name="salesType" value="THREEROOM">
+					<input type="radio" id="threeRoom" name="boardHouseType" value="THREEROOM">
 					<label for="threeRoom">쓰 리 룸</label>
-					<input type="radio" id="apt" name="salesType" value="APT">
+					<input type="radio" id="apt" name="boardHouseType" value="APT">
 					<label for="apt">아 파 트</label>
-					<input type="radio" id="officetel" name="salesType" value="OFFICETEL">
+					<input type="radio" id="officetel" name="boardHouseType" value="OFFICETEL">
 					<label for="officetel">오 피 스 텔</label>
 				</div>
 			</div>
@@ -41,15 +41,15 @@
 					<span>건물유형</span>
 				</div>
 				<div class="flex top-btn">
-					<input type="radio" id="detach" name="salesBuildType" value="DETACH" checked>
+					<input type="radio" id="detach" name="boardBuildType" value="DETACH" checked>
 					<label for="detach">단 독 주 택</label>
-					<input type="radio" id="multi" name="salesBuildType" value="MULTI">
+					<input type="radio" id="multi" name="boardBuildType" value="MULTI">
 					<label for="multi">다 가 구 주 택</label>
-					<input type="radio" id="villa" name="salesBuildType" value="VILLA">
+					<input type="radio" id="villa" name="boardBuildType" value="VILLA">
 					<label for="villa">빌라/연립/다세대</label>
-					<input type="radio" id="apt2" name="salesBuildType" value="APT">
+					<input type="radio" id="apt2" name="boardBuildType" value="APT">
 					<label for="apt2">아 파 트</label>
-					<input type="radio" id="store" name="salesBuildType" value="STORE">
+					<input type="radio" id="store" name="boardBuildType" value="STORE">
 					<label for="store">상 가</label>
 				</div>
 			</div>
@@ -70,10 +70,10 @@
 							<input type="button" onclick="sample5_execDaumPostcode()" value="주소 검색">
 						</li>
 						<li>
-							<input type="text" name="salesAddress" id="sample5_address" readonly>
+							<input type="text" name="boardAddress" id="sample5_address" readonly>
 						</li>
 						<li>
-							<input type="text" name="salesAddressDetail" id="sample2_detailAddress" placeholder="상세주소를 입력하세요.">
+							<input type="text" name="boardAddressDetail" id="sample2_detailAddress" placeholder="상세주소를 입력하세요.">
 							<li id="addrmsg" class="msg"></li>
 						</li>
 					</ul>
@@ -149,21 +149,21 @@
 				</div>
 				<div>
 					<div class="deal-info">
-						<input type="radio" id="month" name="salesPayType" value="MONTH" checked>
+						<input type="radio" id="month" name="boardPayType" value="MONTH" checked>
 						<label for="month">월 세</label>
-						<input type="radio" id="lease" name="salesPayType" value="LEASE">
+						<input type="radio" id="lease" name="boardPayType" value="LEASE">
 						<label for="lease">전 세</label>
-						<input type="radio" id="deal" name="salesPayType" value="DEAL">
+						<input type="radio" id="deal" name="boardPayType" value="DEAL">
 						<label for="deal">매 매</label>
 						<span>거래 종류에 따라 입력하는 란이 다릅니다. 필수 입력값을 꼭 작성해주세요.</span>
 					</div>
 					<div class="flex deal-info">
 						<ul>
-							<input type="text" id="salesDeposit" name="salesDeposit" placeholder="보증금/전세금을 입력해주세요.(단위 : 만원)">
+							<input type="text" id="boardDeposit" name="salesDeposit" placeholder="보증금/전세금을 입력해주세요.(단위 : 만원)">
 							<li id="depositmsg" class="msg"></li>
 						</ul>
 						<ul>
-							<input type="text" id="salesPaymonth" name="salesPaymonth" placeholder="월세를 입력해주세요.(단위 : 만원)">
+							<input type="text" id="boardPaymonth" name="salesPaymonth" placeholder="월세를 입력해주세요.(단위 : 만원)">
 							<li id="paymonthmsg" class="msg"></li>
 						</ul>
 					</div>
@@ -183,12 +183,12 @@
 				<div class="build-size sub-width1">
 					<div class="flex build-sub border-bot">
 						<span>공급 면적</span>
-						<input disabled>평<input type="text" id="area1" name="salesSupply">제곱미터
+						<input disabled>평<input type="text" id="area1" name="boardSupply">제곱미터
 						<div id="area1msg" class="msg"></div>
 					</div>
 					<div class="flex build-sub">
 						<span >전용 면적</span>
-						<input disabled>평<input type="text" id="area2" name="salesExclusive">제곱미터
+						<input disabled>평<input type="text" id="area2" name="boardExclusive">제곱미터
 						<div id="area2msg" class="msg"></div>
 					</div>
 				</div>
@@ -198,12 +198,12 @@
 				<div class="build-size sub-width1">
 					<div class="flex build-sub border-bot">
 						<span>건물 층수</span>
-						<input type="text" id="area3" name="salesAllFloors">층
+						<input type="text" id="area3" name="boardAllFloors">층
 						<div id="area3msg" class="msg"></div>
 					</div>
 					<div class="flex build-sub">
 						<span>해당 층수</span>
-						<input type="text" id="area4" name="salesPositonFloor">층
+						<input type="text" id="area4" name="boardPositonFloor">층
 						<div id="area4msg" class="msg"></div>
 					</div>
 				</div>
@@ -214,7 +214,7 @@
 				</div>
 				<div class="boil-info flex">
 					<span class="boil-wrap flex">
-                       	<select name=salesOption>
+                       	<select name=boardOption>
                            	<option selected="selected">난방 종류 선택</option>
                            	<option value="EACH">개 별 난 방</option>
                            	<option value="CENTER">중 앙 난 방</option>
@@ -230,13 +230,13 @@
 				</div>
 				<div class="in-info flex">
 					<div class="in-date">
-						<input name="salesDate" type="date">
+						<input name="boardInDate" type="date">
 					</div>
 				</div>
 			</div>
 		</section>
 <!-- ///////////////////////////////////추가 정보///////////////////////////////////// -->
-		<section id="add-info">
+		<section id="section" class="add-info">
 			<div class="top-title">
 				<span>추가 정보</span>
 			</div>
@@ -244,9 +244,8 @@
 				<div class="mid-title sub-height1">
 					<span>관리비</span>
 				</div>
-				<div class="flex top-btn">
-					
-					<input type="checkbox" id="isMaintenance" name="salesOption" value="MAINTENANCE">
+				<div class="flex radio-btn">
+					<input type="checkbox" id="isMaintenance" name="boardOption" value="MAINTENANCE">
 					<label for="isMaintenance">없 음</label>
 					<label for="isMaintenance">있 음</label>
 				</div>
@@ -255,9 +254,8 @@
 				<div class="mid-title sub-height1">
 					<span>주차여부</span>
 				</div>
-				<div class="flex top-btn">
-					
-					<input type="checkbox" id="isParking" name="salesOption" value="PARKING">
+				<div class="flex radio-btn">
+					<input type="checkbox" id="isParking" name="boardOption" value="PARKING">
 					<label for="isParking">없 음</label>
 					<label for="isParking">있 음</label>
 				</div>
@@ -266,9 +264,8 @@
 				<div class="mid-title sub-height1">
 					<span>엘리베이터</span>
 				</div>
-				<div class="flex top-btn">
-					
-					<input type="checkbox" id="isElevator" name="salesOption" value="ELEVATOR">
+				<div class="flex radio-btn">
+					<input type="checkbox" id="isElevator" name="boardOption" value="ELEVATOR">
 					<label for="isElevator">없 음</label>
 					<label for="isElevator">있 음</label>
 				</div>
@@ -277,95 +274,45 @@
 				<div class="mid-title sub-height1">
 					<span>빌트인</span>
 				</div>
-				<div class="flex top-btn">
-					
-					<input type="checkbox" id="isBuiltIn" name="salesOption" value="BUILTIN">
+				<div class="flex radio-btn">
+					<input type="checkbox" id="isBuiltIn" name="boardOption" value="BUILTIN">
 					<label for="isBuiltIn">없 음</label>
 					<label for="isBuiltIn">있 음</label>
 				</div>
 			</div>
-			<!-- 
-			<div class="top-title">
-				<span>추가 정보</span>
-			</div>
-			<div class="wrap flex left border-bot">
-				<div class="mid-title sub-height1">
-					<span>관리비</span>
-				</div>
-				<div class="flex top-btn">
-					<input type="radio" id="isnMaintenance" name="salesMaintenance" value="0" checked>
-					<label for="isnMaintenance">없 음</label>
-					<input type="radio" id="isMaintenance" name="salesMaintenance" value="1">
-					<label for="isMaintenance">있 음</label>
-				</div>
-			</div>
-			<div class="wrap flex border-bot">
-				<div class="mid-title sub-height1">
-					<span>주차여부</span>
-				</div>
-				<div class="flex top-btn">
-					<input type="radio" id="isnParking" name="salesParking" value="0" checked>
-					<label for="isnParking">없 음</label>
-					<input type="radio" id="isParking" name="salesParking" value="1">
-					<label for="isParking">있 음</label>
-				</div>
-			</div>
-			<div class="wrap flex border-bot">
-				<div class="mid-title sub-height1">
-					<span>엘리베이터</span>
-				</div>
-				<div class="flex top-btn">
-					<input type="radio" id="isnElevator" name="salesElevator" value="0" checked>
-					<label for="isnElevator">없 음</label>
-					<input type="radio" id="isElevator" name="salesElevator" value="1">
-					<label for="isElevator">있 음</label>
-				</div>
-			</div>
-			<div class="wrap flex border-bot">
-				<div class="mid-title sub-height1">
-					<span>빌트인</span>
-				</div>
-				<div class="flex top-btn">
-					<input type="radio" id="isnBuiltIn" name="salesBuiltIn" value="0" checked>
-					<label for="isnBuiltIn">없 음</label>
-					<input type="radio" id="isBuiltIn" name="salesBuiltIn" value="1">
-					<label for="isBuiltIn">있 음</label>
-				</div>
-			</div>
-			 -->
 			<div class="wrap flex">
 				<div class="mid-title sub-height4">
 					<span>옵션항목</span>
 				</div>
 				<div class="option-btn">
 					<div>
-						<input type="checkbox" id="air" name="salesOption" value="AIR">
+						<input type="checkbox" id="air" name="boardOption" value="AIR">
 						<label for="air">에 어 컨</label>
-						<input type="checkbox" id="wash" name="salesOption" value="WASH">
+						<input type="checkbox" id="wash" name="boardOption" value="WASH">
 						<label for="wash">세 탁 기</label>
-						<input type="checkbox" id="bed" name="salesOption" value="BED">
+						<input type="checkbox" id="bed" name="boardOption" value="BED">
 						<label for="bed">침 대</label>
-						<input type="checkbox" id="dest" name="salesOption" value="DEST">
+						<input type="checkbox" id="dest" name="boardOption" value="DEST">
 						<label for="dest">책 상</label>
-						<input type="checkbox" id="clothes" name="salesOption" value="CLOTHES">
+						<input type="checkbox" id="clothes" name="boardOption" value="CLOTHES">
 						<label for="clothes">옷 장</label>
-						<input type="checkbox" id="tv" name="salesOption" value="TV">
+						<input type="checkbox" id="tv" name="boardOption" value="TV">
 						<label for="tv">T V</label>
-						<input type="checkbox" id="shoes" name="salesOption" value="SHOES">
+						<input type="checkbox" id="shoes" name="boardOption" value="SHOES">
 						<label for="shoes">신 발 장</label>
 					</div>
 					<div>
-						<input type="checkbox" id="fridge" name="salesOption" value="FRIDGE">
+						<input type="checkbox" id="fridge" name="boardOption" value="FRIDGE">
 						<label for="fridge">냉 장 고</label>
-						<input type="checkbox" id="gas" name="salesOption" value="GAS">
+						<input type="checkbox" id="gas" name="boardOption" value="GAS">
 						<label for="gas">가 스 레 인 지</label>
-						<input type="checkbox" id="induction" name="salesOption" value="INDUCTION">
+						<input type="checkbox" id="induction" name="boardOption" value="INDUCTION">
 						<label for="induction">인 덕 션</label>
-						<input type="checkbox" id="microwave" name="salesOption" value="MICROWAVE">
+						<input type="checkbox" id="microwave" name="boardOption" value="MICROWAVE">
 						<label for="microwave">전 자 레 인 지</label>
-						<input type="checkbox" id="doorLock" name="salesOption" value="DOORLOCK">
+						<input type="checkbox" id="doorLock" name="boardOption" value="DOORLOCK">
 						<label for="doorLock">전 자 도 어 락</label>
-						<input type="checkbox" id="bidet" name="salesOption" value="BIDET">
+						<input type="checkbox" id="bidet" name="boardOption" value="BIDET">
 						<label for="bidet">비 데</label>
 					</div>
 				</div>
@@ -381,7 +328,7 @@
 					<span>제목</span>
 				</div>
 				<div class="input-title">
-					<input type="text" name="salesTitle" placeholder="ex)노원역 도보 5분거리, 혼자 살기 조용한 방입니다.">
+					<input type="text" name="boardTitle" placeholder="ex)노원역 도보 5분거리, 혼자 살기 조용한 방입니다.">
 				</div>
 			</div>
 			<div class="wrap flex border-bot">
@@ -389,7 +336,7 @@
 					<span>상세설명</span>
 				</div>
 				<div class="input-contents">
-				<textarea name="salesContents" rows="" cols=""
+				<textarea name="boardContents" rows="" cols=""
 				placeholder="&#13;&#10;상세설명 작성 주의사항&#13;&#10;&#13;&#10;-방 정보와 관련없는 홍보성 정보는 입력하실 수 없습니다.&#13;&#10;-중개수수료를 언급한 내용은 입력할 수 없습니다.&#13;&#10;&#13;&#10;*주의사항 위반시 허위매물로 간주되어 매물 삭제 및 이용의 제한이 있을 수 있습니다."></textarea>
 				</div>
 			</div>
@@ -398,7 +345,7 @@
 					<span>비공개 메모</span>
 				</div>
 				<div class="input-title">
-					<input type="text" name="salesHiddenMemo" placeholder="외부에 공개 되지 않으며, 등록자에게만 보이는 메모입니다.">
+					<input type="text" name="boardHiddenMemo" placeholder="외부에 공개 되지 않으며, 등록자에게만 보이는 메모입니다.">
 				</div>
 			</div>
 		</section>

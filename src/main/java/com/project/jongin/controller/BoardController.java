@@ -7,6 +7,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.project.jongin.domain.dto.board.BoardInsertDTO;
 import com.project.jongin.domain.entity.FileEntity;
 import com.project.jongin.domain.repository.FileRepository;
 import com.project.jongin.service.BoardService;
@@ -22,16 +24,24 @@ import com.project.jongin.service.BoardService;
 public class BoardController {
 	
 	@Autowired
-	private BoardService service;
+	private BoardService boardService;
 	
 	@GetMapping("/customer/board")
 	public String list() {
 		return "board/list";
 	}
+	@GetMapping("/customer/board/aptList")
+	public String list(Model model) {
+		return boardService.list(model);
+	}
+	@PostMapping("/board/aptList/write")
+	public String write(BoardInsertDTO dto) {
+		return boardService.save(dto);
+	}
 	@ResponseBody//성공시 문자열 리턴-> ajax success
 	@PostMapping("/board/fileupload")
 	public String fileUpload(MultipartFile file,String prevImgName) {
-		return service.fileUpload(file,prevImgName);
+		return boardService.fileUpload(file,prevImgName);
 	}
 //	@PostMapping("/boardjpa/write")
 //	public String write(SalesInsertDTO dto,MultipartFile[] file) {

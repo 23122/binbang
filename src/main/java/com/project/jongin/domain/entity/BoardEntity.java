@@ -1,6 +1,5 @@
 package com.project.jongin.domain.entity;
 
-import java.time.DateTimeException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -21,7 +20,7 @@ import javax.persistence.OneToMany;
 import com.project.jongin.domain.enumes.BuildType;
 import com.project.jongin.domain.enumes.OptionType;
 import com.project.jongin.domain.enumes.PayType;
-import com.project.jongin.domain.enumes.BinbangType;
+import com.project.jongin.domain.enumes.HouseType;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -32,83 +31,70 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity(name = "sales")
-public class SalesEntity extends BaseTimeEntity{
+@Entity(name = "board")
+public class BoardEntity extends BaseTimeEntity{
 	//PK
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Id
-	private long salesNo;
+	private long boardNo;
 	//종류선택
 	@Enumerated(EnumType.STRING)
-	private BinbangType salesType;
+	private HouseType boardHouseType;
 	//건물유형
 	@Enumerated(EnumType.STRING)
-	private BuildType salesBuildType;
+	private BuildType boardBuildType;
 	//집주소
 	@Column(nullable = false)
-	private String salesAddress;
+	private String boardAddress;
 	//상세주소
 	@Column(nullable = false)
-	private String salesAddressDetail;
+	private String boardAddressDetail;
 	//거래종류
 	@Enumerated(EnumType.STRING)
-	private PayType salesPayType;
+	private PayType boardPayType;
 	//보증금 및 전세금
 	@Column(nullable = false)
-	private int salesDeposit;
+	private int boardDeposit;
 	//월세
-	@Column(nullable = false)
-	private int salesPaymonth;
+	@Column
+	private int boardPaymonth;
 	//공급면적
 	@Column(nullable = false)
-	private int salesSupply;
+	private int boardSupply;
 	//전용면적
 	@Column(nullable = false)
-	private int salesExclusive;
+	private int boardExclusive;
 	//건물층수
 	@Column(nullable = false)
-	private int salesAllFloors;
+	private int boardAllFloors;
 	//매물층수
 	@Column(nullable = false)
-	private int salesPositonFloor;
-	//난방종류
-//	@Enumerated(EnumType.STRING)
-//	@ElementCollection(fetch = FetchType.EAGER)
-//	private Set<BoilType> salesBoilType=new HashSet<>();
+	private int boardPositonFloor;
 	//입주가능일
 	@Column(nullable = false)
-	private String salesDate;
+	private String boardInDate;
 	//옵션
 	@Builder.Default
 	@Enumerated(EnumType.STRING)
 	@ElementCollection(fetch = FetchType.EAGER)
-	private Set<OptionType> salesOptionType=new HashSet<>();
+	private Set<OptionType> boardOption =new HashSet<>();
+	//제목
 	@Column(nullable = false)
-	private String salesTitle;
+	private String boardTitle;
+	//내용
 	@Column(nullable = false)
-	private String salesContents;
+	private String boardContents;
+	//비공개메모
 	@Column
-	private String salesHiddenMemo;
-	/*//관리비
-	@Column
-	private boolean salesMaintenance;
-	//주차
-	@Column
-	private boolean salesParking;
-	//엘리베이터
-	@Column
-	private boolean salesElevator;
-	//빌트인
-	@Column
-	private boolean salesBuiltIn;
-	 */	
+	private String boardHiddenMemo;
+
 	@Builder.Default
-	@JoinColumn(name = "salesNo")
+	@JoinColumn(name = "boardNo")
 	@OneToMany
-	private List<SalesFilesEntity> salesFiles = new ArrayList<>();
+	private List<BoardFilesEntity> boardFiles = new ArrayList<>();
 	
-	public SalesEntity addFile(SalesFilesEntity salesFilesEntity) {
-		salesFiles.add(salesFilesEntity);
+	public BoardEntity addFile(BoardFilesEntity boardFilesEntity) {
+		boardFiles.add(boardFilesEntity);
 		return this;
 	}
 }

@@ -3,18 +3,35 @@ package com.project.jongin.service.impl;
 import java.io.File;
 import java.io.IOException;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.project.jongin.domain.dto.sales.SalesInsertDTO;
-import com.project.jongin.domain.entity.SalesEntity;
+import com.project.jongin.domain.dto.board.BoardInsertDTO;
+import com.project.jongin.domain.enumes.HouseType;
+import com.project.jongin.domain.repository.BoardRepository;
 import com.project.jongin.service.BoardService;
 
 @Service
 public class BoardServiceProc implements BoardService{
 	
+	@Autowired
+	private BoardRepository boardRepository;
 	
+	@Override
+	public String list(Model model) {
+		HouseType type=HouseType.APT;
+		boardRepository.findAllByBoardHouseType(type);
+		return "/board/apt/list";
+	}
+
+	@Override
+	public String save(BoardInsertDTO dto) {
+		boardRepository.save(dto.toEntity());
+		return "/board/apt/list";
+	}
 	
 	@Override
 	public String fileUpload(MultipartFile file,String prevImgName) {

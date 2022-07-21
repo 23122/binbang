@@ -10,12 +10,12 @@ import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.project.jongin.domain.entity.MemberEntity;
-import com.project.jongin.domain.entity.SalesEntity;
-import com.project.jongin.domain.enumes.BinbangType;
+import com.project.jongin.domain.entity.BoardEntity;
+import com.project.jongin.domain.enumes.HouseType;
 import com.project.jongin.domain.enumes.BuildType;
 import com.project.jongin.domain.enumes.PayType;
 import com.project.jongin.domain.repository.MemberRepository;
-import com.project.jongin.domain.repository.SalesRepository;
+import com.project.jongin.domain.repository.BoardRepository;
 import com.project.jongin.securiy.MemberRole;
 
 
@@ -29,26 +29,7 @@ class JoinJinApplicationTests {
 	PasswordEncoder passEncoder;
 	
 	@Autowired
-	SalesRepository salesRepository;
-	
-	@Test
-	void 테스트데이터() {
-		IntStream.rangeClosed(1, 3).forEach(i->{
-			
-			BinbangType salesType;
-			salesType=BinbangType.APT;
-			
-			BuildType salesBuildType;
-			salesBuildType=BuildType.DETACH;
-			
-			PayType salesPayType;
-			salesPayType=PayType.MONTH;
-			salesRepository.save(SalesEntity.builder()
-					.salesAddress("노원구")
-					.build());
-		});
-	}
-	
+	BoardRepository salesRepository;
 	
 //	@Test
 	void 관리자생성() {

@@ -29,7 +29,7 @@ public class SecuriyConfig{
         http
             .authorizeHttpRequests((authz) -> authz
             		.antMatchers("/","/customer/**","/register/**","/request-key/*").permitAll()
-            		.antMatchers("/board/**").hasAnyRole("USER","ADMIN")
+            		.antMatchers("/board/**","/mypage/**").hasAnyRole("USER","ADMIN")
             		.antMatchers("/admin/**").hasAnyRole("ADMIN")
             		.anyRequest().authenticated()
             		);

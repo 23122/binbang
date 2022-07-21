@@ -1,12 +1,13 @@
 /**
  * 
  */
-var addrRexp = /^[가-힣a-zA-Z0-9+-\_.]/;
-var salesPayRexp = /^[0-9]/;
+var addrRexp = /^[가-힣a-zA-Z0-9+-\_.]{4,}$/;
+var salesPayRexp = /^[0-9]{1,}$/;
+var buildInfoRexp = /^[0-9]{1,3}$/;
 var passRexp = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@!%*#?&])[A-Za-z\d@!%*#?&]{8,}$/;
 var nameRexp = /^[가-힣]{2,4}$/;
 var msg;
-var check = [false, false, false, false, false, false, false];
+var check = [false, false, false, false, false, false, false, false];
 $(function() {
 	$("#salesDeposit").blur(depositBlured);
 	$("#salesPaymonth").blur(paymonthBlured);
@@ -15,9 +16,7 @@ $(function() {
 	$("#area2").blur(area2Blured);
 	$("#area3").blur(area3Blured);
 	$("#area4").blur(area4Blured);
-	//$("#write-check").click(writeCheck);
-	//$("#passCheck").blur(pwdCheck);
-	//$("#name").blur(nameBlured);
+	$("#write-check").change(writeCheck);
 	$("#isMaintenance").change(function(){
 		//alert($(this).prop("checked"));	
 	});
@@ -67,12 +66,44 @@ function paymonthBlured() {
 	submitCheck();
 }
 //////////////////////건물 정보 정규표현식///////////////////////
+/*
+구현실패
+for(i=0;i<4;i++){
+	var a= "area"+i+"Blured";
+	function areaBlured() {
+	var in_area = $("#area"+i).val();//input태그에 입력된 값(value)을 읽어올때
+	if (salesPayRexp.test(in_area.trim())) {
+		if(buildInfoRexp.test(in_area.trim())){
+			msg = "";
+			$("#area"+i+"msg").css("color", "green");
+			check[i+3] = true;
+		} else {
+			msg = "입력값을 확인하세요.";
+			$("#area"+i+"msg").css("color", "red");
+			check[i+3] = false;
+		}
+	} else {
+		msg = "* 숫자만 입력하세요.";
+		$("#area"+i+"msg").css("color", "red");
+		check[i+3] = false;
+	}
+	$("#area"+i+"msg").html(msg);
+	submitCheck();
+	}
+}
+*/
 function area1Blured() {
 	var in_area1 = $("#area1").val();//input태그에 입력된 값(value)을 읽어올때
 	if (salesPayRexp.test(in_area1.trim())) {
-		msg = "";
-		$("#area1msg").css("color", "green");
-		check[3] = true;
+		if(buildInfoRexp.test(in_area1.trim())){
+			msg = "";
+			$("#area1msg").css("color", "green");
+			check[3] = true;
+		} else {
+			msg = "입력값을 확인하세요.";
+			$("#area1msg").css("color", "red");
+			check[3] = false;
+		}
 	} else {
 		msg = "* 숫자만 입력하세요.";
 		$("#area1msg").css("color", "red");
@@ -84,9 +115,15 @@ function area1Blured() {
 function area2Blured() {
 	var in_area2 = $("#area2").val();//input태그에 입력된 값(value)을 읽어올때
 	if (salesPayRexp.test(in_area2.trim())) {
-		msg = "";
-		$("#area1msg").css("color", "green");
-		check[4] = true;
+		if(buildInfoRexp.test(in_area2.trim())){
+			msg = "";
+			$("#area2msg").css("color", "green");
+			check[4] = true;
+		} else {
+			msg = "입력값을 확인하세요.";
+			$("#area2msg").css("color", "red");
+			check[4] = false;
+		}
 	} else {
 		msg = "* 숫자만 입력하세요.";
 		$("#area2msg").css("color", "red");
@@ -98,9 +135,15 @@ function area2Blured() {
 function area3Blured() {
 	var in_area3 = $("#area3").val();//input태그에 입력된 값(value)을 읽어올때
 	if (salesPayRexp.test(in_area3.trim())) {
-		msg = "";
-		$("#area3msg").css("color", "green");
-		check[5] = true;
+		if(buildInfoRexp.test(in_area3.trim())){
+			msg = "";
+			$("#area3msg").css("color", "green");
+			check[5] = true;
+		} else {
+			msg = "입력값을 확인하세요.";
+			$("#area3msg").css("color", "red");
+			check[5] = false;
+		}
 	} else {
 		msg = "* 숫자만 입력하세요.";
 		$("#area3msg").css("color", "red");
@@ -112,9 +155,16 @@ function area3Blured() {
 function area4Blured() {
 	var in_area4 = $("#area4").val();//input태그에 입력된 값(value)을 읽어올때
 	if (salesPayRexp.test(in_area4.trim())) {
-		msg = "";
-		$("#area4msg").css("color", "green");
-		check[6] = true;
+		if(buildInfoRexp.test(in_area4.trim())){
+			msg = "";
+			$("#area4msg").css("color", "green");
+			check[6] = true;
+		} else {
+			msg = "입력값을 확인하세요.";
+			$("#area4msg").css("color", "red");
+			check[6] = false;
+		}
+		
 	} else {
 		msg = "* 숫자만 입력하세요.";
 		$("#area4msg").css("color", "red");
@@ -124,19 +174,17 @@ function area4Blured() {
 	submitCheck();
 }
 /////////////////////////규정동의체크////////////////////////////
-/*
+
 function writeCheck(){
-	var write_checked=$("#write-check").val();
+	var write_checked=$(this).prop("checked");
 	if(write_checked==true){
-		check[6] = true;
-		alert(write_checked);
+		check[7] = true;
 	}else{
-		check[6] = false;
-		alert(write_checked);
+		check[7] = false;
 	}
 	submitCheck();
 }
-*/
+
 //////////////////////////매물등록버튼///////////////////////////
 function submitCheck(){
 	for(i=0; i<check.length; i++){

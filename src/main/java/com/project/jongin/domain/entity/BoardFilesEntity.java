@@ -15,20 +15,20 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
-@Entity(name = "salesFiles")
-public class SalesFilesEntity {
+@Entity(name = "boardFiles")
+public class BoardFilesEntity {
 	
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Id
-	private long salesFilesNo;
+	private long boardFilesNo;
 	@Column(nullable = false)
-	private String salesFilesUrl;
+	private String boardFilesUrl;
 	@Column(nullable = false)
-	private String salesFilesOriginalName;
+	private String boardFilesOriginalName;
 	@Column(nullable = false)
-	private String salesFilesChangeName;
+	private String boardFilesChangeName;
 	@Column(nullable = false)
-	private long salesFilesSize;
+	private long boardFilesSize;
 	@Column
 	private boolean isMain;
 	

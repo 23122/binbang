@@ -3,7 +3,7 @@ package com.project.jongin.domain.enumes;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-public enum BinbangType {
+public enum HouseType {
 
 	ONEROOM("원룸"),
 	TWOROOM("투룸"),

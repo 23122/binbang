@@ -59,23 +59,35 @@ main {
 }
 
 /* ///////////////////////////// */
-#add-info>.wrap>.top-btn input:checked+label+label{
-	background-color: #99cc66;
+.add-info>.wrap>.radio-btn input{
+	display: none;
 }
-#add-info>.wrap>.top-btn input:checked+label{
-	background-color: #fff;
+.add-info>.wrap>.radio-btn input:checked+label+label{
+	background-color:rgba(255,164,9,0.8);
+	text-shadow: 1px 1px 3px gray;
+	color: #fff;;
 }
-#add-info>.wrap>.top-btn input+label{
-	background-color: #99cc66;
+.add-info>.wrap>.radio-btn input:checked+label{
+	background-color:rgb(230, 230, 230);
+	color: #000;
 }
-#add-info>.wrap>.top-btn label{
-	display: inline-block;
-	width: 130px;
+.add-info>.wrap>.radio-btn input+label{
+	background-color:rgba(255,164,9,0.8);
+	text-shadow: 1px 1px 3px gray;
+	color: #fff;;
+}
+.add-info>.wrap>.radio-btn label{
+	background-color:rgb(230, 230, 230);
+	border-radius:4px;
+	border: 0px;
 	height: 60px;
-	border:1px solid #d9d9d9;
-	font-weight: 700;
-	line-height:  58px;
-	text-align: center; 
+	width: 130px;
+	margin: 20px 0px 20px 20px;
+	font-size: 16px;
+	font-weight: 600;
+	text-align: center;
+	line-height: 60px;
+	box-shadow: 3px 5px 3px gray; 
 }
 /* ///////////////////////////// */
 #section {
