@@ -63,7 +63,7 @@ function mailSend() {
 			var ss = "인증번호 발송!";
 			alert(ss);
 			$("#keyArea").show();
-			$("#emailKey").hide();
+			$("#emailKey").show();
 			$("#timer").show();
 			start(result+(1000*60*5));
 		}
@@ -95,7 +95,7 @@ function keyCheck() {
 function start(targetTime) {
 	var seconds = (targetTime - new Date().getTime())/1000;
 	var minute = Math.floor(seconds / 60);
-	var second = Math.floor(seconds % 60);
+	var second = String(Math.floor(seconds % 60)).padStart(2,"0");
 	if (seconds > 1) {
 		$("#timer").text(minute +":"+second);
 		myTimeout = setTimeout(start, 1000, targetTime);

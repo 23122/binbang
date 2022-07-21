@@ -18,6 +18,9 @@ $(function() {
 	$("#write-check").click(writeCheck);
 	$("#passCheck").blur(pwdCheck);
 	$("#name").blur(nameBlured);
+	$("#isMaintenance").click(function(){
+		$("#isnMaintenance").removeClass("ckecked")
+	});
 });
 ////////////////////////////위치정보 정규표현식///////////////////////
 function addrBlured() {

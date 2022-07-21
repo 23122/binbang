@@ -15,21 +15,21 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
-@Entity(name = "file")
-public class FileEntity {
+@Entity(name = "salesFiles")
+public class SalesFilesEntity {
 	
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Id
-	private long fileNo;
+	private long salesFilesNo;
+	@Column(nullable = false)
+	private String salesFilesUrl;
+	@Column(nullable = false)
+	private String salesFilesOriginalName;
+	@Column(nullable = false)
+	private String salesFilesChangeName;
+	@Column(nullable = false)
+	private long salesFilesSize;
 	@Column
-	private String fileLink;
-	@Column(nullable = false)
-	private String fileUrl;
-	@Column(nullable = false)
-	private String fileOriginalName;
-	@Column(nullable = false)
-	private String fileChangeName;
-	@Column(nullable = false)
-	private long fileSize;
+	private boolean isMain;
 	
 }

@@ -2,7 +2,6 @@
 <html xmlns:th="http://www.thymeleaf.org"
 	th:replace="~{layout/layout1 :: layout(~{::head}, ~{::main})}">
 <head>
-<!-- <link rel="stylesheet" href="/css/board/apt/write.css"> -->
 <link rel="stylesheet" href="/css/board/write.css">
 <script type="text/javascript" src="/js/board/boardCheck.js"></script>
 </head>
@@ -14,6 +13,7 @@
 				<span>빈방 매물 등록페이지</span>
 			</div>
 		</section>
+		<form action="/board/aptList/write" method="post"></form>
 <!-- ////////////////////////////////매물선택//////////////////////////////////////// -->
 		<section id="section">
 			<div class="top-title">
@@ -214,7 +214,7 @@
 				</div>
 				<div class="boil-info flex">
 					<span class="boil-wrap flex">
-                       	<select name=salesBoilType>
+                       	<select name=salesOption>
                            	<option selected="selected">난방 종류 선택</option>
                            	<option value="EACH">개 별 난 방</option>
                            	<option value="CENTER">중 앙 난 방</option>
@@ -245,12 +245,60 @@
 					<span>관리비</span>
 				</div>
 				<div class="flex top-btn">
+					<input type="checkbox" id="isnMaintenance" checked>
+					<label for="isnMaintenance">없 음</label>
+					<input type="checkbox" id="isMaintenance" name="salesOption" value="MAINTENANCE">
+					<label for="isMaintenance">있 음</label>
+				</div>
+			</div>
+			<div class="wrap flex border-bot">
+				<div class="mid-title sub-height1">
+					<span>주차여부</span>
+				</div>
+				<div class="flex top-btn">
+					<input type="checkbox" id="isnParking" checked>
+					<label for="isnParking">없 음</label>
+					<input type="checkbox" id="isParking" name="salesOption" value="PARKING">
+					<label for="isParking">있 음</label>
+				</div>
+			</div>
+			<div class="wrap flex border-bot">
+				<div class="mid-title sub-height1">
+					<span>엘리베이터</span>
+				</div>
+				<div class="flex top-btn">
+					<input type="checkbox" id="isnElevator" checked>
+					<label for="isnElevator">없 음</label>
+					<input type="checkbox" id="isElevator" name="salesOption" value="ELEVATOR">
+					<label for="isElevator">있 음</label>
+				</div>
+			</div>
+			<div class="wrap flex border-bot">
+				<div class="mid-title sub-height1">
+					<span>빌트인</span>
+				</div>
+				<div class="flex top-btn">
+					<input type="checkbox" id="isnBuiltIn" checked>
+					<label for="isnBuiltIn">없 음</label>
+					<input type="checkbox" id="isBuiltIn" name="salesOption" value="BUILTIN">
+					<label for="isBuiltIn">있 음</label>
+				</div>
+			</div>
+			<div class="top-title">
+				<span>추가 정보</span>
+			</div>
+			<div class="wrap flex left border-bot">
+				<div class="mid-title sub-height1">
+					<span>관리비</span>
+				</div>
+				<div class="flex top-btn">
 					<input type="radio" id="isnMaintenance" name="salesMaintenance" value="0" checked>
 					<label for="isnMaintenance">없 음</label>
 					<input type="radio" id="isMaintenance" name="salesMaintenance" value="1">
 					<label for="isMaintenance">있 음</label>
 				</div>
 			</div>
+			<!-- 
 			<div class="wrap flex border-bot">
 				<div class="mid-title sub-height1">
 					<span>주차여부</span>
@@ -284,6 +332,7 @@
 					<label for="isBuiltIn">있 음</label>
 				</div>
 			</div>
+			 -->
 			<div class="wrap flex">
 				<div class="mid-title sub-height4">
 					<span>옵션항목</span>
@@ -332,7 +381,7 @@
 					<span>제목</span>
 				</div>
 				<div class="input-title">
-					<input placeholder="ex)노원역 도보 5분거리, 혼자 살기 조용한 방입니다.">
+					<input type="text" name="salesTitle" placeholder="ex)노원역 도보 5분거리, 혼자 살기 조용한 방입니다.">
 				</div>
 			</div>
 			<div class="wrap flex border-bot">
@@ -340,7 +389,7 @@
 					<span>상세설명</span>
 				</div>
 				<div class="input-contents">
-				<textarea rows="" cols=""
+				<textarea name="salesContents" rows="" cols=""
 				placeholder="&#13;&#10;상세설명 작성 주의사항&#13;&#10;&#13;&#10;-방 정보와 관련없는 홍보성 정보는 입력하실 수 없습니다.&#13;&#10;-중개수수료를 언급한 내용은 입력할 수 없습니다.&#13;&#10;&#13;&#10;*주의사항 위반시 허위매물로 간주되어 매물 삭제 및 이용의 제한이 있을 수 있습니다."></textarea>
 				</div>
 			</div>
@@ -349,7 +398,7 @@
 					<span>비공개 메모</span>
 				</div>
 				<div class="input-title">
-					<input placeholder="외부에 공개 되지 않으며, 등록자에게만 보이는 메모입니다.">
+					<input type="text" name="salesHiddenMemo" placeholder="외부에 공개 되지 않으며, 등록자에게만 보이는 메모입니다.">
 				</div>
 			</div>
 		</section>
@@ -370,7 +419,7 @@
 								height: 150px;background-image: url('');background-size: contain;margin: 15px;
 								background-color: rgba(255,164,9,0.3); border: 1px dotted rgb(255,164,9); text-align: center;
 								line-height: 150px;background-repeat: no-repeat;background-position: center;">+</label>
-								<input type="file" id="file" name="file" multiple="multiple" style="display: none;">
+								<input type="file" id="file" name="addfile" multiple="multiple" style="display: none;">
 								<p style="color:red; padding-left: 15px;">불필요한 정보(워터마크,상호,전화번호 등)가 있는 매물은 비공개처리됩니다.</p>
 							</li>
 							<li>
@@ -390,7 +439,7 @@
 			</div>
 			<div class="flex flex-center">
 				<a href="/customer/board/aptList"><button class="btn-cencle" type="button">등록 취소</button></a>
-				<button id="btn-write" disabled>매물 등록</button>
+				<button type="submit" id="btn-write" disabled>매물 등록</button>
 			</div>
 		</section>
 		<script type="text/javascript">
