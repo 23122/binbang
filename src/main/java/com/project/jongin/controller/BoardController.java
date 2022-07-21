@@ -29,10 +29,14 @@ public class BoardController {
 		return "board/list";
 	}
 	@ResponseBody//성공시 문자열 리턴-> ajax success
-	@PostMapping("/boardjpa/fileupload")
+	@PostMapping("/board/fileupload")
 	public String fileUpload(MultipartFile file,String prevImgName) {
 		return service.fileUpload(file,prevImgName);
 	}
+//	@PostMapping("/boardjpa/write")
+//	public String write(SalesInsertDTO dto,MultipartFile[] file) {
+//		return service.save(dto,file);
+//	}
 	@Autowired
 	FileRepository fileRepository;
 	

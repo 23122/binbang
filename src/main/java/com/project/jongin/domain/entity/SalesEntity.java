@@ -47,6 +47,9 @@ public class SalesEntity extends BaseTimeEntity{
 	//집주소
 	@Column(nullable = false)
 	private String salesAddress;
+	//상세주소
+	@Column(nullable = false)
+	private String salesAddressDetail;
 	//거래종류
 	@Enumerated(EnumType.STRING)
 	private PayType salesPayType;
@@ -74,7 +77,7 @@ public class SalesEntity extends BaseTimeEntity{
 //	private Set<BoilType> salesBoilType=new HashSet<>();
 	//입주가능일
 	@Column(nullable = false)
-	private DateTimeException salesDate;
+	private String salesDate;
 	//옵션
 	@Builder.Default
 	@Enumerated(EnumType.STRING)

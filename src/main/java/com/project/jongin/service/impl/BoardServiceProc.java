@@ -7,6 +7,8 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.project.jongin.domain.dto.sales.SalesInsertDTO;
+import com.project.jongin.domain.entity.SalesEntity;
 import com.project.jongin.service.BoardService;
 
 @Service
@@ -16,38 +18,38 @@ public class BoardServiceProc implements BoardService{
 	
 	@Override
 	public String fileUpload(MultipartFile file,String prevImgName) {
-		String fileOriginalName = file.getOriginalFilename();
+		String salesFilesOriginalName = file.getOriginalFilename();
 		// 이름중복처리
-		String fileChangeName = System.nanoTime() + "_" + fileOriginalName;
+		String salesFilesChangeName = System.nanoTime() + "_" + salesFilesOriginalName;
 		// bin경로
-		String url = "/upload/temp/";
+		String url = "/img/temp/";
 		ClassPathResource cpr = new ClassPathResource("static" + url);
 		try {
 			File location=cpr.getFile();
 			File prevImg = new File(location,prevImgName);
 			if(prevImg.isFile())prevImg.delete();
-			file.transferTo(new File(location, fileChangeName));
+			file.transferTo(new File(location, salesFilesChangeName));
 		} catch (IllegalStateException | IOException e) {
 			e.printStackTrace();
 		}
-		return fileChangeName;
+		return salesFilesChangeName;
 	}
 	
 //	@Transactional
 //	@Override
-//	public String save(JpaBoardInsertDTO dto, MultipartFile[] file) {
+//	public String save(SalesInsertDTO dto, MultipartFile[] file) {
 //		System.out.println(">>>>>>>>>>>>>>>>" + file);
-//		JpaBoardEntity entity=dto.toEntity();
+//		SalesEntity entity=dto.toEntity();
 //		for (MultipartFile f : file) {
 //			if (!f.isEmpty()) {
 //				
-				//src경로
-				//String url2 = "E:/java/spring/baekhwa-project/src/main/resources/static/upload";
-//				
-				//lunux 이용시
-				//String linux = "/home/ec2-user/src/root";
-//				
-				//bin경로
+//				//src경로
+//				//String url2 = "E:/java/spring/baekhwa-project/src/main/resources/static/upload";
+//			
+//				//lunux 이용시
+//				//String linux = "/home/ec2-user/src/root";
+//			
+//				//bin경로
 //				String url = "/upload/";
 //				ClassPathResource cprTemp = new ClassPathResource("static" + url+"temp");
 //
@@ -70,5 +72,5 @@ public class BoardServiceProc implements BoardService{
 //		repository.save(entity);
 //		return "redirect:/boardjpa";
 //	}
-
+//
 }

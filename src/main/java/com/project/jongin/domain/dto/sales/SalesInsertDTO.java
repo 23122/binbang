@@ -1,6 +1,5 @@
 package com.project.jongin.domain.dto.sales;
 
-import java.time.DateTimeException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -21,6 +20,7 @@ public class SalesInsertDTO {
 	private BinbangType salesType;
 	private BuildType salesBuildType;
 	private String salesAddress;
+	private String salesAddressDetail;
 	private PayType salesPayType;
 	private int salesDeposit;
 	private int salesPaymonth;
@@ -28,7 +28,7 @@ public class SalesInsertDTO {
 	private int salesExclusive;
 	private int salesAllFloors;
 	private int salesPositonFloor;
-	private DateTimeException salesDate;
+	private String salesDate;
 	private Set<OptionType> salesOptionType=new HashSet<>();
 	private String salesTitle;
 	private String salesContents;
@@ -54,6 +54,7 @@ public class SalesInsertDTO {
 				.salesContents(salesContents)
 				.salesHiddenMemo(salesHiddenMemo)
 				.salesFiles(salesFiles)
+				.salesAddressDetail(salesAddressDetail)
 				.build();
 	}
 }

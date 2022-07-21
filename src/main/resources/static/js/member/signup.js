@@ -29,6 +29,8 @@ function mailCkech() {
 	var in_email = $(this).val();
 	var token = $("meta[name='_csrf']").attr("content");
 	var header = $("meta[name='_csrf_header']").attr("content");
+	
+	
 	//비동기통신
 	$.ajax({
 		beforeSend: function(xhr) {
@@ -42,6 +44,8 @@ function mailCkech() {
 				$("#email").parent().siblings("#emsg")
 					.text("사용불가").css("color", "red");
 					emailcheck=false;
+					check[3] = false;
+					submitCheck();
 			} else {
 				emailBlured();
 			}
@@ -107,16 +111,18 @@ function start(targetTime) {
 }
 ////////////////////////////이메일입력////////////////////////////
 function emailBlured() {
-	check[3] = false;
+	
 	var in_email = $("#email").val();//input태그에 입력된 값(value)을 읽어올때
 	if (emailRexp.test(in_email.trim())) {
 		msg = "사용가능한 이메일입니다. 인증번호를 발송해주세요.";
 		$("#emsg").css("color", "green");
 		emailcheck = true;
+		check[3] = false;
 	} else {
 		msg = "* 이메일 형식으로 입력하여야합니다.";
 		$("#emsg").css("color", "red");
 		emailcheck = false;
+		check[3] = false;
 	}
 	$("#emsg").html(msg);
 	emailCheck();

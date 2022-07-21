@@ -13,7 +13,7 @@
 				<span>빈방 매물 등록페이지</span>
 			</div>
 		</section>
-		<form action="/board/aptList/write" method="post"></form>
+		<form action="/board/aptList/write" method="post">
 <!-- ////////////////////////////////매물선택//////////////////////////////////////// -->
 		<section id="section">
 			<div class="top-title">
@@ -70,10 +70,10 @@
 							<input type="button" onclick="sample5_execDaumPostcode()" value="주소 검색">
 						</li>
 						<li>
-							<input type="text" id="sample5_address" readonly>
+							<input type="text" name="salesAddress" id="sample5_address" readonly>
 						</li>
 						<li>
-							<input type="text" id="sample2_detailAddress" placeholder="상세주소를 입력하세요.">
+							<input type="text" name="salesAddressDetail" id="sample2_detailAddress" placeholder="상세주소를 입력하세요.">
 							<li id="addrmsg" class="msg"></li>
 						</li>
 					</ul>
@@ -230,13 +230,13 @@
 				</div>
 				<div class="in-info flex">
 					<div class="in-date">
-						<input type="date">
+						<input name="salesDate" type="date">
 					</div>
 				</div>
 			</div>
 		</section>
 <!-- ///////////////////////////////////추가 정보///////////////////////////////////// -->
-		<section id="section">
+		<section id="add-info">
 			<div class="top-title">
 				<span>추가 정보</span>
 			</div>
@@ -245,9 +245,9 @@
 					<span>관리비</span>
 				</div>
 				<div class="flex top-btn">
-					<input type="checkbox" id="isnMaintenance" checked>
-					<label for="isnMaintenance">없 음</label>
+					
 					<input type="checkbox" id="isMaintenance" name="salesOption" value="MAINTENANCE">
+					<label for="isMaintenance">없 음</label>
 					<label for="isMaintenance">있 음</label>
 				</div>
 			</div>
@@ -256,9 +256,9 @@
 					<span>주차여부</span>
 				</div>
 				<div class="flex top-btn">
-					<input type="checkbox" id="isnParking" checked>
-					<label for="isnParking">없 음</label>
+					
 					<input type="checkbox" id="isParking" name="salesOption" value="PARKING">
+					<label for="isParking">없 음</label>
 					<label for="isParking">있 음</label>
 				</div>
 			</div>
@@ -267,9 +267,9 @@
 					<span>엘리베이터</span>
 				</div>
 				<div class="flex top-btn">
-					<input type="checkbox" id="isnElevator" checked>
-					<label for="isnElevator">없 음</label>
+					
 					<input type="checkbox" id="isElevator" name="salesOption" value="ELEVATOR">
+					<label for="isElevator">없 음</label>
 					<label for="isElevator">있 음</label>
 				</div>
 			</div>
@@ -278,12 +278,13 @@
 					<span>빌트인</span>
 				</div>
 				<div class="flex top-btn">
-					<input type="checkbox" id="isnBuiltIn" checked>
-					<label for="isnBuiltIn">없 음</label>
+					
 					<input type="checkbox" id="isBuiltIn" name="salesOption" value="BUILTIN">
+					<label for="isBuiltIn">없 음</label>
 					<label for="isBuiltIn">있 음</label>
 				</div>
 			</div>
+			<!-- 
 			<div class="top-title">
 				<span>추가 정보</span>
 			</div>
@@ -298,7 +299,6 @@
 					<label for="isMaintenance">있 음</label>
 				</div>
 			</div>
-			<!-- 
 			<div class="wrap flex border-bot">
 				<div class="mid-title sub-height1">
 					<span>주차여부</span>
@@ -442,21 +442,25 @@
 				<button type="submit" id="btn-write" disabled>매물 등록</button>
 			</div>
 		</section>
+		</form>
 		<script type="text/javascript">
 					$(function(){
 						$("#file").change(function(){
+							var token = $("meta[name='_csrf']").attr("content");
+							var header = $("meta[name='_csrf_header']").attr("content");
 							var file=$("#file")[0].files[0];
 							var formData=new FormData();
 							formData.append("file",file);
 							formData.append("prevImgName",$("#file-change-name").val());
 							$.ajax({
-								url:"/boardjpa/fileupload",
+								beforeSend: function(xhr) { xhr.setRequestHeader(header, token); },
+								url:"/board/fileupload",
 								type:"post",
 								data:formData,
 								processData: false,
 				                contentType: false,
 								success:function(result){
-									$("#img-disp").css("background-image","url(/upload/temp/"+result+")")
+									$("#img-disp").css("background-image","url(/img/temp/"+result+")")
 									$("#file-change-name").val(result);
 								}
 							});

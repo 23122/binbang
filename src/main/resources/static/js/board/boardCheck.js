@@ -6,7 +6,7 @@ var salesPayRexp = /^[0-9]/;
 var passRexp = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@!%*#?&])[A-Za-z\d@!%*#?&]{8,}$/;
 var nameRexp = /^[가-힣]{2,4}$/;
 var msg;
-var check = [false, false, false, false, false, false, false, false];
+var check = [false, false, false, false, false, false, false];
 $(function() {
 	$("#salesDeposit").blur(depositBlured);
 	$("#salesPaymonth").blur(paymonthBlured);
@@ -15,11 +15,11 @@ $(function() {
 	$("#area2").blur(area2Blured);
 	$("#area3").blur(area3Blured);
 	$("#area4").blur(area4Blured);
-	$("#write-check").click(writeCheck);
-	$("#passCheck").blur(pwdCheck);
-	$("#name").blur(nameBlured);
-	$("#isMaintenance").click(function(){
-		$("#isnMaintenance").removeClass("ckecked")
+	//$("#write-check").click(writeCheck);
+	//$("#passCheck").blur(pwdCheck);
+	//$("#name").blur(nameBlured);
+	$("#isMaintenance").change(function(){
+		//alert($(this).prop("checked"));	
 	});
 });
 ////////////////////////////위치정보 정규표현식///////////////////////
@@ -124,6 +124,7 @@ function area4Blured() {
 	submitCheck();
 }
 /////////////////////////규정동의체크////////////////////////////
+/*
 function writeCheck(){
 	var write_checked=$("#write-check").val();
 	if(write_checked==true){
@@ -135,6 +136,7 @@ function writeCheck(){
 	}
 	submitCheck();
 }
+*/
 //////////////////////////매물등록버튼///////////////////////////
 function submitCheck(){
 	for(i=0; i<check.length; i++){
