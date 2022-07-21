@@ -20,12 +20,12 @@ $(function() {
 	$("#pass").blur(passBlured);
 	$("#passCheck").blur(pwdCheck);
 	$("#name").blur(nameBlured);
-	$("#email").keyup(emailCkech);
+	$("#email").keyup(mailCkech);
 	$("#btn-email").click(mailSend);
 	$("#emailKey").blur(keyCheck);
 });
 ///////////////////////////이메일중복확인//////////////////////////////
-function emailCkech() {
+function mailCkech() {
 	var in_email = $(this).val();
 	var token = $("meta[name='_csrf']").attr("content");
 	var header = $("meta[name='_csrf_header']").attr("content");
@@ -41,9 +41,11 @@ function emailCkech() {
 			if (result) {
 				$("#email").parent().siblings("#emsg")
 					.text("사용불가").css("color", "red");
+					emailcheck=false;
 			} else {
-				$("#email").blur(emailBlured);
+				emailBlured();
 			}
+			emailCheck();
 		}
 	});
 }
@@ -51,6 +53,7 @@ function emailCkech() {
 function mailSend() {
 	var token = $("meta[name='_csrf']").attr("content");
 	var header = $("meta[name='_csrf_header']").attr("content");
+	$.get("/request-key/remove",function(){});
 	$.ajax({
 		beforeSend: function(xhr) { xhr.setRequestHeader(header, token); },
 		url: "/request-key/mail",
@@ -60,6 +63,7 @@ function mailSend() {
 			var ss = "인증번호 발송!";
 			alert(ss);
 			$("#keyArea").show();
+			$("#emailKey").hide();
 			$("#timer").show();
 			start(result+(1000*60*5));
 		}
@@ -90,7 +94,6 @@ function keyCheck() {
 ////////////////////////////인증타이머////////////////////////////
 function start(targetTime) {
 	var seconds = (targetTime - new Date().getTime())/1000;
-	alert(targetTime);
 	var minute = Math.floor(seconds / 60);
 	var second = Math.floor(seconds % 60);
 	if (seconds > 1) {
@@ -104,6 +107,7 @@ function start(targetTime) {
 }
 ////////////////////////////이메일입력////////////////////////////
 function emailBlured() {
+	check[3] = false;
 	var in_email = $("#email").val();//input태그에 입력된 값(value)을 읽어올때
 	if (emailRexp.test(in_email.trim())) {
 		msg = "사용가능한 이메일입니다. 인증번호를 발송해주세요.";

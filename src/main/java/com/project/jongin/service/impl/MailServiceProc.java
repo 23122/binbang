@@ -32,8 +32,8 @@ public class MailServiceProc implements MailService{
 		
 		mailSender.send(message);
 		System.out.println("code:"+code);
-		session.setAttribute("mailKey", code);
 		session.setMaxInactiveInterval(60*5);//5분
+		session.setAttribute("mailKey", code);
 		
 		return session.getCreationTime();
 	}

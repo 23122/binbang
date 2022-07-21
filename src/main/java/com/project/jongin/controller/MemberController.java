@@ -49,6 +49,7 @@ public class MemberController {
 	@ResponseBody
 	@GetMapping("/request-key/remove")
 	public void requestRemove(HttpSession httpSession) {
+		System.out.println("requestRemove 실행");
 		httpSession.removeAttribute("mailKey");
 	}
 }
