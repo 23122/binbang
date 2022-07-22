@@ -13,7 +13,7 @@
 				<span>빈방 매물 등록페이지</span>
 			</div>
 		</section>
-		<form action="/board/aptList/write" method="post">
+		<form action="/board/binbang/write" method="post">
 <!-- ////////////////////////////////매물선택//////////////////////////////////////// -->
 		<section id="section">
 			<div class="top-title">
@@ -159,11 +159,11 @@
 					</div>
 					<div class="flex deal-info">
 						<ul>
-							<input type="text" id="boardDeposit" name="salesDeposit" placeholder="보증금/전세금을 입력해주세요.(단위 : 만원)">
+							<input type="text" id="boardDeposit" name="boardDeposit" placeholder="보증금/전세금을 입력해주세요.(단위 : 만원)">
 							<li id="depositmsg" class="msg"></li>
 						</ul>
 						<ul>
-							<input type="text" id="boardPaymonth" name="salesPaymonth" placeholder="월세를 입력해주세요.(단위 : 만원)">
+							<input type="text" id="boardPaymonth" name="boardPaymonth" placeholder="월세를 입력해주세요.(단위 : 만원)">
 							<li id="paymonthmsg" class="msg"></li>
 						</ul>
 					</div>
@@ -370,8 +370,9 @@
 								<p style="color:red; padding-left: 15px;">불필요한 정보(워터마크,상호,전화번호 등)가 있는 매물은 비공개처리됩니다.</p>
 							</li>
 							<li>
-								<input type="hidden" id="file-change-name" name="fileChangeName">
+								<input type="text" id="file-change-name" name="boardFilesChangeName">
 								<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" >
+								<input type="hidden" name="memberNo" th:value="${#authentication.principal.memberNo}">
 							</li>
 						</ul>
 					</div>
@@ -385,7 +386,7 @@
 				<span>매물 관련 규정을 확인하였으며,입력한 정보는 실제와 다름이 없습니다.</span>
 			</div>
 			<div class="flex flex-center">
-				<a href="/customer/board/aptList"><button class="btn-cencle" type="button">등록 취소</button></a>
+				<a href="/customer/board/list"><button class="btn-cencle" type="button">등록 취소</button></a>
 				<button type="submit" id="btn-write" disabled>매물 등록</button>
 			</div>
 		</section>
@@ -395,10 +396,13 @@
 						$("#file").change(function(){
 							var token = $("meta[name='_csrf']").attr("content");
 							var header = $("meta[name='_csrf_header']").attr("content");
+							
 							var file=$("#file")[0].files[0];
+							
 							var formData=new FormData();
 							formData.append("file",file);
 							formData.append("prevImgName",$("#file-change-name").val());
+							
 							$.ajax({
 								beforeSend: function(xhr) { xhr.setRequestHeader(header, token); },
 								url:"/board/fileupload",
@@ -407,6 +411,7 @@
 								processData: false,
 				                contentType: false,
 								success:function(result){
+									alert(result);
 									$("#img-disp").css("background-image","url(/img/temp/"+result+")")
 									$("#file-change-name").val(result);
 								}

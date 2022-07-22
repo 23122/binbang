@@ -30,13 +30,17 @@ public class BoardController {
 	public String list() {
 		return "board/list";
 	}
-	@GetMapping("/customer/board/aptList")
+	@GetMapping("/customer/board/list")
 	public String list(Model model) {
 		return boardService.list(model);
 	}
-	@PostMapping("/board/aptList/write")
+	@PostMapping("/board/binbang/write")
 	public String write(BoardInsertDTO dto) {
 		return boardService.save(dto);
+	}
+	@GetMapping("/board/list/{boardNo}")
+	public String detail(@PathVariable long boardNo,Model model) {
+		return boardService.detail(boardNo,model);
 	}
 	@ResponseBody//성공시 문자열 리턴-> ajax success
 	@PostMapping("/board/fileupload")
@@ -54,7 +58,7 @@ public class BoardController {
 	ResourceLoader resourceLoader;
 	
 	@ResponseBody
-	@GetMapping(value =  "/boardjpa/files/{fileNo}",produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
+	@GetMapping(value =  "/board/files/{fileNo}",produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
 	public ResponseEntity<Resource> downloadFile(@PathVariable(value = "fileNo") long fileNo,@RequestHeader("User-Agent") String userAgent)throws Exception {
 		if(userAgent.contains("Edg")) {
 			System.out.println("엣지브라우저");

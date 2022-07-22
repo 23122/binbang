@@ -31,8 +31,8 @@ public class PageController {
 	public String text() {
 		return "newIndex";
 	}
-	@GetMapping("/board/aptList/write")
+	@GetMapping("/board/binbang/write")
 	public String write() {
-		return "/board/apt/write";
+		return "/board/listType/write";
 	}
 }

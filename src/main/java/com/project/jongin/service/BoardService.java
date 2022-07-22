@@ -13,6 +13,8 @@ public interface BoardService {
 
 	String save(BoardInsertDTO dto);
 
+	String detail(long boardNo, Model model);
+
 //	String save(SalesInsertDTO dto, MultipartFile[] file);
 
 }

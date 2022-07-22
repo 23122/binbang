@@ -5,6 +5,7 @@ import java.util.Set;
 
 import com.project.jongin.domain.entity.BoardEntity;
 import com.project.jongin.domain.entity.BoardFilesEntity;
+import com.project.jongin.domain.entity.MemberEntity;
 import com.project.jongin.domain.enumes.HouseType;
 import com.project.jongin.domain.enumes.BuildType;
 import com.project.jongin.domain.enumes.OptionType;
@@ -15,6 +16,7 @@ import lombok.Setter;
 @Setter
 public class BoardInsertDTO {
 	private long boardNo;
+	private long memberNo;
 	private HouseType boardHouseType;
 	private BuildType boardBuildType;
 	private String boardAddress;
@@ -36,6 +38,7 @@ public class BoardInsertDTO {
 	public BoardEntity toEntity() {
 		return BoardEntity.builder()
 				.boardNo(boardNo)
+				.memberEntity(MemberEntity.builder().memberNo(memberNo).build())
 				.boardHouseType(boardHouseType)
 				.boardBuildType(boardBuildType)
 				.boardAddress(boardAddress)

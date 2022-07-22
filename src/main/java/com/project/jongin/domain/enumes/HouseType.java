@@ -12,4 +12,7 @@ public enum HouseType {
 	OFFICETEL("오피스텔");
 	
 	final String title;
+	public String title() {
+		return title;
+	}
 }

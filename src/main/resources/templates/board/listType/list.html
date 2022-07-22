@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org"
 	th:replace="~{layout/layout1 :: layout(~{::head}, ~{::main})}">
 <head>
-<link rel="stylesheet" href="/css/board/apt/list.css">
+<link rel="stylesheet" href="/css/board/listType/list.css">
 </head>
 <main>
 	<div class="wrap">
@@ -81,13 +81,17 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr>
-							<td>지역db</td>
-							<td>제목db</td>
-							<td>구분db</td>
-							<td>가격db</td>
-							<td>등록일db</td>
-							<td>수정일db</td>
+						<tr th:each="dto : ${list}">
+							<td>[[${dto.boardAddress}]]</td>
+							<td>
+							<a th:href="|/board/list/${dto.boardNo}|">[[${dto.boardTitle}]]</a>
+						</td>
+							<td>[[${dto.boardPayType}]]</td>
+							<td>[[${dto.boardPaymonth}]]</td>
+							<td></td>
+						</tr>
+							<tr th:if="${#lists.isEmpty(list)}">
+							<td colspan="5">게시글이 존재하지 않습니다.</td>
 						</tr>
 					</tbody>
 				</table>
@@ -95,8 +99,8 @@
 		</section>
 		<section style="width: 1200px; margin: 0 auto;">
 			<div class="bot-btn flex right">
-				<a href="/board/aptList/write/email"><button>내글보기</button></a>
-				<a href="/board/aptList/write"><button>글쓰기</button></a>
+				<a href="/board/list/write/email"><button>내글보기</button></a>
+				<a href="/board/binbang/write"><button>글쓰기</button></a>
 			</div>
 		</section>
 	</div>

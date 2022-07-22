@@ -9,8 +9,8 @@ var nameRexp = /^[가-힣]{2,4}$/;
 var msg;
 var check = [false, false, false, false, false, false, false, false];
 $(function() {
-	$("#salesDeposit").blur(depositBlured);
-	$("#salesPaymonth").blur(paymonthBlured);
+	$("#boardDeposit").blur(depositBlured);
+	$("#boardPaymonth").blur(paymonthBlured);
 	$("#sample2_detailAddress").blur(addrBlured);
 	$("#area1").blur(area1Blured);
 	$("#area2").blur(area2Blured);
@@ -38,7 +38,7 @@ function addrBlured() {
 }
 ////////////////////////////거래정보 정규표현식///////////////////////
 function depositBlured() {
-	var in_deposit = $("#salesDeposit").val();//input태그에 입력된 값(value)을 읽어올때
+	var in_deposit = $("#boardDeposit").val();//input태그에 입력된 값(value)을 읽어올때
 	if (salesPayRexp.test(in_deposit.trim())) {
 		msg = "";
 		$("#depositmsg").css("color", "green");
@@ -52,7 +52,7 @@ function depositBlured() {
 	submitCheck();
 }
 function paymonthBlured() {
-	var in_paymonth = $("#salesPaymonth").val();//input태그에 입력된 값(value)을 읽어올때
+	var in_paymonth = $("#boardPaymonth").val();//input태그에 입력된 값(value)을 읽어올때
 	if (salesPayRexp.test(in_paymonth.trim())) {
 		msg = "";
 		$("#paymonthmsg").css("color", "green");

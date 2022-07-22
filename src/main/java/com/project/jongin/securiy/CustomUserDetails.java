@@ -17,6 +17,7 @@ public class CustomUserDetails extends User implements OAuth2User{
 	private static final long serialVersionUID = 1L;
 	private String memberEamil;
 	private String membername;
+	private long memberNo;
 	
 	public CustomUserDetails(MemberEntity e) {
 		super(e.getMemberEmail(), e.getMemberPass(),e.getRoleSet().stream().map(role->new SimpleGrantedAuthority(role.role))
@@ -24,6 +25,7 @@ public class CustomUserDetails extends User implements OAuth2User{
 		
 		memberEamil=e.getMemberEmail();
 		membername=e.getMemberName();
+		memberNo=e.getMemberNo();
 				
 	}
 

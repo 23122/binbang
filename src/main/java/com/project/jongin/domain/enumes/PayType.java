@@ -9,4 +9,7 @@ public enum PayType {
 	DEAL("매매");
 	
 	final String title;
+	public String title() {
+		return title;
+	}
 }

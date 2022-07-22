@@ -10,4 +10,8 @@ public enum BuildType {
 	STORE("상가");
 	
 	final String title;
+	public String title() {
+		return title;
+	}
+	
 }

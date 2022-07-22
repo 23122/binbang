@@ -1,7 +1,9 @@
 package com.project.jongin.domain.enumes;
 
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
+@Getter
 @RequiredArgsConstructor
 public enum BoilType {
 	EACH("개별난방"),
@@ -10,4 +12,8 @@ public enum BoilType {
 	ETC("기타");
 	
 	final String title;
+	public String title() {
+		return title;
+	}
+	
 }

@@ -29,4 +29,7 @@ public enum OptionType {
 	LOCAL("지역난방"),
 	ETC("기타");
 	final String title;
+	public String title() {
+		return title;
+	}
 }

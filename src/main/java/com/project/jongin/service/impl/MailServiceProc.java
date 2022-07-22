@@ -36,7 +36,7 @@ public class MailServiceProc implements MailService{
 		session.setAttribute("mailKey", code);
 		//session.
 		
-		return session.getCreationTime();
+		return System.currentTimeMillis();
 	}
 
 	private String createKey() {

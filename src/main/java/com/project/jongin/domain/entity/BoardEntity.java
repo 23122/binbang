@@ -15,6 +15,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import com.project.jongin.domain.enumes.BuildType;
@@ -82,12 +83,16 @@ public class BoardEntity extends BaseTimeEntity{
 	@Column(nullable = false)
 	private String boardTitle;
 	//내용
-	@Column(nullable = false)
+	@Column(columnDefinition = "text not null")
 	private String boardContents;
 	//비공개메모
 	@Column
 	private String boardHiddenMemo;
-
+	
+	@JoinColumn(name = "memberNo",nullable = false)
+	@ManyToOne
+	private MemberEntity memberEntity;
+	
 	@Builder.Default
 	@JoinColumn(name = "boardNo")
 	@OneToMany

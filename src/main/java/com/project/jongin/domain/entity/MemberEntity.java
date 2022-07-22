@@ -1,7 +1,9 @@
 package com.project.jongin.domain.entity;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
+import java.util.Vector;
 
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
@@ -12,6 +14,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 import org.hibernate.annotations.DynamicUpdate;
 
@@ -48,6 +51,10 @@ public class MemberEntity extends BaseTimeEntity{
 	@Enumerated(EnumType.STRING)//DB데이터타입
 	@ElementCollection(fetch = FetchType.EAGER)//동시처리
 	private Set<MemberRole> roleSet=new HashSet<>();
+	
+	@Builder.Default
+	@OneToMany(mappedBy = "memberEntity")
+	private List<BoardEntity> boardEntities=new Vector<BoardEntity>();
 	
 	public MemberEntity memberPass(String memberPass) {
 		this.memberPass=memberPass;
