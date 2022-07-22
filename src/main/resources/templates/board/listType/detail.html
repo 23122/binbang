@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{layout/layout1 :: layout(~{::head}, ~{::main})}">
+<head>
+<link rel="stylesheet" href="/css/board/listType/detail.css">
+</head>
+<main>
+	<div class="wrap">
+		<h1>아파트매물목록</h1>
+		<section id="detail">
+			<div>
+				<ul id="detail-info-title">
+					<li>
+						<div>[[${detail.boardTitle}]]</div>
+					</li>
+					<li class="flex">
+						<div>
+							<p>[[${detail.boardHouseType.title()}]]</p>
+							<div>
+								<span>[[${detail.boardPayType.title()}]]</span>
+								<span>[[${detail.boardDeposit}]]만원 /</span>
+								<span>[[${detail.boardPaymonth}]]만원</span>
+							</div>
+						</div>
+						<div>
+							<p>전용면적</p>
+							<div>
+								<span>[[${detail.boardExclusive}]]제곱미터</span>
+							</div>
+						</div>
+						<div>
+							<p>층수정보</p>
+							<div>
+								<span>[[${detail.boardAllFloors}]]층/</span>
+								<span>[[${detail.boardPositonFloor}]]층</span>
+							</div>
+						</div>
+						<div>
+							<p>층수정보</p>
+							<div>
+								<span>[[${detail.boardAllFloors}]]층/</span>
+								<span>[[${detail.boardPositonFloor}]]층</span>
+							</div>
+						</div>
+					</li>
+					<li class="flex around">
+						<div>
+							<div>
+								<span>해당층/</span>
+								<span>건물층</span>
+							</div>
+							<div>
+								<span>[[${detail.boardPositonFloor}]]층/</span>
+								<span>[[${detail.boardAllFloors}]]층</span>
+							</div>
+						</div>
+						<div th:each="dto:${detail}">
+							<div>
+								<span>난방종류</span>
+							</div>
+							<div th:each="option :${dto.boardOption}">
+								<span th:if="${option.title() eq '개별난방'}">[[${option.title()}]]</span>
+								<span th:if="${option.title() eq '지역난방'}">[[${option.title()}]]</span>
+								<span th:if="${option.title() eq '중앙난방'}">[[${option.title()}]]</span>
+								<span th:if="${option.title() eq '기타'}">[[${option.title()}]]</span>
+							</div>
+						</div>
+						<div th:each="dto:${detail}">
+							<div>
+								<span>엘리베이터</span>
+							</div>
+							<div th:each="option :${dto.boardOption}">
+								<span th:if="${option.title() eq '엘리베이터'}" th:text="있음"></span>
+								<span th:unless="${option.title() eq '엘리베이터'}" th:text="없음"></span>
+							</div>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</section>
+	</div>
+</main>
+</html>
