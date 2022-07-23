@@ -86,7 +86,7 @@
 							<td>
 							<a th:href="|/board/list/${dto.boardNo}|">[[${dto.boardTitle}]]</a>
 						</td>
-							<td>[[${dto.boardPayType}]]</td>
+							<td>[[${dto.boardPayType.title()}]]</td>
 							<td>[[${dto.boardPaymonth}]]</td>
 							<td></td>
 						</tr>

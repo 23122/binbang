@@ -1,10 +1,11 @@
 package com.project.jongin.domain.entity;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.Vector;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
@@ -95,8 +96,8 @@ public class BoardEntity extends BaseTimeEntity{
 	
 	@Builder.Default
 	@JoinColumn(name = "boardNo")
-	@OneToMany
-	private List<BoardFilesEntity> boardFiles = new ArrayList<>();
+	@OneToMany(cascade = CascadeType.ALL)
+	private List<BoardFilesEntity> boardFiles = new Vector<>();
 	
 	public BoardEntity addFile(BoardFilesEntity boardFilesEntity) {
 		boardFiles.add(boardFilesEntity);

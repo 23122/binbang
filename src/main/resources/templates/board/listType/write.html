@@ -4,6 +4,14 @@
 <head>
 <link rel="stylesheet" href="/css/board/write.css">
 <script type="text/javascript" src="/js/board/boardCheck.js"></script>
+<!-- include bootstrap css/js -->
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<!-- include summernote css/js -->
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+<script src="/js/common/my-summernote.js"></script>
+<script src="/js/common/fileupload.js"></script>
 </head>
 <main>
 	<div class="wrap">
@@ -13,412 +21,383 @@
 				<span>빈방 매물 등록페이지</span>
 			</div>
 		</section>
-		<form action="/board/binbang/write" method="post">
+		<form action="/board/binbang/write" method="post" enctype="multipart/form-data">
 <!-- ////////////////////////////////매물선택//////////////////////////////////////// -->
-		<section id="section">
-			<div class="top-title">
-				<span>매물 종류</span>
-			</div>
-			<div class="wrap flex left border-bot">
-				<div class="mid-title sub-height1">
-					<span>종류 선택</span>
+			<section id="section">
+				<div class="top-title">
+					<span>매물 종류</span>
 				</div>
-				<div class="flex top-btn">
-					<input type="radio" id="oneRoom" name="boardHouseType" value="ONEROOM" checked>
-					<label for="oneRoom">원 룸</label>
-					<input type="radio" id="twoRoom" name="boardHouseType" value="TWOROOM">
-					<label for="twoRoom">투 룸</label>
-					<input type="radio" id="threeRoom" name="boardHouseType" value="THREEROOM">
-					<label for="threeRoom">쓰 리 룸</label>
-					<input type="radio" id="apt" name="boardHouseType" value="APT">
-					<label for="apt">아 파 트</label>
-					<input type="radio" id="officetel" name="boardHouseType" value="OFFICETEL">
-					<label for="officetel">오 피 스 텔</label>
+				<div class="wrap flex left border-bot">
+					<div class="mid-title sub-height1">
+						<span>종류 선택</span>
+					</div>
+					<div class="flex top-btn">
+						<input type="radio" id="oneRoom" name="boardHouseType" value="ONEROOM" checked>
+						<label for="oneRoom">원 룸</label>
+						<input type="radio" id="twoRoom" name="boardHouseType" value="TWOROOM">
+						<label for="twoRoom">투 룸</label>
+						<input type="radio" id="threeRoom" name="boardHouseType" value="THREEROOM">
+						<label for="threeRoom">쓰 리 룸</label>
+						<input type="radio" id="apt" name="boardHouseType" value="APT">
+						<label for="apt">아 파 트</label>
+						<input type="radio" id="officetel" name="boardHouseType" value="OFFICETEL">
+						<label for="officetel">오 피 스 텔</label>
+					</div>
 				</div>
-			</div>
-			<div class="wrap flex">
-				<div class="mid-title sub-height1">
-					<span>건물유형</span>
+				<div class="wrap flex">
+					<div class="mid-title sub-height1">
+						<span>건물유형</span>
+					</div>
+					<div class="flex top-btn">
+						<input type="radio" id="detach" name="boardBuildType" value="DETACH" checked>
+						<label for="detach">단 독 주 택</label>
+						<input type="radio" id="multi" name="boardBuildType" value="MULTI">
+						<label for="multi">다 가 구 주 택</label>
+						<input type="radio" id="villa" name="boardBuildType" value="VILLA">
+						<label for="villa">빌라/연립/다세대</label>
+						<input type="radio" id="apt2" name="boardBuildType" value="APT">
+						<label for="apt2">아 파 트</label>
+						<input type="radio" id="store" name="boardBuildType" value="STORE">
+						<label for="store">상 가</label>
+					</div>
 				</div>
-				<div class="flex top-btn">
-					<input type="radio" id="detach" name="boardBuildType" value="DETACH" checked>
-					<label for="detach">단 독 주 택</label>
-					<input type="radio" id="multi" name="boardBuildType" value="MULTI">
-					<label for="multi">다 가 구 주 택</label>
-					<input type="radio" id="villa" name="boardBuildType" value="VILLA">
-					<label for="villa">빌라/연립/다세대</label>
-					<input type="radio" id="apt2" name="boardBuildType" value="APT">
-					<label for="apt2">아 파 트</label>
-					<input type="radio" id="store" name="boardBuildType" value="STORE">
-					<label for="store">상 가</label>
+			</section>
+	<!-- ///////////////////////////////////주소 검색///////////////////////////////////// -->
+			<section id="section">
+				<div class="top-title">
+					<span>위치 정보</span>
 				</div>
-			</div>
-		</section>
-<!-- ///////////////////////////////////주소 검색///////////////////////////////////// -->
-		<section id="section">
-			<div class="top-title">
-				<span>위치 정보</span>
-			</div>
-			<div class="wrap flex left">
-				<div class="mid-title sub-height2">
-					<span>주소입력</span>
-				</div>
-				<div class="seach-addr flex between">
-					<ul style="margin: 15px;">
-						<li class="flex between">
-							<span>도로명,건물명,지번에 대하여 통합검색이 가능합니다.</span>
-							<input type="button" onclick="sample5_execDaumPostcode()" value="주소 검색">
-						</li>
-						<li>
-							<input type="text" name="boardAddress" id="sample5_address" readonly>
-						</li>
-						<li>
-							<input type="text" name="boardAddressDetail" id="sample2_detailAddress" placeholder="상세주소를 입력하세요.">
-							<li id="addrmsg" class="msg"></li>
-						</li>
-					</ul>
-					<ul style="margin: 0">
-						<li style="border:1px solid lightgray;margin-top:15px;width:500px;height:315px;">
-							<div style="height: 315px;" class="flex flex-center">
-								<span id="subMap">주소를 검색하시면&#13;&#10;&#13;&#10;해당위치가 지도에 표시됩니다.</span>
-								<div id="map" style=" width:500px;height:315px;display: none;position: absolute;"></div>
-							</div>
-						</li>
-					</ul>
-					<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-					<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=588578978e1a4fed13de72adcc381d81&libraries=services"></script>
-					<script>
-					    var mapContainer = document.getElementById('map'), // 지도를 표시할 div
-					        mapOption = {
-					            center: new daum.maps.LatLng(37.537187, 127.005476), // 지도의 중심좌표
-					            level: 5 // 지도의 확대 레벨
-					        };
-					    var mapSubContainer = document.getElementById('subMap')
-					    //지도를 미리 생성
-					    var map = new daum.maps.Map(mapContainer, mapOption);
-					    //주소-좌표 변환 객체를 생성
-					    var geocoder = new daum.maps.services.Geocoder();
-					    //마커를 미리 생성
-					    var marker = new daum.maps.Marker({
-					        position: new daum.maps.LatLng(37.537187, 127.005476),
-					        map: map
-					    });
-					
+				<div class="wrap flex left">
+					<div class="mid-title sub-height2">
+						<span>주소입력</span>
+					</div>
+					<div class="seach-addr flex between">
+						<ul style="margin: 15px;">
+							<li class="flex between">
+								<span>도로명,건물명,지번에 대하여 통합검색이 가능합니다.</span>
+								<input type="button" onclick="sample5_execDaumPostcode()" value="주소 검색">
+							</li>
+							<li>
+								<input type="text" name="boardAddress" id="sample5_address" readonly>
+							</li>
+							<li>
+								<input type="text" name="boardAddressDetail" id="sample2_detailAddress" placeholder="상세주소를 입력하세요.">
+								<li id="addrmsg" class="msg"></li>
+							</li>
+						</ul>
+						<ul style="margin: 0">
+							<li style="border:1px solid lightgray;margin-top:15px;width:500px;height:315px;">
+								<div style="height: 315px;" class="flex flex-center">
+									<span id="subMap">주소를 검색하시면&#13;&#10;&#13;&#10;해당위치가 지도에 표시됩니다.</span>
+									<div id="map" style=" width:500px;height:315px;display: none;position: absolute;"></div>
+								</div>
+							</li>
+						</ul>
+						<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+						<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=588578978e1a4fed13de72adcc381d81&libraries=services"></script>
+						<script>
+						    var mapContainer = document.getElementById('map'), // 지도를 표시할 div
+						        mapOption = {
+						            center: new daum.maps.LatLng(37.537187, 127.005476), // 지도의 중심좌표
+						            level: 5 // 지도의 확대 레벨
+						        };
+						    var mapSubContainer = document.getElementById('subMap')
+						    //지도를 미리 생성
+						    var map = new daum.maps.Map(mapContainer, mapOption);
+						    //주소-좌표 변환 객체를 생성
+						    var geocoder = new daum.maps.services.Geocoder();
+						    //마커를 미리 생성
+						    var marker = new daum.maps.Marker({
+						        position: new daum.maps.LatLng(37.537187, 127.005476),
+						        map: map
+						    });
 						
-					    function sample5_execDaumPostcode() {
-					        new daum.Postcode({
-					            oncomplete: function(data) {
-					                var addr = data.address; // 최종 주소 변수
-					
-					                // 주소 정보를 해당 필드에 넣는다.
-					                document.getElementById("sample5_address").value = addr;
-					                // 주소로 상세 정보를 검색
-					                geocoder.addressSearch(data.address, function(results, status) {
-					                    // 정상적으로 검색이 완료됐으면
-					                    if (status === daum.maps.services.Status.OK) {
-					
-					                        var result = results[0]; //첫번째 결과의 값을 활용
-					
-					                        // 해당 주소에 대한 좌표를 받아서
-					                        var coords = new daum.maps.LatLng(result.y, result.x);
-					                        // 지도를 보여준다.
-					                        mapContainer.style.display = "block";
-					                        mapSubContainer.style.display = "none";
-					                        map.relayout();
-					                        // 지도 중심을 변경한다.
-					                        map.setCenter(coords);
-					                        // 마커를 결과값으로 받은 위치로 옮긴다.
-					                        marker.setPosition(coords)
-					                    }
-					                });
-					            }
-					        }).open();
-					    }
-					</script>
-				</div>
-			</div>
-		</section>
-<!-- ///////////////////////////////////거래 정보///////////////////////////////////// -->
-		<section id="section">
-			<div class="top-title">
-				<span>거래 정보</span>
-			</div>
-			<div class="wrap flex left">
-				<div class="mid-title sub-height3">
-					<span>거래 종류</span>
-				</div>
-				<div>
-					<div class="deal-info">
-						<input type="radio" id="month" name="boardPayType" value="MONTH" checked>
-						<label for="month">월 세</label>
-						<input type="radio" id="lease" name="boardPayType" value="LEASE">
-						<label for="lease">전 세</label>
-						<input type="radio" id="deal" name="boardPayType" value="DEAL">
-						<label for="deal">매 매</label>
-						<span>거래 종류에 따라 입력하는 란이 다릅니다. 필수 입력값을 꼭 작성해주세요.</span>
-					</div>
-					<div class="flex deal-info">
-						<ul>
-							<input type="text" id="boardDeposit" name="boardDeposit" placeholder="보증금/전세금을 입력해주세요.(단위 : 만원)">
-							<li id="depositmsg" class="msg"></li>
-						</ul>
-						<ul>
-							<input type="text" id="boardPaymonth" name="boardPaymonth" placeholder="월세를 입력해주세요.(단위 : 만원)">
-							<li id="paymonthmsg" class="msg"></li>
-						</ul>
+							
+						    function sample5_execDaumPostcode() {
+						        new daum.Postcode({
+						            oncomplete: function(data) {
+						                var addr = data.address; // 최종 주소 변수
+						
+						                // 주소 정보를 해당 필드에 넣는다.
+						                document.getElementById("sample5_address").value = addr;
+						                // 주소로 상세 정보를 검색
+						                geocoder.addressSearch(data.address, function(results, status) {
+						                    // 정상적으로 검색이 완료됐으면
+						                    if (status === daum.maps.services.Status.OK) {
+						
+						                        var result = results[0]; //첫번째 결과의 값을 활용
+						
+						                        // 해당 주소에 대한 좌표를 받아서
+						                        var coords = new daum.maps.LatLng(result.y, result.x);
+						                        // 지도를 보여준다.
+						                        mapContainer.style.display = "block";
+						                        mapSubContainer.style.display = "none";
+						                        map.relayout();
+						                        // 지도 중심을 변경한다.
+						                        map.setCenter(coords);
+						                        // 마커를 결과값으로 받은 위치로 옮긴다.
+						                        marker.setPosition(coords)
+						                    }
+						                });
+						            }
+						        }).open();
+						    }
+						</script>
 					</div>
 				</div>
-			</div>
-		</section>
-<!-- ///////////////////////////////////건물 정보///////////////////////////////////// -->
-		<section id="section">
-			<div class="top-title">
-				<span>건물 정보</span>
-			</div>
-			<div class="wrap flex left border-bot">
-				<div class="mid-title sub-height4">
-					<span>건물 크기</span>
-					<p>(1평=3.3058제곱미터)</p>
+			</section>
+	<!-- ///////////////////////////////////거래 정보///////////////////////////////////// -->
+			<section id="section">
+				<div class="top-title">
+					<span>거래 정보</span>
 				</div>
-				<div class="build-size sub-width1">
-					<div class="flex build-sub border-bot">
-						<span>공급 면적</span>
-						<input disabled>평<input type="text" id="area1" name="boardSupply">제곱미터
-						<div id="area1msg" class="msg"></div>
+				<div class="wrap flex left">
+					<div class="mid-title sub-height3">
+						<span>거래 종류</span>
 					</div>
-					<div class="flex build-sub">
-						<span >전용 면적</span>
-						<input disabled>평<input type="text" id="area2" name="boardExclusive">제곱미터
-						<div id="area2msg" class="msg"></div>
+					<div>
+						<div class="deal-info">
+							<input type="radio" id="month" name="boardPayType" value="MONTH" checked>
+							<label for="month">월 세</label>
+							<input type="radio" id="lease" name="boardPayType" value="LEASE">
+							<label for="lease">전 세</label>
+							<input type="radio" id="deal" name="boardPayType" value="DEAL">
+							<label for="deal">매 매</label>
+							<span>거래 종류에 따라 입력하는 란이 다릅니다. 필수 입력값을 꼭 작성해주세요.</span>
+						</div>
+						<div class="flex deal-info">
+							<ul>
+								<input type="text" id="boardDeposit" name="boardDeposit" placeholder="보증금/전세금을 입력해주세요.(단위 : 만원)">
+								<li id="depositmsg" class="msg"></li>
+							</ul>
+							<ul>
+								<input type="text" id="boardPaymonth" name="boardPaymonth" placeholder="월세를 입력해주세요.(단위 : 만원)">
+								<li id="paymonthmsg" class="msg"></li>
+							</ul>
+						</div>
 					</div>
 				</div>
-				<div class="mid-title sub-height5 border-left">
-					<span>건물 층수</span>
+			</section>
+	<!-- ///////////////////////////////////건물 정보///////////////////////////////////// -->
+			<section id="section">
+				<div class="top-title">
+					<span>건물 정보</span>
 				</div>
-				<div class="build-size sub-width1">
-					<div class="flex build-sub border-bot">
+				<div class="wrap flex left border-bot">
+					<div class="mid-title sub-height4">
+						<span>건물 크기</span>
+						<p>(1평=3.3058제곱미터)</p>
+					</div>
+					<div class="build-size sub-width1">
+						<div class="flex build-sub border-bot">
+							<span>공급 면적</span>
+							<input disabled>평<input type="text" id="area1" name="boardSupply">제곱미터
+							<div id="area1msg" class="msg"></div>
+						</div>
+						<div class="flex build-sub">
+							<span >전용 면적</span>
+							<input disabled>평<input type="text" id="area2" name="boardExclusive">제곱미터
+							<div id="area2msg" class="msg"></div>
+						</div>
+					</div>
+					<div class="mid-title sub-height5 border-left">
 						<span>건물 층수</span>
-						<input type="text" id="area3" name="boardAllFloors">층
-						<div id="area3msg" class="msg"></div>
 					</div>
-					<div class="flex build-sub">
-						<span>해당 층수</span>
-						<input type="text" id="area4" name="boardPositonFloor">층
-						<div id="area4msg" class="msg"></div>
-					</div>
-				</div>
-			</div>
-			<div class="wrap flex left border-bot">
-				<div class="mid-title sub-height1">
-					<span>난방 종류</span>
-				</div>
-				<div class="boil-info flex">
-					<span class="boil-wrap flex">
-                       	<select name=boardOption>
-                           	<option selected="selected">난방 종류 선택</option>
-                           	<option value="EACH">개 별 난 방</option>
-                           	<option value="CENTER">중 앙 난 방</option>
-                           	<option value="LOCAL">지 역 난 방</option>
-                           	<option value="ETC">기      타</option>
-                       	</select>
-                  	</span>
-				</div>
-			</div>
-			<div class="wrap flex left">
-				<div class="mid-title sub-height1">
-					<span>입주 가능일</span>
-				</div>
-				<div class="in-info flex">
-					<div class="in-date">
-						<input name="boardInDate" type="date">
+					<div class="build-size sub-width1">
+						<div class="flex build-sub border-bot">
+							<span>건물 층수</span>
+							<input type="text" id="area3" name="boardAllFloors">층
+							<div id="area3msg" class="msg"></div>
+						</div>
+						<div class="flex build-sub">
+							<span>해당 층수</span>
+							<input type="text" id="area4" name="boardPositonFloor">층
+							<div id="area4msg" class="msg"></div>
+						</div>
 					</div>
 				</div>
-			</div>
-		</section>
-<!-- ///////////////////////////////////추가 정보///////////////////////////////////// -->
-		<section id="section" class="add-info">
-			<div class="top-title">
-				<span>추가 정보</span>
-			</div>
-			<div class="wrap flex left border-bot">
-				<div class="mid-title sub-height1">
-					<span>관리비</span>
-				</div>
-				<div class="flex radio-btn">
-					<input type="checkbox" id="isMaintenance" name="boardOption" value="MAINTENANCE">
-					<label for="isMaintenance">없 음</label>
-					<label for="isMaintenance">있 음</label>
-				</div>
-			</div>
-			<div class="wrap flex border-bot">
-				<div class="mid-title sub-height1">
-					<span>주차여부</span>
-				</div>
-				<div class="flex radio-btn">
-					<input type="checkbox" id="isParking" name="boardOption" value="PARKING">
-					<label for="isParking">없 음</label>
-					<label for="isParking">있 음</label>
-				</div>
-			</div>
-			<div class="wrap flex border-bot">
-				<div class="mid-title sub-height1">
-					<span>엘리베이터</span>
-				</div>
-				<div class="flex radio-btn">
-					<input type="checkbox" id="isElevator" name="boardOption" value="ELEVATOR">
-					<label for="isElevator">없 음</label>
-					<label for="isElevator">있 음</label>
-				</div>
-			</div>
-			<div class="wrap flex border-bot">
-				<div class="mid-title sub-height1">
-					<span>빌트인</span>
-				</div>
-				<div class="flex radio-btn">
-					<input type="checkbox" id="isBuiltIn" name="boardOption" value="BUILTIN">
-					<label for="isBuiltIn">없 음</label>
-					<label for="isBuiltIn">있 음</label>
-				</div>
-			</div>
-			<div class="wrap flex">
-				<div class="mid-title sub-height4">
-					<span>옵션항목</span>
-				</div>
-				<div class="option-btn">
-					<div>
-						<input type="checkbox" id="air" name="boardOption" value="AIR">
-						<label for="air">에 어 컨</label>
-						<input type="checkbox" id="wash" name="boardOption" value="WASH">
-						<label for="wash">세 탁 기</label>
-						<input type="checkbox" id="bed" name="boardOption" value="BED">
-						<label for="bed">침 대</label>
-						<input type="checkbox" id="dest" name="boardOption" value="DEST">
-						<label for="dest">책 상</label>
-						<input type="checkbox" id="clothes" name="boardOption" value="CLOTHES">
-						<label for="clothes">옷 장</label>
-						<input type="checkbox" id="tv" name="boardOption" value="TV">
-						<label for="tv">T V</label>
-						<input type="checkbox" id="shoes" name="boardOption" value="SHOES">
-						<label for="shoes">신 발 장</label>
+				<div class="wrap flex left border-bot">
+					<div class="mid-title sub-height1">
+						<span>난방 종류</span>
 					</div>
-					<div>
-						<input type="checkbox" id="fridge" name="boardOption" value="FRIDGE">
-						<label for="fridge">냉 장 고</label>
-						<input type="checkbox" id="gas" name="boardOption" value="GAS">
-						<label for="gas">가 스 레 인 지</label>
-						<input type="checkbox" id="induction" name="boardOption" value="INDUCTION">
-						<label for="induction">인 덕 션</label>
-						<input type="checkbox" id="microwave" name="boardOption" value="MICROWAVE">
-						<label for="microwave">전 자 레 인 지</label>
-						<input type="checkbox" id="doorLock" name="boardOption" value="DOORLOCK">
-						<label for="doorLock">전 자 도 어 락</label>
-						<input type="checkbox" id="bidet" name="boardOption" value="BIDET">
-						<label for="bidet">비 데</label>
+					<div class="boil-info flex">
+						<span class="boil-wrap flex">
+	                       	<select name=boardOption>
+	                           	<option selected="selected">난방 종류 선택</option>
+	                           	<option value="EACH">개 별 난 방</option>
+	                           	<option value="CENTER">중 앙 난 방</option>
+	                           	<option value="LOCAL">지 역 난 방</option>
+	                           	<option value="ETC">기      타</option>
+	                       	</select>
+	                  	</span>
 					</div>
 				</div>
-			</div>
-		</section>
-<!-- ///////////////////////////////////상세 설명///////////////////////////////////// -->
-		<section id="section">
-			<div class="top-title">
-				<span>상세 설명</span>
-			</div>
-			<div class="wrap flex border-bot">
-				<div class="mid-title sub-height1">
-					<span>제목</span>
-				</div>
-				<div class="input-title">
-					<input type="text" name="boardTitle" placeholder="ex)노원역 도보 5분거리, 혼자 살기 조용한 방입니다.">
-				</div>
-			</div>
-			<div class="wrap flex border-bot">
-				<div class="mid-title sub-height5">
-					<span>상세설명</span>
-				</div>
-				<div class="input-contents">
-				<textarea name="boardContents" rows="" cols=""
-				placeholder="&#13;&#10;상세설명 작성 주의사항&#13;&#10;&#13;&#10;-방 정보와 관련없는 홍보성 정보는 입력하실 수 없습니다.&#13;&#10;-중개수수료를 언급한 내용은 입력할 수 없습니다.&#13;&#10;&#13;&#10;*주의사항 위반시 허위매물로 간주되어 매물 삭제 및 이용의 제한이 있을 수 있습니다."></textarea>
-				</div>
-			</div>
-			<div class="wrap flex">
-				<div class="mid-title sub-height1">
-					<span>비공개 메모</span>
-				</div>
-				<div class="input-title">
-					<input type="text" name="boardHiddenMemo" placeholder="외부에 공개 되지 않으며, 등록자에게만 보이는 메모입니다.">
-				</div>
-			</div>
-		</section>
-<!-- ////////////////////////////////매물 선택//////////////////////////////////////// -->
-		<section id="section">
-			<div class="top-title">
-				<span>사진 등록</span>
-			</div>
-			<div class="wrap flex left">
-				<div class="">
-					<div class="flie-info">
-						<textarea placeholder="&#13;&#10;&#13;&#10;-사진은 가로로 찍은 사진을 권장합니다.(가로사이즈 최소800px)&#13;&#10;&#13;&#10;-사진의 용량은 사진 한장당 10MB까지 등록이 가능합니다.&#13;&#10;&#13;&#10;-사진은 최소3장이상 등록해야 하며,최대 15장까지 업로드됩니다." readonly></textarea>
+				<div class="wrap flex left">
+					<div class="mid-title sub-height1">
+						<span>입주 가능일</span>
 					</div>
-					<div class="flie-box">
-						<ul>
-							<li>
-								<label id="img-disp" for="file" style="display: inline-block;width: 250px;font-size:20px;
-								height: 150px;background-image: url('');background-size: contain;margin: 15px;
-								background-color: rgba(255,164,9,0.3); border: 1px dotted rgb(255,164,9); text-align: center;
-								line-height: 150px;background-repeat: no-repeat;background-position: center;">+</label>
-								<input type="file" id="file" name="addfile" multiple="multiple" style="display: none;">
-								<p style="color:red; padding-left: 15px;">불필요한 정보(워터마크,상호,전화번호 등)가 있는 매물은 비공개처리됩니다.</p>
-							</li>
-							<li>
-								<input type="text" id="file-change-name" name="boardFilesChangeName">
-								<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" >
-								<input type="hidden" name="memberNo" th:value="${#authentication.principal.memberNo}">
-							</li>
-						</ul>
+					<div class="in-info flex">
+						<div class="in-date">
+							<input name="boardInDate" type="date">
+						</div>
 					</div>
 				</div>
-			</div>
-		</section>
-<!-- ////////////////////////////////하단 체크//////////////////////////////////////// -->
-		<section id= "check">
-			<div class="flex flex-center">
-				<input id="write-check" type="checkbox">
-				<span>매물 관련 규정을 확인하였으며,입력한 정보는 실제와 다름이 없습니다.</span>
-			</div>
-			<div class="flex flex-center">
-				<a href="/customer/board/list"><button class="btn-cencle" type="button">등록 취소</button></a>
-				<button type="submit" id="btn-write" disabled>매물 등록</button>
-			</div>
-		</section>
+			</section>
+	<!-- ///////////////////////////////////추가 정보///////////////////////////////////// -->
+			<section id="section" class="add-info">
+				<div class="top-title">
+					<span>추가 정보</span>
+				</div>
+				<div class="wrap flex left border-bot">
+					<div class="mid-title sub-height1">
+						<span>관리비</span>
+					</div>
+					<div class="flex radio-btn">
+						<input type="checkbox" id="isMaintenance" name="boardOption" value="MAINTENANCE">
+						<label for="isMaintenance">없 음</label>
+						<label for="isMaintenance">있 음</label>
+					</div>
+				</div>
+				<div class="wrap flex border-bot">
+					<div class="mid-title sub-height1">
+						<span>주차여부</span>
+					</div>
+					<div class="flex radio-btn">
+						<input type="checkbox" id="isParking" name="boardOption" value="PARKING">
+						<label for="isParking">없 음</label>
+						<label for="isParking">있 음</label>
+					</div>
+				</div>
+				<div class="wrap flex border-bot">
+					<div class="mid-title sub-height1">
+						<span>엘리베이터</span>
+					</div>
+					<div class="flex radio-btn">
+						<input type="checkbox" id="isElevator" name="boardOption" value="ELEVATOR">
+						<label for="isElevator">없 음</label>
+						<label for="isElevator">있 음</label>
+					</div>
+				</div>
+				<div class="wrap flex border-bot">
+					<div class="mid-title sub-height1">
+						<span>빌트인</span>
+					</div>
+					<div class="flex radio-btn">
+						<input type="checkbox" id="isBuiltIn" name="boardOption" value="BUILTIN">
+						<label for="isBuiltIn">없 음</label>
+						<label for="isBuiltIn">있 음</label>
+					</div>
+				</div>
+				<div class="wrap flex">
+					<div class="mid-title sub-height4">
+						<span>옵션항목</span>
+					</div>
+					<div class="option-btn">
+						<div>
+							<input type="checkbox" id="air" name="boardOption" value="AIR">
+							<label for="air">에 어 컨</label>
+							<input type="checkbox" id="wash" name="boardOption" value="WASH">
+							<label for="wash">세 탁 기</label>
+							<input type="checkbox" id="bed" name="boardOption" value="BED">
+							<label for="bed">침 대</label>
+							<input type="checkbox" id="dest" name="boardOption" value="DEST">
+							<label for="dest">책 상</label>
+							<input type="checkbox" id="clothes" name="boardOption" value="CLOTHES">
+							<label for="clothes">옷 장</label>
+							<input type="checkbox" id="tv" name="boardOption" value="TV">
+							<label for="tv">T V</label>
+							<input type="checkbox" id="shoes" name="boardOption" value="SHOES">
+							<label for="shoes">신 발 장</label>
+						</div>
+						<div>
+							<input type="checkbox" id="fridge" name="boardOption" value="FRIDEGE">
+							<label for="fridge">냉 장 고</label>
+							<input type="checkbox" id="gas" name="boardOption" value="GAS">
+							<label for="gas">가 스 레 인 지</label>
+							<input type="checkbox" id="induction" name="boardOption" value="INDUCTION">
+							<label for="induction">인 덕 션</label>
+							<input type="checkbox" id="microwave" name="boardOption" value="MICROWAVE">
+							<label for="microwave">전 자 레 인 지</label>
+							<input type="checkbox" id="doorLock" name="boardOption" value="DOORLOCK">
+							<label for="doorLock">전 자 도 어 락</label>
+							<input type="checkbox" id="bidet" name="boardOption" value="BIDET">
+							<label for="bidet">비 데</label>
+						</div>
+					</div>
+				</div>
+			</section>
+	<!-- ///////////////////////////////////상세 설명///////////////////////////////////// -->
+			<section id="section">
+				<div class="top-title">
+					<span>상세 설명</span>
+				</div>
+				<div class="wrap flex border-bot">
+					<div class="mid-title sub-height1">
+						<span>제목</span>
+					</div>
+					<div class="input-title">
+						<input type="text" name="boardTitle" placeholder="ex)노원역 도보 5분거리, 혼자 살기 조용한 방입니다.">
+					</div>
+				</div>
+				<div class="wrap flex border-bot">
+					<div class="mid-title sub-height5">
+						<span>상세설명</span>
+					</div>
+					<div class="input-contents">
+						<textarea name="boardContents" id="summernote"></textarea>
+						<!-- <textarea name="boardContents" rows="" cols=""
+						placeholder="&#13;&#10;상세설명 작성 주의사항&#13;&#10;&#13;&#10;-방 정보와 관련없는 홍보성 정보는 입력하실 수 없습니다.&#13;&#10;-중개수수료를 언급한 내용은 입력할 수 없습니다.&#13;&#10;&#13;&#10;*주의사항 위반시 허위매물로 간주되어 매물 삭제 및 이용의 제한이 있을 수 있습니다."></textarea> -->
+					</div>
+				</div>
+				<div class="wrap flex">
+					<div class="mid-title sub-height1">
+						<span>비공개 메모</span>
+					</div>
+					<div class="input-title">
+						<input type="text" name="boardHiddenMemo" placeholder="외부에 공개 되지 않으며, 등록자에게만 보이는 메모입니다.">
+					</div>
+				</div>
+			</section>
+	<!-- ////////////////////////////////매물 선택//////////////////////////////////////// -->
+			<section id="section">
+				<div class="top-title">
+					<span>사진 등록</span>
+				</div>
+				<div class="wrap flex left">
+					<div class="">
+						<div class="flie-info">
+							<textarea placeholder="&#13;&#10;&#13;&#10;-사진은 가로로 찍은 사진을 권장합니다.(가로사이즈 최소800px)&#13;&#10;&#13;&#10;-사진의 용량은 사진 한장당 10MB까지 등록이 가능합니다.&#13;&#10;&#13;&#10;-사진은 최소3장이상 등록해야 하며,최대 15장까지 업로드됩니다." readonly></textarea>
+						</div>
+						<div class="flie-box">
+							<ul>
+								<li>
+									<div data-name="file-form">
+										<label id="img-disp_0" class="add-file" for="file_0">+</label>
+										<input type="file" id="file_0" name="file" class="fileInput" multiple="multiple" style="display: none;"onchange="fileUpload()">
+										<input type="text" id="file-change-name_0" name="boardFilesChangeName" style="display: none;">
+									</div>
+									<div id="fileAreaDiv"></div>
+									<p style="color:red; padding-left: 15px;">불필요한 정보(워터마크,상호,전화번호 등)가 있는 매물은 비공개처리됩니다.</p>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</section>
+	<!-- ////////////////////////////////하단 체크//////////////////////////////////////// -->
+			<section id= "check">
+				<div class="flex flex-center">
+					<input id="write-check" type="checkbox">
+					<span>매물 관련 규정을 확인하였으며,입력한 정보는 실제와 다름이 없습니다.</span>
+				</div>
+				<div class="flex flex-center">
+					<a href="/customer/board/list"><button class="btn-cencle" type="button">등록 취소</button></a>
+					<button type="submit" id="btn-write" disabled>매물 등록</button>
+					<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" >
+					<input type="hidden" name="memberNo" th:value="${#authentication.principal.memberNo}">
+				</div>
+			</section>
 		</form>
-		<script type="text/javascript">
-					$(function(){
-						$("#file").change(function(){
-							var token = $("meta[name='_csrf']").attr("content");
-							var header = $("meta[name='_csrf_header']").attr("content");
-							
-							var file=$("#file")[0].files[0];
-							
-							var formData=new FormData();
-							formData.append("file",file);
-							formData.append("prevImgName",$("#file-change-name").val());
-							
-							$.ajax({
-								beforeSend: function(xhr) { xhr.setRequestHeader(header, token); },
-								url:"/board/fileupload",
-								type:"post",
-								data:formData,
-								processData: false,
-				                contentType: false,
-								success:function(result){
-									alert(result);
-									$("#img-disp").css("background-image","url(/img/temp/"+result+")")
-									$("#file-change-name").val(result);
-								}
-							});
-						});
-					});
-		</script>
 	</div>
 </main>
 </html>

@@ -1,6 +1,11 @@
 package com.project.jongin.controller;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.UUID;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.http.HttpHeaders;
@@ -35,8 +40,8 @@ public class BoardController {
 		return boardService.list(model);
 	}
 	@PostMapping("/board/binbang/write")
-	public String write(BoardInsertDTO dto) {
-		return boardService.save(dto);
+	public String write(BoardInsertDTO dto,MultipartFile[] file) {
+		return boardService.save(dto,file);
 	}
 	@GetMapping("/board/list/{boardNo}")
 	public String detail(@PathVariable long boardNo,Model model) {
@@ -44,34 +49,34 @@ public class BoardController {
 	}
 	@ResponseBody//성공시 문자열 리턴-> ajax success
 	@PostMapping("/board/fileupload")
-	public String fileUpload(MultipartFile file,String prevImgName) {
-		return boardService.fileUpload(file,prevImgName);
+	public String fileUpload(MultipartFile file/* ,String prevImgName */) {
+		return boardService.fileUpload(file/* ,prevImgName */);
+	}
+	
+	@ResponseBody
+	@PostMapping("/admin/uploadSummernoteImg")
+	public String uploadSummernoteImg(MultipartFile file) {
+		//System.out.println(file.getContentType());
+		if(!file.getContentType().contains("image") ) return null;
+		System.out.println("summernote ajax 실행");
+		String url="/img/summernote/";
+		ClassPathResource cpr=new ClassPathResource("static"+url);
+		String orgName=file.getOriginalFilename();
+		String saveName=UUID.randomUUID()+"_"+orgName;
+		//System.out.println(saveName);
+		
+		try {
+			File location= cpr.getFile();
+			file.transferTo(new File(location, saveName));			
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return url+saveName;
 	}
 //	@PostMapping("/boardjpa/write")
 //	public String write(SalesInsertDTO dto,MultipartFile[] file) {
 //		return service.save(dto,file);
 //	}
-	@Autowired
-	FileRepository fileRepository;
 	
-	@Autowired
-	ResourceLoader resourceLoader;
-	
-	@ResponseBody
-	@GetMapping(value =  "/board/files/{fileNo}",produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
-	public ResponseEntity<Resource> downloadFile(@PathVariable(value = "fileNo") long fileNo,@RequestHeader("User-Agent") String userAgent)throws Exception {
-		if(userAgent.contains("Edg")) {
-			System.out.println("엣지브라우저");
-		}else {
-			System.out.println("크롬브라우저");
-		}
-		FileEntity entity =fileRepository.findById(fileNo).orElseThrow();
-		
-		Resource resource=resourceLoader.getResource("classpath:static/upload/"+entity.getFileChangeName());
-		String fileName=new String(entity.getFileOriginalName().getBytes("UTF-8"),"ISO-8859-1");
-		return ResponseEntity.ok()
-				.header(HttpHeaders.CONTENT_DISPOSITION, "attachment;filename="+fileName)
-				.header(HttpHeaders.CONTENT_LENGTH,entity.getFileSize()+"")
-				.body(resource);
-	}
 }

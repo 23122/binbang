@@ -1,18 +1,18 @@
 package com.project.jongin.domain.dto.board;
 
-import java.util.List;
 import java.util.Set;
 
 import com.project.jongin.domain.entity.BoardEntity;
-import com.project.jongin.domain.entity.BoardFilesEntity;
 import com.project.jongin.domain.entity.MemberEntity;
 import com.project.jongin.domain.enumes.HouseType;
 import com.project.jongin.domain.enumes.BuildType;
 import com.project.jongin.domain.enumes.OptionType;
 import com.project.jongin.domain.enumes.PayType;
 
+import lombok.Getter;
 import lombok.Setter;
 
+@Getter
 @Setter
 public class BoardInsertDTO {
 	private long boardNo;
@@ -33,7 +33,7 @@ public class BoardInsertDTO {
 	private String boardTitle;
 	private String boardContents;
 	private String boardHiddenMemo;
-	private List<BoardFilesEntity> boardFiles;
+	private String boardFilesChangeName;
 	
 	public BoardEntity toEntity() {
 		return BoardEntity.builder()
@@ -55,7 +55,6 @@ public class BoardInsertDTO {
 				.boardTitle(boardTitle)
 				.boardContents(boardContents)
 				.boardHiddenMemo(boardHiddenMemo)
-				.boardFiles(boardFiles)
 				.build();
 	}
 }

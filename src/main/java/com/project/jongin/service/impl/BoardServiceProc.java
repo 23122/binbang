@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
@@ -14,7 +16,8 @@ import org.springframework.web.multipart.MultipartFile;
 import com.project.jongin.domain.dto.board.BoardDetailDTO;
 import com.project.jongin.domain.dto.board.BoardInsertDTO;
 import com.project.jongin.domain.dto.board.BoardListDTO;
-import com.project.jongin.domain.enumes.HouseType;
+import com.project.jongin.domain.entity.BoardEntity;
+import com.project.jongin.domain.entity.BoardFilesEntity;
 import com.project.jongin.domain.repository.BoardRepository;
 import com.project.jongin.service.BoardService;
 
@@ -33,33 +36,50 @@ public class BoardServiceProc implements BoardService{
 		model.addAttribute("list", result);
 		return "/board/listType/list";
 	}
-
+	
+	@Transactional
 	@Override
-	public String save(BoardInsertDTO dto) {
-		boardRepository.save(dto.toEntity());
+	public String save(BoardInsertDTO dto, MultipartFile[] file) {
+		System.out.println(">>>>>>>>>>>>>>>>" + file);
+		BoardEntity entity=dto.toEntity();
+		for (MultipartFile f : file) {
+			if (!f.isEmpty()) {
+				//bin경로
+				String url = "/img/board/";
+				ClassPathResource cprTemp = new ClassPathResource("static" + url+"temp");
+				try {
+					
+					File newFile=new File(cprTemp.getFile(), dto.getBoardFilesChangeName());
+					ClassPathResource uploadDir = new ClassPathResource("static" + url);
+					File dest=new File (uploadDir.getFile(),dto.getBoardFilesChangeName());
+					newFile.renameTo(dest);
+					entity.addFile(BoardFilesEntity.builder()
+							.boardFilesUrl(url)
+							.boardFilesSize(f.getSize())
+							.boardFilesOriginalName(f.getOriginalFilename())
+							.boardFilesChangeName(dto.getBoardFilesChangeName())
+							.build());
+				} catch (IllegalStateException | IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		boardRepository.save(entity);
 		return "redirect:/customer/board/list";
 	}
-	
 	@Override
-	public String fileUpload(MultipartFile file,String prevImgName) {
-		System.out.println(">>>>>>>>파일이름>>>>>>>");
-		System.out.println(file);
-		System.out.println(">>>>>>>>파일이름>>>>>>>");
-		System.out.println(">>>>>>>>미리보기파일이름>>>>>>>");
-		System.out.println(prevImgName);
-		System.out.println(">>>>>>>>미리보기파일이름>>>>>>>");
-		if(!file.getContentType().contains("image") ) return null;
+	public String fileUpload(MultipartFile file/* , String prevImgName */) {
 		
 		String boardFilesOriginalName = file.getOriginalFilename();
 		// 이름중복처리
 		String boardFilesChangeName = System.nanoTime() + "_" + boardFilesOriginalName;
 		// bin경로
-		String url = "/img/temp/";
+		String url = "/img/board/temp/";
 		ClassPathResource cpr = new ClassPathResource("static" + url);
 		try {
 			File location=cpr.getFile();
-			File prevImg = new File(location,prevImgName);
-			if(prevImg.isFile())prevImg.delete();
+			//File prevImg = new File(location,prevImgName);
+			//if(prevImg.isFile())prevImg.delete();
 			file.transferTo(new File(location, boardFilesChangeName));
 		} catch (IllegalStateException | IOException e) {
 			e.printStackTrace();
@@ -73,42 +93,5 @@ public class BoardServiceProc implements BoardService{
 		return "/board/listType/detail";
 	}
 	
-//	@Transactional
-//	@Override
-//	public String save(SalesInsertDTO dto, MultipartFile[] file) {
-//		System.out.println(">>>>>>>>>>>>>>>>" + file);
-//		SalesEntity entity=dto.toEntity();
-//		for (MultipartFile f : file) {
-//			if (!f.isEmpty()) {
-//				
-//				//src경로
-//				//String url2 = "E:/java/spring/baekhwa-project/src/main/resources/static/upload";
-//			
-//				//lunux 이용시
-//				//String linux = "/home/ec2-user/src/root";
-//			
-//				//bin경로
-//				String url = "/upload/";
-//				ClassPathResource cprTemp = new ClassPathResource("static" + url+"temp");
-//
-//				try {
-//					File newFile=new File(cprTemp.getFile(), dto.getFileChangeName());
-//					ClassPathResource uploadDir = new ClassPathResource("static" + url);
-//					File dest=new File (uploadDir.getFile(),dto.getFileChangeName());
-//					newFile.renameTo(dest);
-//					entity.addFile(FileEntity.builder()
-//							.fileUrl(url)
-//							.fileSize(f.getSize())
-//							.fileOriginalName(f.getOriginalFilename())
-//							.fileChangeName(dto.getFileChangeName())
-//							.build());
-//				} catch (IllegalStateException | IOException e) {
-//					e.printStackTrace();
-//				}
-//			}
-//		}
-//		repository.save(entity);
-//		return "redirect:/boardjpa";
-//	}
-//
+
 }
