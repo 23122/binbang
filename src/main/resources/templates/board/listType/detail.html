@@ -3,77 +3,183 @@
 	th:replace="~{layout/layout1 :: layout(~{::head}, ~{::main})}">
 <head>
 <link rel="stylesheet" href="/css/board/listType/detail.css">
+<script src="/js/board/detail.js"></script>
 </head>
 <main>
-	<div class="wrap">
+	<div th:each="dto:${detail}" class="wrap">
 		<h1>아파트매물목록</h1>
 		<section id="detail">
 			<div>
-				<ul id="detail-info-title">
+				<ul>
+					<li id="det-title">
+					<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" >
+					<input type="hidden" name="memberNo" th:value="${detail.memberNo}">
+						<div>
+							<div>
+								<span>[[${detail.boardHouseType.title()}]] /</span>
+								<span>[[${detail.boardPayType.title()}]] /</span>
+								<span>[[${detail.boardBuildType.title()}]]</span>
+							</div>
+							<div>
+								<span>[[${detail.boardTitle}]]</span>
+							</div>
+						</div>
+					</li>
+				</ul>				
+				<ul>
+					<li id="det-img">
+						<div>
+							<p>이미지슬라이드영역</p>
+						</div>
+					</li>
+				</ul>
+				<ul>
+					<li id="det-detail">
+						<div class="wrap-cont">
+							<div th:utext="${detail.boardContents}"></div>
+						</div>
+					</li>
+					<li id="wrap-detail-info" style="border: 1px dotted;">
+						<div class="flex between">
+							<div>
+								<div>
+									<span>해당층/</span>
+									<span>건물층</span>
+								</div>
+								<div>
+									<span>[[${detail.boardPositonFloor}]]층/</span>
+									<span>[[${detail.boardAllFloors}]]층</span>
+								</div>
+							</div>
+							<div>
+								<div>
+									<span>보증금/</span>
+									<span>월세</span>
+								</div>
+								<div>
+									<span>[[${detail.boardDeposit}]]만원</span>
+									<span>[[${detail.boardPaymonth}]]만원</span>
+								</div>
+							</div>
+							<div>
+								<div>
+									<span>입주가능일</span>
+								</div>
+								<div>
+									<span>[[${detail.boardInDate}]]이후</span>
+								</div>
+							</div>
+						</div>
+					</li>
+					<li id="wrap-detail-info" style="border: 1px dotted;">
+						<div class="flex between">
+							<div>
+								<p>전용면적</p>
+								<div th:with="exclusive=${detail.boardExclusive}/3.3058">
+									<span th:text="|${#numbers.formatDecimal(exclusive,1,2,'POINT')}평|"></span>
+									<span>[[${detail.boardExclusive}]]제곱미터</span>
+								</div>
+							</div>
+							<div>
+								<p>전용면적</p>
+								<div th:with="exclusive=${detail.boardSupply}/3.3058">
+									<span th:text="|${#numbers.formatDecimal(exclusive,1,2,'POINT')}평|"></span>
+									<span>[[${detail.boardSupply}]]제곱미터</span>
+								</div>
+							</div>
+							<div>
+								<div>
+									<span>난방종류</span>
+								</div>
+								<div th:each="option :${dto.boardOption}">
+									<span th:if="${option.title() eq '개별난방'}">[[${option.title()}]]</span>
+									<span th:if="${option.title() eq '지역난방'}">[[${option.title()}]]</span>
+									<span th:if="${option.title() eq '중앙난방'}">[[${option.title()}]]</span>
+									<span th:if="${option.title() eq '기타'}">[[${option.title()}]]</span>
+								</div>
+							</div>
+						</div>
+					</li>
+					<li style="border: 1px dotted;">
+						<div id="def-option" class="flex">
+							<div th:each="option :${dto.boardOption}">
+								<input style="display: none;"type="checkbox"id="option"th:if="${option.title()}" checked="checked">
+								<label>[[${option.title()}]]</label>
+							</div>
+						</div>
+					</li>
+					<li style="border: 1px dotted;">
+						<div style="margin-top:15px;">
+							<div style="min-height: 400px;" class="flex flex-center">
+								<div id="map" style=" width:700px;height:400px;position: absolute;"></div>
+								<input type="hidden" th:value="${detail.boardAddress}" id="sample5_address" disabled="disabled">
+							</div>
+						</div>
+						<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+						<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=588578978e1a4fed13de72adcc381d81&libraries=services"></script>
+						<script>
+						    var mapContainer = document.getElementById('map'), // 지도를 표시할 div
+						        mapOption = {
+						            center: new daum.maps.LatLng(37.537187, 127.005476), // 지도의 중심좌표
+						            level: 5 // 지도의 확대 레벨
+						        };
+						    var mapSubContainer = document.getElementById('subMap')
+						    //지도를 미리 생성
+						    var map = new daum.maps.Map(mapContainer, mapOption);
+						    //주소-좌표 변환 객체를 생성
+						    var geocoder = new daum.maps.services.Geocoder();
+						    //마커를 미리 생성
+						    var marker = new daum.maps.Marker({
+						        map: map
+						    });
+							
+						    geocoder.addressSearch(document.getElementById("sample5_address").value, function(result, status) {
+
+							    // 정상적으로 검색이 완료됐으면 
+							     if (status === kakao.maps.services.Status.OK) {
+
+							        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+
+							        // 결과값으로 받은 위치를 마커로 표시합니다
+							        var marker = new kakao.maps.Marker({
+							            map: map,
+							            position: coords
+							        });
+
+							        // 인포윈도우로 장소에 대한 설명을 표시합니다
+							        var infowindow = new kakao.maps.InfoWindow({
+							            content: '<div style="width:200px;font-size:13px;text-align:center;padding:6px 0;">[[${detail.boardAddress}]]<br>[[${detail.boardAddressDetail}]]</div>'
+							        });
+							        infowindow.open(map, marker);
+
+							        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+							        map.setCenter(coords);
+							    	// 마커를 결과값으로 받은 위치로 옮긴다.
+			                        marker.setPosition(coords)
+							    } 
+							});
+							 // 지도 확대 축소를 제어할 수 있는  줌 컨트롤을 생성합니다
+							var zoomControl = new kakao.maps.ZoomControl();
+							map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
+
+							// 지도가 확대 또는 축소되면 마지막 파라미터로 넘어온 함수를 호출하도록 이벤트를 등록합니다
+							kakao.maps.event.addListener(map, 'zoom_changed', function() {        
+							    
+							    // 지도의 현재 레벨을 얻어옵니다
+							    var level = map.getLevel();
+							    
+							});
+						</script>
+					</li>
+				</ul>
+			</div>
+		</section>
+		<section>
+			<div>
+				<ul>
 					<li>
-						<div>[[${detail.boardTitle}]]</div>
-					</li>
-					<li class="flex">
-						<div>
-							<p>[[${detail.boardHouseType.title()}]]</p>
-							<div>
-								<span>[[${detail.boardPayType.title()}]]</span>
-								<span>[[${detail.boardDeposit}]]만원 /</span>
-								<span>[[${detail.boardPaymonth}]]만원</span>
-							</div>
-						</div>
-						<div>
-							<p>전용면적</p>
-							<div>
-								<span>[[${detail.boardExclusive}]]제곱미터</span>
-							</div>
-						</div>
-						<div>
-							<p>층수정보</p>
-							<div>
-								<span>[[${detail.boardAllFloors}]]층/</span>
-								<span>[[${detail.boardPositonFloor}]]층</span>
-							</div>
-						</div>
-						<div>
-							<p>층수정보</p>
-							<div>
-								<span>[[${detail.boardAllFloors}]]층/</span>
-								<span>[[${detail.boardPositonFloor}]]층</span>
-							</div>
-						</div>
-					</li>
-					<li class="flex around">
-						<div>
-							<div>
-								<span>해당층/</span>
-								<span>건물층</span>
-							</div>
-							<div>
-								<span>[[${detail.boardPositonFloor}]]층/</span>
-								<span>[[${detail.boardAllFloors}]]층</span>
-							</div>
-						</div>
-						<div th:each="dto:${detail}">
-							<div>
-								<span>난방종류</span>
-							</div>
-							<div th:each="option :${dto.boardOption}">
-								<span th:if="${option.title() eq '개별난방'}">[[${option.title()}]]</span>
-								<span th:if="${option.title() eq '지역난방'}">[[${option.title()}]]</span>
-								<span th:if="${option.title() eq '중앙난방'}">[[${option.title()}]]</span>
-								<span th:if="${option.title() eq '기타'}">[[${option.title()}]]</span>
-							</div>
-						</div>
-						<div th:each="dto:${detail}">
-							<div>
-								<span>엘리베이터</span>
-							</div>
-							<div th:each="option :${dto.boardOption}">
-								<span th:if="${option.title() eq '엘리베이터'}" th:text="있음"></span>
-								<span th:unless="${option.title() eq '엘리베이터'}" th:text="없음"></span>
-							</div>
-						</div>
+						<button type="button" id="btn-edit"	th:if="${#authentication.principal.memberNo eq detail.memberNo}">수정</button>
+						<button type="button" id="btn-del" 	th:if="${#authentication.principal.memberNo eq detail.memberNo}" th:onclick="|detailDel(${detail.boardNo})|">삭제</button>
 					</li>
 				</ul>
 			</div>

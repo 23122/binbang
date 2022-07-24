@@ -15,6 +15,8 @@ public interface BoardService {
 
 	String detail(long boardNo, Model model);
 
+	String delete(long boardNo);
+
 //	String save(SalesInsertDTO dto, MultipartFile[] file);
 
 }

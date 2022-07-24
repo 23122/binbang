@@ -82,7 +82,7 @@
 							<div sec:authorize="isAuthenticated()" class="bx_user">
 								<a sec:authentication="name" href="/mypage"></a>
 								<button style="margin-left: 15px;" id="btn-logout">로그아웃</button>
-								<a href="/admin/home" class="i_account" style="margin-right: 20px;">관리자</a>
+								<a sec:authorize="hasRole('ADMIN')"href="/admin/home" class="i_account" style="margin-right: 20px;">관리자</a>
 							</div>
 						</div>
 					</div>

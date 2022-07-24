@@ -30,6 +30,7 @@ public class BoardDetailDTO {
 	private String boardContents;
 	private String boardHiddenMemo;
 	private String memberEmail;
+	private long memberNo;
 	
 	public BoardDetailDTO(BoardEntity e) {
 		boardNo=e.getBoardNo();
@@ -50,5 +51,6 @@ public class BoardDetailDTO {
 		boardContents=e.getBoardContents();
 		boardHiddenMemo=e.getBoardHiddenMemo();
 		memberEmail=e.getMemberEntity().getMemberEmail();
+		memberNo=e.getMemberEntity().getMemberNo();
 	}
 }

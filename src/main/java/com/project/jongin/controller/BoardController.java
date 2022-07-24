@@ -13,6 +13,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -31,7 +32,7 @@ public class BoardController {
 	@Autowired
 	private BoardService boardService;
 	
-	@GetMapping("/customer/board")
+	@GetMapping("/customer/board/map")
 	public String list() {
 		return "board/list";
 	}
@@ -46,6 +47,11 @@ public class BoardController {
 	@GetMapping("/board/list/{boardNo}")
 	public String detail(@PathVariable long boardNo,Model model) {
 		return boardService.detail(boardNo,model);
+	}
+	@ResponseBody
+	@DeleteMapping("/board/list/{boardNo}")
+	public String delete(@PathVariable long boardNo) {
+		return boardService.delete(boardNo);
 	}
 	@ResponseBody//성공시 문자열 리턴-> ajax success
 	@PostMapping("/board/fileupload")

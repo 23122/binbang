@@ -311,6 +311,7 @@ main {
 	margin: 15px;
 	width: 1048px;
 	height: 235px;
+	resize: none;
 }
 #summernote{
 	padding:30px;
@@ -333,6 +334,7 @@ main {
 	outline:none;
 	border:1px solid #ffa409;
 	box-shadow: 0 0 10px #ffa409;
+	resize: none;
 }
 #section .wrap .flie-info textarea{
 	padding-left:30px;
@@ -340,9 +342,11 @@ main {
 	margin: 15px;
 	width: 1168px;
 	height: 235px;
+	resize: none;
 }
 #section .wrap .flie-info textarea:focus{
 	outline: none;
+	resize: none;
 }
 #section .wrap .flie-box{
 	border:1px solid lightgray;

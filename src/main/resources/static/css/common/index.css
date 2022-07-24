@@ -186,13 +186,14 @@
 }
 
 .vimg>.bg .text b {
-	font-size: 38px;
+	margin-top:20px;
+	font-size: 24px;
 }
 
 .vimg>.bg .text i {
 	display: block;
 	margin-top: 5px;
-	font-size: 16px;
+	font-size: 14px;
 }
 
 .vimg>.bg>.text {

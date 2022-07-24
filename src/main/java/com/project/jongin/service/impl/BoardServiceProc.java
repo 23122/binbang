@@ -37,6 +37,18 @@ public class BoardServiceProc implements BoardService{
 		return "/board/listType/list";
 	}
 	
+	@Override
+	public String detail(long boardNo, Model model) {
+		model.addAttribute("detail", boardRepository.findById(boardNo).map(BoardDetailDTO::new).get());
+		return "/board/listType/detail";
+	}
+
+	@Override
+	public String delete(long boardNo) {
+		boardRepository.deleteById(boardNo);
+		return "redirect:/customer/board/list";
+	}
+	
 	@Transactional
 	@Override
 	public String save(BoardInsertDTO dto, MultipartFile[] file) {
@@ -86,12 +98,5 @@ public class BoardServiceProc implements BoardService{
 		}
 		return boardFilesChangeName;
 	}
-
-	@Override
-	public String detail(long boardNo, Model model) {
-		model.addAttribute("detail", boardRepository.findById(boardNo).map(BoardDetailDTO::new).get());
-		return "/board/listType/detail";
-	}
-	
 
 }

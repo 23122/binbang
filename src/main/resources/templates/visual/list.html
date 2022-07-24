@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <ul class="vimg-wrap flex">
 	<li class="vimg" th:each="dto:${list}">
-		<a th:href="${dto.visualLink}"class="bg" th:style="|background-image: url(${dto.visualUrl+dto.visualOriginalName});|">
+		<a th:href="${dto.visualLink}"class="bg" th:style="|background-image: url(${dto.visualUrl+dto.visualOriginalName});|" target="_blank">
 			<span class="text view-size">
 				<b class="title">[[${dto.visualTitle}]]</b>
 				<i class="sub">[[${dto.visualSub}]]</i>
