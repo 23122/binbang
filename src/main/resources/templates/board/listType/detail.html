@@ -27,11 +27,13 @@
 					</li>
 				</ul>	
 				<ul class="img-area"> 
-					<div class="fimg-wrap flex">
-						<ol class="fimg" th:each="file:${detail.boardFiles}">
-							<li th:value="${fileStat.index}">
-								<a th:href="|${file.boardFilesUrl+file.boardFilesChangeName}|"class="bg area" th:style="|background-image: url(${file.boardFilesUrl+file.boardFilesChangeName});|" target="_blank"></a>
-							</li>
+					<div class="fimg-wrap">
+						<ol class="fimg flex">
+							<th:block th:each="file:${detail.boardFiles}">
+								<li th:value="${fileStat.index}">
+									<a th:href="|${file.boardFilesUrl+file.boardFilesChangeName}|"class="bg area" th:style="|background-image: url(${file.boardFilesUrl+file.boardFilesChangeName});|" target="_blank"></a>
+								</li>
+							</th:block>
 						</ol>
 					</div>
 				</ul>
@@ -42,8 +44,8 @@
 							<button class="btn next" type="button">&gt;</button>
 						</div>
 					</li>
-					<li>
-						<div class="bullet flex between">
+					<li class="bullet-wrap">
+						<div class="bullet flex center">
 							<ol th:each="file:${detail.boardFiles}"></ol>
 						</div>
 					</li>

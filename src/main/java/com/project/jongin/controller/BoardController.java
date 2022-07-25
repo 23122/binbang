@@ -53,7 +53,7 @@ public class BoardController {
 	public String delete(@PathVariable long boardNo) {
 		return boardService.delete(boardNo);
 	}
-	@ResponseBody//성공시 문자열 리턴-> ajax success
+	@ResponseBody
 	@PostMapping("/board/fileupload")
 	public String fileUpload(MultipartFile file/* ,String prevImgName */) {
 		return boardService.fileUpload(file/* ,prevImgName */);
@@ -61,14 +61,12 @@ public class BoardController {
 	@ResponseBody
 	@PostMapping("/admin/uploadSummernoteImg")
 	public String uploadSummernoteImg(MultipartFile file) {
-		//System.out.println(file.getContentType());
 		if(!file.getContentType().contains("image") ) return null;
 		System.out.println("summernote ajax 실행");
 		String url="/img/summernote/";
 		ClassPathResource cpr=new ClassPathResource("static"+url);
 		String orgName=file.getOriginalFilename();
 		String saveName=UUID.randomUUID()+"_"+orgName;
-		//System.out.println(saveName);
 		
 		try {
 			File location= cpr.getFile();

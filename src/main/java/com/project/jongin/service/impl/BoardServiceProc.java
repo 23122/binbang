@@ -91,7 +91,9 @@ public class BoardServiceProc implements BoardService{
 		
 		String boardFilesOriginalName = file.getOriginalFilename();
 		// 이름중복처리
-		String boardFilesChangeName = System.nanoTime() + "_" + boardFilesOriginalName;
+		String filesChangeName = System.nanoTime() + "_" + boardFilesOriginalName;
+		//이름공백제거
+		String boardFilesChangeName=filesChangeName.replaceAll(" " , "");
 		// bin경로
 		String url = "/img/board/temp/";
 		ClassPathResource cpr = new ClassPathResource("static" + url);
