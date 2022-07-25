@@ -58,7 +58,6 @@ public class BoardController {
 	public String fileUpload(MultipartFile file/* ,String prevImgName */) {
 		return boardService.fileUpload(file/* ,prevImgName */);
 	}
-	
 	@ResponseBody
 	@PostMapping("/admin/uploadSummernoteImg")
 	public String uploadSummernoteImg(MultipartFile file) {
@@ -80,9 +79,5 @@ public class BoardController {
 		}
 		return url+saveName;
 	}
-//	@PostMapping("/boardjpa/write")
-//	public String write(SalesInsertDTO dto,MultipartFile[] file) {
-//		return service.save(dto,file);
-//	}
 	
 }

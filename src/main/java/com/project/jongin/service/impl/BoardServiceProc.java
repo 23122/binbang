@@ -54,11 +54,13 @@ public class BoardServiceProc implements BoardService{
 	public String save(BoardInsertDTO dto, MultipartFile[] file) {
 		System.out.println(">>>>>>>>>>>>>>>>" + file);
 		BoardEntity entity=dto.toEntity();
+		int i=0;
 		for (MultipartFile f : file) {
 			if (!f.isEmpty()) {
 				//bin경로
 				String url = "/img/board/";
 				ClassPathResource cprTemp = new ClassPathResource("static" + url+"temp");
+				String fileStr[]=dto.getBoardFilesChangeName().split(",");
 				try {
 					
 					File newFile=new File(cprTemp.getFile(), dto.getBoardFilesChangeName());
@@ -69,16 +71,21 @@ public class BoardServiceProc implements BoardService{
 							.boardFilesUrl(url)
 							.boardFilesSize(f.getSize())
 							.boardFilesOriginalName(f.getOriginalFilename())
-							.boardFilesChangeName(dto.getBoardFilesChangeName())
+							.boardFilesChangeName(fileStr[i])
 							.build());
+					
 				} catch (IllegalStateException | IOException e) {
 					e.printStackTrace();
 				}
+				
 			}
+			i++;
 		}
+		
 		boardRepository.save(entity);
 		return "redirect:/customer/board/list";
 	}
+	
 	@Override
 	public String fileUpload(MultipartFile file/* , String prevImgName */) {
 		

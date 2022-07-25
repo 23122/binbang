@@ -1,8 +1,10 @@
 package com.project.jongin.domain.dto.board;
 
+import java.util.List;
 import java.util.Set;
 
 import com.project.jongin.domain.entity.BoardEntity;
+import com.project.jongin.domain.entity.BoardFilesEntity;
 import com.project.jongin.domain.enumes.BuildType;
 import com.project.jongin.domain.enumes.HouseType;
 import com.project.jongin.domain.enumes.OptionType;
@@ -31,6 +33,7 @@ public class BoardDetailDTO {
 	private String boardHiddenMemo;
 	private String memberEmail;
 	private long memberNo;
+	private List<BoardFilesEntity> boardFiles;
 	
 	public BoardDetailDTO(BoardEntity e) {
 		boardNo=e.getBoardNo();
@@ -52,5 +55,6 @@ public class BoardDetailDTO {
 		boardHiddenMemo=e.getBoardHiddenMemo();
 		memberEmail=e.getMemberEntity().getMemberEmail();
 		memberNo=e.getMemberEntity().getMemberNo();
+		boardFiles=e.getBoardFiles();
 	}
 }

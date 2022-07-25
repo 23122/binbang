@@ -54,14 +54,16 @@ function addFile() {
 
 	fileIdx++;
 
-	const fileHtml = `
+	const fileHtml =
+	//*
+	 `
 		<div data-name="file-form">
 			<label id="img-disp_${fileIdx}" class="add-file" for="file_${fileIdx}">+</label>
 			<input type="file" id="file_${fileIdx}" name="file" class="fileInput" multiple="multiple" style="display: none;"onchange="fileUpload()">
-			<input type="text" id="file-change-name_${fileIdx}" name="boardFilesChangeName"style="display: none;">
+			<input type="hidden" id="file-change-name_${fileIdx}" name="boardFilesChangeName">
 		</div>
 	`;
-
+//*/
 	$('#fileAreaDiv').before(fileHtml);
 }
 /*

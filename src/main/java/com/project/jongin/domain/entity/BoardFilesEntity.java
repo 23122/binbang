@@ -29,7 +29,5 @@ public class BoardFilesEntity {
 	private String boardFilesChangeName;
 	@Column(nullable = false)
 	private long boardFilesSize;
-	@Column
-	private boolean isMain;
 	
 }

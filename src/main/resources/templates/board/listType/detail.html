@@ -25,14 +25,31 @@
 							</div>
 						</div>
 					</li>
-				</ul>				
-				<ul>
-					<li id="det-img">
-						<div>
-							<p>이미지슬라이드영역</p>
+				</ul>	
+				<ul class="img-area"> 
+					<div class="fimg-wrap flex">
+						<ol class="fimg" th:each="file:${detail.boardFiles}">
+							<li th:value="${fileStat.index}">
+								<a th:href="|${file.boardFilesUrl+file.boardFilesChangeName}|"class="bg area" th:style="|background-image: url(${file.boardFilesUrl+file.boardFilesChangeName});|" target="_blank"></a>
+							</li>
+						</ol>
+					</div>
+				</ul>
+				<ul id="img-btn">
+					<li>
+						<div class="flex between">
+							<button class="btn prev" type="button">&lt;</button>
+							<button class="btn next" type="button">&gt;</button>
 						</div>
 					</li>
-				</ul>
+					<li>
+						<div class="bullet flex between">
+							<ol th:each="file:${detail.boardFiles}"></ol>
+						</div>
+					</li>
+				</ul>			
+				<script type="text/javascript">
+				</script>
 				<ul>
 					<li id="det-detail">
 						<div class="wrap-cont">

@@ -7,7 +7,9 @@ public enum BuildType {
 	DETACH("단독주택"),
 	MULTI("다가구주택"),
 	VILLA("빌라/연립/다가구"),
+	APT("아파트"),
 	STORE("상가");
+	
 	
 	final String title;
 	public String title() {
