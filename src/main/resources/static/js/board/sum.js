@@ -3,7 +3,7 @@
  */
 var myTimeout;
 var firstSpeed = 3000;
-var moveSpeed = 5000;
+var nextSpeed = 5000;
 var speed = 1000;
 $(function() {
 	visualResize();
@@ -35,28 +35,23 @@ function stop() {
 
 function start() {
 	next();
-	myTimeout = setTimeout(start, moveSpeed);
+	myTimeout = setTimeout(start, nextSpeed);
 	console.log("timmer start");
 }
 
 function next() {
 	for (var i = 0; i <= $(".fimg").length - 1; i++) {
 		console.log("for start");
-		//console.log(first);
-		var first = $("#fimg_" + i + ">li").first();
-		var last = $("#fimg_" + i + ">li").last();
-		$("#fimg_" + i).animate({ marginLeft: "-100%" }, speed,imgMove(first,last,i) );
-		
+		var first = $("#fimg_" + i + ">li:first-child");
+		var last = $("#fimg_" + i + ">li:last-child")
+		$("#fimg_" + i).animate({ marginLeft: "-100%" }, speed, function() {
+			first.insertAfter(last);
+			$(".fimg").css("margin-left", 0);
+		});
 	};
-	
+
 }
-function imgMove(first,last,i) {
-	last.after(first);//첫번째이미지->맨뒤로 보내기
-	marginMove(i);
-}
-function marginMove(i) {
-	$("#fimg_" + i).css("margin-left", 0);
-}
+
 function visualResize() {
 	for (var i = 0; i <= $(".fimg").length - 1; i++) {
 		var wow = 300;/* window.innerWidth; */

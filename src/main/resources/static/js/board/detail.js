@@ -96,8 +96,9 @@ function prev() {
 	var last = $(".fimg li:last-child");
 	var li_fv = $(".fimg li:first").val();
 	var blis = $(".bullet ol");
-	$(".fimg-wrap").animate({ marginLeft: "100%" }, speed, function() {
-		first.before(last);//마지막이미지->맨앞으로 보내기
+	first.before(last);//마지막이미지->맨앞으로 보내기
+	$(".fimg-wrap").css("margin-left", "-100%");
+	$(".fimg-wrap").animate({ marginLeft: 0 }, speed, function() {
 		$(".fimg-wrap").css("margin-left", 0);
 		blis.removeClass("target");
 		blis.eq(li_fv % blis.length-1).addClass("target");
