@@ -13,12 +13,11 @@ import com.project.jongin.domain.enumes.PayType;
 import lombok.Getter;
 	
 @Getter
-public class BoardDetailDTO {
+public class BoardSumDTO {
 	private long boardNo;
 	private HouseType boardHouseType;
 	private BuildType boardBuildType;
 	private String boardAddress;
-	private String boardAddressDetail;
 	private PayType boardPayType;
 	private int boardDeposit;
 	private int boardPaymonth;
@@ -26,22 +25,17 @@ public class BoardDetailDTO {
 	private int boardExclusive;
 	private int boardAllFloors;
 	private int boardPositonFloor;
-	private String boardInDate;
 	private Set<OptionType> boardOption;
 	private String boardTitle;
-	private String boardContents;
-	private String boardHiddenMemo;
-	private String memberEmail;
 	private long memberNo;
 	private List<BoardFilesEntity> boardFiles;
 	private int attentionCount;
 	
-	public BoardDetailDTO(BoardEntity e) {
+	public BoardSumDTO(BoardEntity e) {
 		boardNo=e.getBoardNo();
 		boardHouseType=e.getBoardHouseType();
 		boardBuildType=e.getBoardBuildType();
 		boardAddress=e.getBoardAddress();
-		boardAddressDetail=e.getBoardAddressDetail();
 		boardPayType=e.getBoardPayType();
 		boardDeposit=e.getBoardDeposit();
 		boardPaymonth=e.getBoardPaymonth();
@@ -49,12 +43,8 @@ public class BoardDetailDTO {
 		boardExclusive=e.getBoardExclusive();
 		boardAllFloors=e.getBoardAllFloors();
 		boardPositonFloor=e.getBoardPositonFloor();
-		boardInDate=e.getBoardInDate();
 		boardOption=e.getBoardOption();
 		boardTitle=e.getBoardTitle();
-		boardContents=e.getBoardContents();
-		boardHiddenMemo=e.getBoardHiddenMemo();
-		memberEmail=e.getMemberEntity().getMemberEmail();
 		memberNo=e.getMemberEntity().getMemberNo();
 		boardFiles=e.getBoardFiles();
 		attentionCount=e.getAttentionCount();

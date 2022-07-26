@@ -89,6 +89,8 @@ public class BoardEntity extends BaseTimeEntity{
 	//비공개메모
 	@Column
 	private String boardHiddenMemo;
+	@Column
+	private int attentionCount;
 	
 	@JoinColumn(name = "memberNo",nullable = false)
 	@ManyToOne

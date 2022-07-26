@@ -6,24 +6,17 @@ import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
-import org.springframework.core.io.Resource;
-import org.springframework.core.io.ResourceLoader;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestHeader;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.project.jongin.domain.dto.board.BoardInsertDTO;
-import com.project.jongin.domain.entity.FileEntity;
-import com.project.jongin.domain.repository.FileRepository;
 import com.project.jongin.service.BoardService;
 
 @Controller
@@ -37,19 +30,23 @@ public class BoardController {
 		return "board/list";
 	}
 	@GetMapping("/customer/board/list")
-	public String list(Model model) {
-		return boardService.list(model);
+	public String list(@RequestParam(defaultValue = "1") int pageNo, Model model) {
+		return boardService.list(pageNo,model);
+	}
+	@GetMapping("/customer/board/sum")
+	public String sum(Model model) {
+		return boardService.sum(model);
 	}
 	@PostMapping("/board/binbang/write")
 	public String write(BoardInsertDTO dto,MultipartFile[] file) {
 		return boardService.save(dto,file);
 	}
-	@GetMapping("/board/list/{boardNo}")
+	@GetMapping("/board/detail/{boardNo}")
 	public String detail(@PathVariable long boardNo,Model model) {
 		return boardService.detail(boardNo,model);
 	}
 	@ResponseBody
-	@DeleteMapping("/board/list/{boardNo}")
+	@DeleteMapping("/board/detail/{boardNo}")
 	public String delete(@PathVariable long boardNo) {
 		return boardService.delete(boardNo);
 	}

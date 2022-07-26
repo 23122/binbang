@@ -75,6 +75,7 @@ function move(_pos) {
 	}
 }
 function next() {
+	flag = 1;
 	var first = $(".fimg li:first-child");
 	var last = $(".fimg li:last-child");
 	var blis = $(".bullet ol");
@@ -90,16 +91,17 @@ function next() {
 
 }
 function prev() {
+	flag=1;
 	var first = $(".fimg li:first-child");
 	var last = $(".fimg li:last-child");
 	var li_fv = $(".fimg li:first").val();
 	var blis = $(".bullet ol");
-	console.log(blis)
 	$(".fimg-wrap").animate({ marginLeft: "100%" }, speed, function() {
 		first.before(last);//마지막이미지->맨앞으로 보내기
 		$(".fimg-wrap").css("margin-left", 0);
 		blis.removeClass("target");
 		blis.eq(li_fv % blis.length-1).addClass("target");
+		flag = 0;
 	});
 }
 function nextClicked() {
@@ -125,7 +127,7 @@ function detailDel(boardNo) {
 		return;
 	$.ajax({
 		beforeSend: function(xhr) { xhr.setRequestHeader(header, token); },
-		url: "/board/list/" + boardNo,
+		url: "/board/detail/" + boardNo,
 		type: "delete",
 		success: function() {
 			location.href = "/customer/board/list";

@@ -2,7 +2,8 @@
 <html xmlns:th="http://www.thymeleaf.org"
 	th:replace="~{layout/layout1 :: layout(~{::head}, ~{::main})}">
 <head>
-<link rel="stylesheet" href="/css/board/listType/list.css">
+<link rel="stylesheet" href="/css/board/sumType/sum.css">
+<script src="/js/board/sum.js"></script>
 </head>
 <main>
 	<div class="wrap">
@@ -69,51 +70,35 @@
 		</section>
 		<section class="list">
 			<div>
-				<table>
-					<thead>
-						<tr>
-							<td>지역</td>
-							<td>제목</td>
-							<td>구분</td>
-							<td>가격</td>
-							<td>등록일</td>
-							<td>수정일</td>
-						</tr>
-					</thead>
-					<tbody>
-						<tr th:each="dto : ${list}">
-							<td>[[${dto.boardAddress}]]</td>
-							<td>
-							<a th:href="|/board/detail/${dto.boardNo}|">[[${dto.boardTitle}]]</a>
-						</td>
-							<td>[[${dto.boardPayType.title()}]]</td>
-							<td>[[${dto.boardPaymonth}]]</td>
-							<td></td>
-						</tr>
-							<tr th:if="${#lists.isEmpty(list)}">
-							<td colspan="5">게시글이 존재하지 않습니다.</td>
-						</tr>
-					</tbody>
-				</table>
+				<ul th:each="dto : ${list}">
+					<li>
+						<div class="img-area"> 
+							<div th:id="|fimg-wrap_${dtoStat.index}|" class="fimg-wrap">
+								<ul th:id="|fimg_${dtoStat.index}|" class="fimg flex">
+									<li th:each="file,i:${dto.boardFiles}" th:value="${i.index}">
+										<a th:style="|background-image: url(${file.boardFilesUrl+file.boardFilesChangeName});|" th:href="|/board/detail/${dto.boardNo}|" class="bg area"></a>
+									</li>
+								</ul>
+							</div>
+						</div>
+						<div>
+							<div>
+								<span>[[${dto.boardTitle}]]</span>
+							</div>
+							<div>
+								<span>[[${dto.boardHouseType.title()}]] /</span>
+								<span>[[${dto.boardPayType.title()}]] /</span>
+								<span>[[${dto.boardBuildType.title()}]]</span>
+							</div>
+						</div>
+					</li>
+				</ul>
 			</div>
 		</section>
 		<section style="width: 1200px; margin: 0 auto;">
 			<div class="bot-btn flex right">
 				<a href="/board/list/write/email"><button>내글보기</button></a>
 				<a href="/board/binbang/write"><button>글쓰기</button></a>
-			</div>
-		</section>
-		<section>
-			<div th:if="${!#lists.isEmpty(list)}">
-				<a th:if="${pi.start gt 1}" th:href="@{/customer/board/list(pageNo=${pi.start-1})}">
-					<button type="button">&lt;</button>
-				</a>
-				<a th:each="pno : ${#numbers.sequence(pi.start,pi.end)}" th:href="@{/customer/board/list(pageNo=${pno})}">
-					<button type="button">[[${pno}]]</button>
-				</a>
-				<a th:if="${pi.end lt pi.total}" th:href="@{/customer/board/list(pageNo=${pi.end+1})}">
-					<button type="button">&gt;</button>
-				</a>
 			</div>
 		</section>
 	</div>
