@@ -5,6 +5,7 @@ var myTimeout;
 var firstSpeed = 3000;
 var nextSpeed = 5000;
 var speed = 1000;
+var first=0;
 $(function() {
 	visualResize();
 	$(window).resize(function() {
@@ -20,25 +21,53 @@ $(function() {
 		}
 
 	});
-	//비주얼 이미지에 마우스 올라갈때
-	$(".area").hover(stop, function() { myTimeout = setTimeout(start, firstSpeed); });
+	
+	firstMoveCate(first);
 	$(".search-area>li:first-child").css("background-color", "rgba(255,164,9,0.4)");
-	$(".cataPayType").click(moveCata);
-	//처음로딩시 타이머로 이미지 시작
-	myTimeout = setTimeout(start, firstSpeed);
+	$(".cataPayType").click(moveCate1);
+	
+	$("#cateBuildType").change(moveCate2);
+	
+	$(".area").hover(stop, function() { myTimeout = setTimeout(start, firstSpeed); });//비주얼 이미지에 마우스 올라갈때
+	myTimeout = setTimeout(start, firstSpeed);//처음로딩시 타이머로 이미지 시작
 });
-function moveCata() {
-	var cata = $(this).val();
-	var url = "/customer/board/sum/" + cata;
+function firstMoveCate(first) {
+	var payType = first;
+	var url = "/customer/board/sum/" + payType;
 	$.get(url, function(result) {
 		$("#list").html(result);
 		visualResize();
 	});
-	var child = cata + 1;
+	var child = payType + 1;
 	$(".search-area>li").css("background-color", "#fff");
 	$(".search-area>li:nth-child(" + child + ")").css("background-color", "rgba(255,164,9,0.4)");
 	
 }
+function moveCate1() {
+	var payType = $(this).val();
+	var url = "/customer/board/sum/" + payType;
+	$.get(url, function(result) {
+		$("#list").html(result);
+		visualResize();
+	});
+	var child = payType + 1;
+	$(".search-area>li").css("background-color", "#fff");
+	$(".search-area>li:nth-child(" + child + ")").css("background-color", "rgba(255,164,9,0.4)");
+	
+}
+function moveCate2() {
+	console.log(">>>>>>>>>>>>>>>>>");
+	var payType = $("#cate1").val();
+	var buildType=$("#cateBuildType").val();
+	var url = "/customer/board/sum/" + payType+"/"+buildType;
+	console.log(payType);
+	console.log(buildType);
+	$.get(url, function(result) {
+		$("#list").html(result);
+		visualResize();
+	});
+}
+
 
 function stop() {
 	clearTimeout(myTimeout);

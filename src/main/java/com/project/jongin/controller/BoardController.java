@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.project.jongin.domain.dto.board.BoardInsertDTO;
+import com.project.jongin.domain.enumes.PayType;
 import com.project.jongin.service.BoardService;
 
 @Controller
@@ -39,7 +40,11 @@ public class BoardController {
 	}
 	@GetMapping("/customer/board/sum/{cata}")
 	public String sum(@PathVariable int cata,Model model) {
-		return boardService.sumCata(cata,model);
+		return boardService.sumCate1(cata,model);
+	}
+	@GetMapping("/customer/board/sum/{pType}/{cate}")
+	public String sum(@PathVariable PayType pType,@PathVariable int cate,Model model) {
+		return boardService.sumCate2(pType,cate,model);
 	}
 	@PostMapping("/board/binbang/write")
 	public String write(BoardInsertDTO dto,MultipartFile[] file) {

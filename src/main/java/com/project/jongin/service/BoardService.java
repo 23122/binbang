@@ -4,6 +4,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.project.jongin.domain.dto.board.BoardInsertDTO;
+import com.project.jongin.domain.enumes.PayType;
 
 public interface BoardService {
 
@@ -19,9 +20,11 @@ public interface BoardService {
 
 	String sum(Model model);
 
-	String sumCata(int cata, Model model);
+	String sumCate1(int payType, Model model);
 
 	String mapList(Model model);
+
+	String sumCate2(PayType pType, int cate, Model model);
 
 //	String save(SalesInsertDTO dto, MultipartFile[] file);
 

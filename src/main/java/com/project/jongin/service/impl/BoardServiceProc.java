@@ -25,6 +25,7 @@ import com.project.jongin.domain.dto.board.BoardMapDTO;
 import com.project.jongin.domain.dto.board.BoardSumDTO;
 import com.project.jongin.domain.entity.BoardEntity;
 import com.project.jongin.domain.entity.BoardFilesEntity;
+import com.project.jongin.domain.enumes.BuildType;
 import com.project.jongin.domain.enumes.PayType;
 import com.project.jongin.domain.repository.BoardRepository;
 import com.project.jongin.service.BoardService;
@@ -125,19 +126,49 @@ public class BoardServiceProc implements BoardService {
 		return "/board/sumType/list";
 	}
 	@Override
-	public String sumCata(int cata, Model model) {
-		System.out.println(cata);
-		PayType type=PayType.MONTH;
-		if(cata!=0) {
-			if(cata==1) {
-				type=PayType.LEASE;
+	public String sumCate1(int payType, Model model) {
+		System.out.println(payType);
+		PayType pType=PayType.MONTH;
+		if(payType!=0) {
+			if(payType==1) {
+				pType=PayType.LEASE;
 			}else {
-				type=PayType.DEAL;
+				pType=PayType.DEAL;
 			}
 		}
-		System.out.println(type);
-		List<BoardSumDTO> result = boardRepository.findByBoardPayType(type).stream().map(BoardSumDTO::new)
+		System.out.println(pType);
+		List<BoardSumDTO> result = boardRepository.findByBoardPayType(pType).stream().map(BoardSumDTO::new)
 				.collect(Collectors.toList());
+		model.addAttribute("cate1", pType);
+		model.addAttribute("list", result);
+		return "/board/sumType/listType";
+	}
+
+	@Override
+	public String sumCate2(PayType pType, int cate, Model model) {
+		BuildType bType=null;
+		switch (cate) {
+		case 0:
+			bType=BuildType.DETACH;
+			break;
+		case 1:
+			bType=BuildType.MULTI;
+			break;
+		case 2:
+			bType=BuildType.VILLA;
+			break;
+		case 3:
+			bType=BuildType.APT;
+			break;
+		case 4:
+			bType=BuildType.STORE;
+			break;
+		}
+		System.out.println(bType);
+		List<BoardSumDTO> result = boardRepository.findByBoardPayTypeAndBoardBuildType(pType,bType).stream().map(BoardSumDTO::new)
+				.collect(Collectors.toList());
+		model.addAttribute("cate2", bType);
+		model.addAttribute("cate1", pType);
 		model.addAttribute("list", result);
 		return "/board/sumType/listType";
 	}
