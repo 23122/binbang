@@ -34,9 +34,9 @@ function fileUpload() {
 		processData: false,
 		contentType: false,
 		success: function(result) {
-			result.trim();
-			$("#img-disp_"+fileIdx).css("background-image", "url(/img/board/temp/" + result + ")")
-			$("#file-change-name_"+fileIdx).val(result);
+			chgFileName=result.trim();
+			$("#img-disp_"+fileIdx).css("background-image", "url(/img/board/temp/" + chgFileName + ")")
+			$("#file-change-name_"+fileIdx).val(chgFileName);
 			addFile();
 			
 		},

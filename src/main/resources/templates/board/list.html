@@ -14,7 +14,7 @@
 			<div class="option">
 				<div>
 					<form onsubmit="searchPlaces();">
-						키워드 : <input type="text" value="서울역" id="keyword" size="15">
+						키워드 : <input type="text" value="노원역" id="keyword" size="15">
 						<button type="submit">검색하기</button>
 					</form>
 				</div>
@@ -24,9 +24,27 @@
 			<div id="pagination"></div>
 		</div>
 	</div>
+	<div th:each="dto:${list}">
+		<input type="text" th:value="${dto.boardNo}">
+		<input type="text" th:value="${dto.boardHouseType}">
+		<input type="text" th:value="${dto.boardBuildType}">
+		<input type="text" th:value="${dto.boardAddress}">
+		<input type="text" th:value="${dto.boardHouseType}">
+		<input type="text" th:value="${dto.boardAddressDetail}">
+		<input type="text" th:value="${dto.boardPayType}">
+		<input type="text" th:value="${dto.boardDeposit}">
+		<input type="text" th:value="${dto.boardPaymonth}">
+		<input type="text" th:value="${dto.boardSupply}">
+		<input type="text" th:value="${dto.boardAllFloors}">
+		<input type="text" th:value="${dto.boardPositonFloor}">
+		<input type="text" th:value="${dto.boardInDate}">
+		<input type="text" th:value="${dto.boardTitle}">
+		<input type="text" th:value="${dto.boardContents}">
+		<input type="text" th:value="${dto.memberEmail}">
+	</div>
 	<script type="text/javascript"
 		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=588578978e1a4fed13de72adcc381d81&libraries=services"></script>
-	<script>
+	<script th:inline="javascript">
 	////////////////////////////////카카오지도 기본설정/////////////////////////
 		// 마커를 담을 배열입니다
 		var markers = [];

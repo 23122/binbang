@@ -26,8 +26,8 @@ public class BoardController {
 	private BoardService boardService;
 	
 	@GetMapping("/customer/board/map")
-	public String list() {
-		return "board/list";
+	public String list(Model model) {
+		return boardService.mapList(model);
 	}
 	@GetMapping("/customer/board/list")
 	public String list(@RequestParam(defaultValue = "1") int pageNo, Model model) {
@@ -36,6 +36,10 @@ public class BoardController {
 	@GetMapping("/customer/board/sum")
 	public String sum(Model model) {
 		return boardService.sum(model);
+	}
+	@GetMapping("/customer/board/sum/{cata}")
+	public String sum(@PathVariable int cata,Model model) {
+		return boardService.sumCata(cata,model);
 	}
 	@PostMapping("/board/binbang/write")
 	public String write(BoardInsertDTO dto,MultipartFile[] file) {

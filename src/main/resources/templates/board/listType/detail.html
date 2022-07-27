@@ -23,9 +23,6 @@
 							<div>
 								<span>[[${detail.boardTitle}]]</span>
 							</div>
-							<div>
-								<span>[[${detail.memberEmail}]]</span>
-							</div>
 						</div>
 					</li>
 				</ul>	
@@ -98,15 +95,15 @@
 							<div>
 								<p>전용면적</p>
 								<div th:with="exclusive=${detail.boardExclusive}/3.3058">
-									<span th:text="|${#numbers.formatDecimal(exclusive,1,2,'POINT')}평|"></span>
-									<span>[[${detail.boardExclusive}]]제곱미터</span>
+									<span th:text="|${#numbers.formatDecimal(exclusive,1,2,'POINT')}평,|"></span>
+									<span>[[${detail.boardExclusive}]] m²</span>
 								</div>
 							</div>
 							<div>
 								<p>전용면적</p>
 								<div th:with="exclusive=${detail.boardSupply}/3.3058">
-									<span th:text="|${#numbers.formatDecimal(exclusive,1,2,'POINT')}평|"></span>
-									<span>[[${detail.boardSupply}]]제곱미터</span>
+									<span th:text="|${#numbers.formatDecimal(exclusive,1,2,'POINT')}평,|"></span>
+									<span>[[${detail.boardSupply}]] m²</span>
 								</div>
 							</div>
 							<div>
@@ -152,7 +149,6 @@
 						    var geocoder = new daum.maps.services.Geocoder();
 						    //마커를 미리 생성
 						    var marker = new daum.maps.Marker({
-						        map: map
 						    });
 							
 						    geocoder.addressSearch(document.getElementById("sample5_address").value, function(result, status) {

@@ -6,69 +6,25 @@
 <script src="/js/board/sum.js"></script>
 </head>
 <main>
-	<div class="wrap">
+	<div class="wrap page">
 		<h1>아파트매물목록</h1>
 		<section id="list-search">
 			<h1>검색영역</h1>
 			<div class="flex between">
-				<ul class="search-area flex left">
-					<li>
-						<span class="boil-wrap flex">
-	                       	<select style="margin: 30px 0;" name="boilType">
-	                           	<option selected="selected">방종류</option>
-	                           	<option value="1">원룸</option>
-	                           	<option value="2">투룸</option>
-	                           	<option value="3">쓰리룸</option>
-	                           	<option value="4">오피스텔</option>
-	                       	</select>
-	                  	</span>
+				<ul class="search-area flex between">
+					<li class="cataPayType" value="0">
+						<span>월세</span>
 					</li>
-					<li>
-						<span class="boil-wrap flex">
-	                       	<select name="boilType">
-	                           	<option selected="selected">매물종류</option>
-	                           	<option value="1">전세</option>
-	                           	<option value="2">월세</option>
-	                           	<option value="3">매매</option>
-	                       	</select>
-	                  	</span>
+					<li class="cataPayType" value="1">
+						<span>전세</span>
 					</li>
-					<li>
-						<span class="boil-wrap flex">
-	                       	<select name="boilType">
-	                           	<option selected="selected">가격대</option>
-	                           	<option value="1">미구현</option>
-	                       	</select>
-	                  	</span>
-					</li>
-					<li>
-						<span class="boil-wrap flex">
-	                       	<select name="boilType">
-	                           	<option selected="selected">집크기</option>
-	                           	<option value="1">미구현</option>
-	                       	</select>
-	                  	</span>
-					</li>
-					<li>
-						<span class="boil-wrap flex">
-	                       	<select name="boilType">
-	                           	<option selected="selected">추가 옵션</option>
-	                            <option value="1">미구현</option>
-	                       	</select>
-	                  	</span>
-					</li>
-				</ul>
-				<ul class="search-area flex left">
-					<li>
-						<input>
-					</li>
-					<li>
-						<button>검색</button>
+					<li class="cataPayType" value="2">
+						<span>매매</span>
 					</li>
 				</ul>
 			</div>
 		</section>
-		<section class="list">
+		<section id="list" class="list">
 			<div class="grid-container">
 				<ul th:each="dto : ${list}">
 					<li>
@@ -84,6 +40,9 @@
 						<div class="info">
 							<div>
 								<p class="title">[[${dto.boardTitle}]]</p>
+							</div>
+							<div>
+								<p th:text="${#strings.substring(dto.boardAddress,0,6)}"></p>
 							</div>
 							<div>
 								<span>[[${dto.boardHouseType.title()}]] /</span>

@@ -11,6 +11,7 @@ public class BoardListDTO {
 	private String boardTitle;
 	private String boardWriter;
 	private int boardPaymonth;
+	private int boardDeposit;
 	private PayType boardPayType;
 	private String boardAddress;
 	
@@ -21,5 +22,6 @@ public class BoardListDTO {
 		boardPaymonth=e.getBoardPaymonth();
 		boardPayType=e.getBoardPayType();
 		boardAddress=e.getBoardAddress();
+		boardDeposit=e.getBoardDeposit();
 	}
 }

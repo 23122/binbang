@@ -21,9 +21,11 @@ import org.springframework.web.multipart.MultipartFile;
 import com.project.jongin.domain.dto.board.BoardDetailDTO;
 import com.project.jongin.domain.dto.board.BoardInsertDTO;
 import com.project.jongin.domain.dto.board.BoardListDTO;
+import com.project.jongin.domain.dto.board.BoardMapDTO;
 import com.project.jongin.domain.dto.board.BoardSumDTO;
 import com.project.jongin.domain.entity.BoardEntity;
 import com.project.jongin.domain.entity.BoardFilesEntity;
+import com.project.jongin.domain.enumes.PayType;
 import com.project.jongin.domain.repository.BoardRepository;
 import com.project.jongin.service.BoardService;
 import com.project.jongin.utils.PageInfo;
@@ -45,12 +47,6 @@ public class BoardServiceProc implements BoardService {
 		model.addAttribute("pi", pageInfo);
 		model.addAttribute("list", pageObj.getContent().stream().map(BoardListDTO::new).collect(Collectors.toList()));
 
-		/*
-		 * List<BoardListDTO> result=boardRepository.findAll()List<JpaBoardEntity>
-		 * .stream() Stream<BoardEntity> .map(BoardListDTO::new) .map(e->
-		 * BoardListDTO(e)) .collect(Collectors.toList()); model.addAttribute("list",
-		 * result);
-		 */
 		return "/board/listType/list";
 	}
 
@@ -120,13 +116,37 @@ public class BoardServiceProc implements BoardService {
 		}
 		return boardFilesChangeName;
 	}
-
+	
 	@Override
 	public String sum(Model model) {
-		List<BoardSumDTO> result = boardRepository.findAll().stream().map(BoardSumDTO::new)
+		List<BoardSumDTO> result = boardRepository.findByBoardPayType(PayType.MONTH).stream().map(BoardSumDTO::new)
 				.collect(Collectors.toList());
 		model.addAttribute("list", result);
 		return "/board/sumType/list";
+	}
+	@Override
+	public String sumCata(int cata, Model model) {
+		System.out.println(cata);
+		PayType type=PayType.MONTH;
+		if(cata!=0) {
+			if(cata==1) {
+				type=PayType.LEASE;
+			}else {
+				type=PayType.DEAL;
+			}
+		}
+		System.out.println(type);
+		List<BoardSumDTO> result = boardRepository.findByBoardPayType(type).stream().map(BoardSumDTO::new)
+				.collect(Collectors.toList());
+		model.addAttribute("list", result);
+		return "/board/sumType/listType";
+	}
+
+	@Override
+	public String mapList(Model model) {
+		List<BoardMapDTO> result=  boardRepository.findAll().stream().map(BoardMapDTO::new).collect(Collectors.toList());
+		model.addAttribute("list",result);
+		return "board/list";
 	}
 
 }

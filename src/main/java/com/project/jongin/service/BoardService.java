@@ -19,6 +19,10 @@ public interface BoardService {
 
 	String sum(Model model);
 
+	String sumCata(int cata, Model model);
+
+	String mapList(Model model);
+
 //	String save(SalesInsertDTO dto, MultipartFile[] file);
 
 }

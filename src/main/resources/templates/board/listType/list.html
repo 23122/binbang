@@ -82,13 +82,23 @@
 					</thead>
 					<tbody>
 						<tr th:each="dto : ${list}">
-							<td>[[${dto.boardAddress}]]</td>
+							<td th:text="${#strings.substring(dto.boardAddress,0,6)}"></td>
 							<td>
-							<a th:href="|/board/detail/${dto.boardNo}|">[[${dto.boardTitle}]]</a>
-						</td>
+								<a th:href="|/board/detail/${dto.boardNo}|">[[${dto.boardTitle}]]</a>
+							</td>
 							<td>[[${dto.boardPayType.title()}]]</td>
-							<td>[[${dto.boardPaymonth}]]</td>
-							<td></td>
+							<td th:if="${dto.boardPayType.title() eq '월세'}">
+								<span>보증금 : [[${dto.boardDeposit}]] 만원 /</span>
+								<span>월세 : [[${dto.boardPaymonth}]] 만원</span>
+							</td>
+							<td th:if="${dto.boardPayType.title() eq '매매'}">
+								<span>매매 : [[${dto.boardDeposit}]] 만원</span>
+							</td>
+							<td th:if="${dto.boardPayType.title() eq '전세'}">
+								<span>전세 : [[${dto.boardDeposit}]] 만원</span>
+							</td>
+							<td>
+							</td>
 						</tr>
 							<tr th:if="${#lists.isEmpty(list)}">
 							<td colspan="5">게시글이 존재하지 않습니다.</td>
