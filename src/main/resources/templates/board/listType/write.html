@@ -78,7 +78,7 @@
 								<input type="button" onclick="sample5_execDaumPostcode()" value="주소 검색">
 							</li>
 							<li>
-								<input type="text" name="boardAddress" id="sample5_address" readonly>
+								<input type="text" name="boardAddress" id="sample5_address" readonly  onclick="sample5_execDaumPostcode()">
 							</li>
 							<li>
 								<input type="text" name="boardAddressDetail" id="sample2_detailAddress" placeholder="상세주소를 입력하세요.">
@@ -157,11 +157,11 @@
 					</div>
 					<div>
 						<div class="deal-info">
-							<input type="radio" id="month" name="boardPayType" value="MONTH" checked>
+							<input class="checkPay" type="radio" id="month" name="boardPayType" value="MONTH" checked>
 							<label for="month">월 세</label>
-							<input type="radio" id="lease" name="boardPayType" value="LEASE">
+							<input class="checkPay" type="radio" id="lease" name="boardPayType" value="LEASE">
 							<label for="lease">전 세</label>
-							<input type="radio" id="deal" name="boardPayType" value="DEAL">
+							<input class="checkPay" type="radio" id="deal" name="boardPayType" value="DEAL">
 							<label for="deal">매 매</label>
 							<span>거래 종류에 따라 입력하는 란이 다릅니다. 필수 입력값을 꼭 작성해주세요.</span>
 						</div>
@@ -170,10 +170,7 @@
 								<input type="text" id="boardDeposit" name="boardDeposit" placeholder="보증금/전세금을 입력해주세요.(단위 : 만원)">
 								<li id="depositmsg" class="msg"></li>
 							</ul>
-							<ul>
-								<input type="text" id="boardPaymonth" name="boardPaymonth" placeholder="월세를 입력해주세요.(단위 : 만원)">
-								<li id="paymonthmsg" class="msg"></li>
-							</ul>
+							<ul id="payMonthUl"></ul>
 						</div>
 					</div>
 				</div>

@@ -24,53 +24,31 @@
 				</ul>
 			</div>
 		</section>
-		<section id="list" class="list">
-			<div class="grid-container">
-				<ul th:each="dto : ${list}">
-					<li>
-						<div class="img-area"> 
-							<div th:id="|fimg-wrap_${dtoStat.index}|" class="fimg-wrap">
-								<ul th:id="|fimg_${dtoStat.index}|" class="fimg flex">
-									<li th:each="file:${dto.boardFiles}">
-										<a th:style="|background-image: url(${file.boardFilesUrl+file.boardFilesChangeName});|" th:href="|/board/detail/${dto.boardNo}|" class="bg area"></a>
-									</li>
-								</ul>
-							</div>
-						</div>
-						<div class="info">
-							<div>
-								<p class="title">[[${dto.boardTitle}]]</p>
-							</div>
-							<div>
-								<p th:text="${#strings.substring(dto.boardAddress,0,6)}"></p>
-							</div>
-							<div>
-								<span>[[${dto.boardHouseType.title()}]] /</span>
-								<span>[[${dto.boardPayType.title()}]] /</span>
-								<span>[[${dto.boardBuildType.title()}]]</span>
-							</div>
-							<div>
-								<p th:if="${dto.boardPayType.title() eq '월세'}">보증금 : [[${dto.boardDeposit}]] 만원 </p>
-								<p th:if="${dto.boardPayType.title() eq '월세'}">월세 : [[${dto.boardPaymonth}]] 만원 </p>
-								<p th:if="${dto.boardPayType.title() eq '전세'}">전세 : [[${dto.boardDeposit}]] 만원 </p>
-								<p th:if="${dto.boardPayType.title() eq '매매'}">매매 : [[${dto.boardDeposit}]] 만원 </p>
-							</div>
-							<div>
-								<input type="hidden" th:value="${dto.boardNo}">
-								<input type="hidden" th:value="${dto.memberNo}">
-								<input type="hidden" th:value="${dto.boardAllFloors}">
-								<input type="hidden" th:value="${dto.boardPositonFloor}">
-								<input type="hidden" th:value="${dto.boardExclusive}">
-								<input type="hidden" th:value="${dto.boardSupply}">
-								<input type="hidden" th:value="${dto.boardAddress}">
-								<input type="hidden" th:value="${dto.boardAddress}">
-								<input type="hidden" th:value="${dto.boardOption}">
-							</div>
-						</div>
-					</li>
-				</ul>
+		<section style="width: 1200px; margin: 0 auto;">
+			<div class="search-opt">
+				<select id="cateBuildType">
+				    <option selected="selected">건물형태선택</option>
+					<option value="0">단독주택</option>
+				    <option value="1">다가구주택</option>
+				    <option value="2">빌라/연립/다가구</option>
+				    <option value="3">아파트</option>
+				    <option value="4">상가</option>
+				</select>
+				<div id="deposit">
+					<span>보증금 및 매매금액(*만원단위)</span>
+					<input id="price1" type="number" placeholder="만원단위로 숫자만 입력해주세요.">
+					<input id="price2" type="number" placeholder="만원단위로 숫자만 입력해주세요.">
+					<button id="search-btn1" type="button">찾기</button>
+				</div>
+				<div id="monthPay">
+					<span>월세(*만원단위)</span>
+					<input id="monthPrice1" type="number" placeholder="만원단위로 숫자만 입력해주세요.">
+					<input id="monthPrice2" type="number" placeholder="만원단위로 숫자만 입력해주세요.">
+					<button id="search-btn2" type="button">찾기</button>
+				</div>
 			</div>
 		</section>
+		<section id="list" class="list"></section>
 		<section style="width: 1200px; margin: 0 auto;">
 			<div class="bot-btn flex right">
 				<a href="/board/list/write/email"><button>내글보기</button></a>

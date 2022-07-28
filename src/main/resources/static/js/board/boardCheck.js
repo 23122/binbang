@@ -1,7 +1,7 @@
 /**
  * 
  */
-var addrRexp = /^[가-힣a-zA-Z0-9+-\_.]{4,}$/;
+var addrRexp = /^[가-힣a-zA-Z0-9+-\_.\s]{4,}$/;
 var salesPayRexp = /^[0-9]{1,}$/;
 var buildInfoRexp = /^[0-9]{1,3}$/;
 var passRexp = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@!%*#?&])[A-Za-z\d@!%*#?&]{8,}$/;
@@ -9,6 +9,8 @@ var nameRexp = /^[가-힣]{2,4}$/;
 var msg;
 var check = [false, false, false, false, false, false, false, false];
 $(function() {
+	monthCheck();
+	$(".checkPay").change(monthCheck);
 	$("#boardDeposit").blur(depositBlured);
 	$("#boardPaymonth").blur(paymonthBlured);
 	$("#sample2_detailAddress").blur(addrBlured);
@@ -49,6 +51,24 @@ function depositBlured() {
 		check[1] = false;
 	}
 	$("#depositmsg").html(msg);
+	submitCheck();
+}
+function monthCheck(){
+	if($("#month").prop("checked")==true){
+		const fileHtml =
+	
+		 `
+			<ul>
+				<input type="text" id="boardPaymonth" name="boardPaymonth" placeholder="월세를 입력해주세요.(단위 : 만원)">
+				<li id="paymonthmsg" class="msg"></li>
+			</ul>
+		`;
+		check[2] = false;
+		$('#payMonthUl').before(fileHtml);
+	}else {
+		$("#boardPaymonth").detach();
+		check[2] = true;
+	}
 	submitCheck();
 }
 function paymonthBlured() {
@@ -132,6 +152,7 @@ function area2Blured() {
 	$("#area2msg").html(msg);
 	submitCheck();
 }
+
 function area3Blured() {
 	var in_area3 = $("#area3").val();//input태그에 입력된 값(value)을 읽어올때
 	if (salesPayRexp.test(in_area3.trim())) {

@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.project.jongin.domain.dto.board.BoardInsertDTO;
+import com.project.jongin.domain.enumes.BuildType;
 import com.project.jongin.domain.enumes.PayType;
 import com.project.jongin.service.BoardService;
 
@@ -45,6 +46,16 @@ public class BoardController {
 	@GetMapping("/customer/board/sum/{pType}/{cate}")
 	public String sum(@PathVariable PayType pType,@PathVariable int cate,Model model) {
 		return boardService.sumCate2(pType,cate,model);
+	}
+	@GetMapping("/customer/board/sum/{pType}/{bType}/{price1}/{price2}")
+	public String sum(@PathVariable PayType pType,@PathVariable BuildType bType,
+			@PathVariable int price1,@PathVariable int price2,Model model) {
+		return boardService.sumCate3(pType,bType,price1,price2,model);
+	}
+	@GetMapping("/customer/board/sum/{pType}/{bType}/{price1}/{price2}/{monthPrice1}/{monthPrice2}")
+	public String sum(@PathVariable PayType pType,@PathVariable BuildType bType,
+			@PathVariable int price1,@PathVariable int price2,@PathVariable int monthPrice1,@PathVariable int monthPrice2,Model model) {
+		return boardService.sumCate4(pType,bType,price1,price2,monthPrice1,monthPrice2,model);
 	}
 	@PostMapping("/board/binbang/write")
 	public String write(BoardInsertDTO dto,MultipartFile[] file) {

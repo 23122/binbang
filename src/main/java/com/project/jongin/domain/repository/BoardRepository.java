@@ -13,11 +13,17 @@ import com.project.jongin.domain.enumes.PayType;
 @Repository
 public interface BoardRepository extends JpaRepository<BoardEntity, Long>{
 
-	BoardEntity findAllByBoardHouseType(HouseType type);
+	BoardEntity findAllByBoardHouseTypeOrderByBoardNoDesc(HouseType type);
 
-	List<BoardEntity> findByBoardPayType(PayType type);
+	List<BoardEntity> findByBoardPayTypeOrderByBoardNoDesc(PayType type);
 
-	List<BoardEntity> findByBoardPayTypeAndBoardBuildType(PayType pType, BuildType bType);
+	List<BoardEntity> findByBoardPayTypeAndBoardBuildTypeOrderByBoardNoDesc(PayType pType, BuildType bType);
+
+	List<BoardEntity> findByBoardPayTypeAndBoardBuildTypeAndBoardDepositBetweenOrderByBoardNoDesc(PayType pType, BuildType bType,
+			int price1, int price2);
+
+	List<BoardEntity> findByBoardPayTypeAndBoardBuildTypeAndBoardDepositBetweenAndBoardPaymonthBetweenOrderByBoardNoDesc(
+			PayType pType, BuildType bType, int price1, int price2, int monthPrice1, int monthPrice2);
 
 
 }

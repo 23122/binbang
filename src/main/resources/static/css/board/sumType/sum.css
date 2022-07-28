@@ -76,3 +76,14 @@ main{
 #page-title>.wrap {
 	padding: 20px 0;
 }
+.search-opt{
+	margin-top:15px;
+}
+.search-opt select{
+	background-color: rgb(255,164,9);
+    border: 2px solid rgb(255,164,9);
+    color: #fff;
+    border-radius: 4px;
+    height: 40px;
+    width: 100px;
+}

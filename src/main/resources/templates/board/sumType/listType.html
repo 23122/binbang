@@ -1,32 +1,12 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <section id="list" class="list">
-	<select id="cateBuildType">
-	    <option selected="selected">건물형태선택</option>
-		<option value="0">단독주택</option>
-	    <option value="1">다가구주택</option>
-	    <option value="2">빌라/연립/다가구</option>
-	    <option value="3">아파트</option>
-	    <option value="4">상가</option>
-	</select>
-	<script type="text/javascript">
-		$(function(){
-			$("#cateBuildType").change(moveCate2);
-			function moveCate2() {
-				console.log(">>>>>>>>>>>>>>>>>");
-				var payType = $("#cate1").val();
-				var buildType=$("#cateBuildType").val();
-				var url = "/customer/board/sum/" + payType+"/"+buildType;
-				console.log(payType);
-				console.log(buildType);
-				$.get(url, function(result) {
-					$("#list").html(result);
-					visualResize();
-				});
-			}
-		});
-	</script>
 	<input id="cate1" type="hidden" th:value="${cate1}">
+	<input id="cate2" type="hidden" th:value="${cate2}">
+	<input id="price1" type="hidden" th:value="${price1}">
+	<input id="price2" type="hidden" th:value="${price2}">
+	<input id="monthPrice1" type="hidden" th:value="${monthPrice1}">
+	<input id="monthPrice2" type="hidden" th:value="${monthPrice2}">
 	<div class="grid-container">
 		<ul th:each="dto : ${list}">
 			<li>
