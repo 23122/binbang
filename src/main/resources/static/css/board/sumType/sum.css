@@ -79,6 +79,32 @@ main{
 .search-opt{
 	margin-top:15px;
 }
+.search-opt span{
+	width:130px;
+	font-size: 14px;
+}
+.search-opt>div{
+	background-color: rgb(255,164,9);
+	border-radius: 4px;
+	margin-right: 20px;
+	color: #fff;
+	text-align: center;
+	line-height: 42px;
+}
+.search-opt>div>input{
+	width: 50px;
+	border: 1px solid rgb(255,164,9);
+	background-color:rgb(255,164,9);
+	color:#fff;
+	border-radius: 4px;
+	
+}
+.search-opt>div>input::placeholder{
+	color: #fff;
+}
+.search-opt>div>button{
+	width:50px;
+}
 .search-opt select{
 	background-color: rgb(255,164,9);
     border: 2px solid rgb(255,164,9);

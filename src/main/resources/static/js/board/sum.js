@@ -47,6 +47,7 @@ function firstMoveCate(first) {
 function moveCate1() {
 	var payType = $(this).val();
 	var url = "/customer/board/sum/" + payType;
+	
 	$.get(url, function(result) {
 		$("#list").html(result);
 		visualResize();
@@ -55,20 +56,23 @@ function moveCate1() {
 	$(".search-area>li").css("background-color", "#fff");
 	$(".search-area>li:nth-child(" + child + ")").css("background-color", "rgba(255,164,9,0.4)");
 	if(payType!=0){
-		data=$("#monthPay").detach();
+		console.log(">>>>>>:"+payType);
+		$("#monthPay").detach();
 	}else{
+		console.log(">>>>>>2:"+payType);
 		const fileHtml =
 	
 		 `
-			<div id="monthPay">
-				<span>월세(*만원단위)</span>
-				<input id="monthPrice1" type="number" placeholder="만원단위로 숫자만 입력해주세요.">
-				<input id="monthPrice2" type="number" placeholder="만원단위로 숫자만 입력해주세요.">
+			<div id="monthPay" class="flex">
+				<span>월세</span>
+				<input id="monthPrice1" type="number" placeholder="0">
+				<input id="monthPrice2" type="number" placeholder="0">
 				<button id="search-btn2" type="button">찾기</button>
 			</div>
 		`;
 		$('#deposit').after(fileHtml);
 	}
+	
 }
 
 

@@ -122,7 +122,7 @@ public class BoardServiceProc implements BoardService {
 	public String sum(Model model) {
 		List<BoardSumDTO> result = boardRepository.findByBoardPayTypeOrderByBoardNoDesc(PayType.MONTH).stream().map(BoardSumDTO::new)
 				.collect(Collectors.toList());
-		model.addAttribute("cate1", PayType.MONTH);
+		model.addAttribute("cate1", 0);
 		model.addAttribute("list", result);
 		return "/board/sumType/list";
 	}
@@ -213,7 +213,7 @@ public class BoardServiceProc implements BoardService {
 	public String mapList(Model model) {
 		List<BoardMapDTO> result=  boardRepository.findAll().stream().map(BoardMapDTO::new).collect(Collectors.toList());
 		model.addAttribute("list",result);
-		return "board/list";
+		return "board/mapType/list";
 	}
 
 }

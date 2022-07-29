@@ -25,25 +25,27 @@
 			</div>
 		</section>
 		<section style="width: 1200px; margin: 0 auto;">
-			<div class="search-opt">
-				<select id="cateBuildType">
-				    <option selected="selected">건물형태선택</option>
-					<option value="0">단독주택</option>
-				    <option value="1">다가구주택</option>
-				    <option value="2">빌라/연립/다가구</option>
-				    <option value="3">아파트</option>
-				    <option value="4">상가</option>
-				</select>
-				<div id="deposit">
-					<span>보증금 및 매매금액(*만원단위)</span>
-					<input id="price1" type="number" placeholder="만원단위로 숫자만 입력해주세요.">
-					<input id="price2" type="number" placeholder="만원단위로 숫자만 입력해주세요.">
+			<div class="search-opt flex">
+				<div>
+					<select id="cateBuildType">
+					    <option selected="selected">건물형태선택</option>
+						<option value="0">단독주택</option>
+					    <option value="1">다가구주택</option>
+					    <option value="2">빌라/연립/다가구</option>
+					    <option value="3">아파트</option>
+					    <option value="4">상가</option>
+					</select>
+				</div>
+				<div id="deposit"class="flex">
+					<span>보증금 및 매매금액</span>
+					<input id="price1" type="number" placeholder="0">
+					<input id="price2" type="number" placeholder="0">
 					<button id="search-btn1" type="button">찾기</button>
 				</div>
-				<div id="monthPay">
-					<span>월세(*만원단위)</span>
-					<input id="monthPrice1" type="number" placeholder="만원단위로 숫자만 입력해주세요.">
-					<input id="monthPrice2" type="number" placeholder="만원단위로 숫자만 입력해주세요.">
+				<div id="monthPay"class="flex">
+					<span>월세</span>
+					<input id="monthPrice1" type="number" placeholder="0">
+					<input id="monthPrice2" type="number" placeholder="0">
 					<button id="search-btn2" type="button">찾기</button>
 				</div>
 			</div>

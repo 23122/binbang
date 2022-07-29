@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<div th:each="dto:${list}">
+		<input type="hidden" th:value="${dto.boardNo}">
+		<input type="hidden" th:value="${dto.boardHouseType}">
+		<input type="hidden" th:value="${dto.boardBuildType}">
+		<input type="hidden" th:value="${dto.boardAddress}">
+		<input type="hidden" th:value="${dto.boardHouseType}">
+		<input type="hidden" th:value="${dto.boardAddressDetail}">
+		<input type="hidden" th:value="${dto.boardPayType}">
+		<input type="hidden" th:value="${dto.boardDeposit}">
+		<input type="hidden" th:value="${dto.boardPaymonth}">
+		<input type="hidden" th:value="${dto.boardSupply}">
+		<input type="hidden" th:value="${dto.boardAllFloors}">
+		<input type="hidden" th:value="${dto.boardPositonFloor}">
+		<input type="hidden" th:value="${dto.boardInDate}">
+		<input type="hidden" th:value="${dto.boardTitle}">
+		<input type="hidden" th:value="${dto.boardContents}">
+		<input type="hidden" th:value="${dto.memberEmail}">
+	</div>
+</html>
