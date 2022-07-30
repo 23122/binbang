@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{layout/layout1 :: layout(~{::head}, ~{::main})}">
+<head>
+<link rel="stylesheet" href="/css/board/listType/detail.css">
+<script src="/js/report/detail.js"></script>
+</head>
+<main>
+	<div th:each="dto:${detail}" class="wrap">
+		<h1>아파트매물목록</h1>
+		<section id="detail" class="detail-view">
+			<div>
+				<ul>
+					<li id="det-title">
+					<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" >
+					<input type="hidden" name="memberNo" th:value="${detail.memberNo}">
+						<div>
+							<div sec:authorize="hasRole('ADMIN')">
+							<input type="hidden" id="reportNo" th:value="${detail.reportNo}">
+								<span >[[${detail.reportNo}]] /</span>
+								<span>[[${detail.memberEmail}]] /</span>
+								<span>[[${detail.boardNo}]]</span>
+							</div>
+							<div>
+								<span>[[${detail.reportTitle}]]</span>
+							</div>
+						</div>
+					</li>
+				</ul>	
+				<ul>
+					<li id="det-detail">
+						<div class="wrap-cont">
+							<div th:utext="${detail.reportContents}"></div>
+						</div>
+					</li>
+					<li id="wrap-detail-info" style="border: 1px dotted;">
+						<div class="flex between">
+							<div>
+								<div>
+									<span>해당글</span>
+								</div>
+								<div>
+									<span>[[${detail.boardTitle}]]</span>
+								</div>
+							</div>
+							<div>
+								<div>
+									<span>대상회원번호</span>
+									
+								</div>
+								<div>
+									<span>[[${detail.boardMemberNo}]]</span>
+								</div>
+							</div>
+							<div>
+								<div>
+									<span>대상회원이메일</span>
+								</div>
+								<div>
+									<span>[[${detail.boardMemberEmail}]]</span>
+								</div>
+							</div>
+						</div>
+					</li>
+				</ul>
+			</div>
+			<div>
+				<ul>
+					<li>
+						<button type="button" id="btn-edit"	th:if="${#authentication.principal.memberNo eq detail.memberNo}">수정</button>
+						<button type="button" id="btn-del" 	sec:authorize="hasRole('ADMIN')" th:onclick="|detailDel(${detail.boardNo})|">삭제</button>
+						<button type="button" id="btn-del" 	th:if="${#authentication.principal.memberNo eq detail.memberNo}" th:onclick="|detailDel(${detail.reportNo})|">삭제</button>
+					</li>
+				</ul>
+			</div>
+		</section>
+		<form style="display: none;" id="edit-form"  th:action="|/report/detail/update/${detail.reportNo}|" method="post">
+		<section id="detail">
+			<div>
+				<ul>
+					<li id="det-title">
+					<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" >
+					<input type="hidden" name="memberNo" th:value="${detail.memberNo}">
+						<div>
+							<div sec:authorize="hasRole('ADMIN')">
+								<span>[[${detail.reportNo}]] /</span>
+								<span>[[${detail.memberEmail}]] /</span>
+								<span>[[${detail.boardNo}]]</span>
+							</div>
+							<div>
+								<input type="text" name="reportTitle" th:placeholder="${detail.reportTitle}">
+							</div>
+						</div>
+					</li>
+				</ul>	
+				<ul>
+					<li id="det-detail">
+						<div class="wrap-cont">
+							<input type="text" name="reportContents" th:placeholder="${detail.reportContents}">
+						</div>
+					</li>
+					<li id="wrap-detail-info" style="border: 1px dotted;">
+						<div class="flex between">
+							<div>
+								<div>
+									<span>해당글</span>
+								</div>
+								<div>
+									<span>[[${detail.boardTitle}]]</span>
+								</div>
+							</div>
+							<div>
+								<div>
+									<span>대상회원번호</span>
+									
+								</div>
+								<div>
+									<span>[[${detail.boardMemberNo}]]</span>
+								</div>
+							</div>
+							<div>
+								<div>
+									<span>대상회원이메일</span>
+								</div>
+								<div>
+									<span>[[${detail.boardMemberEmail}]]</span>
+								</div>
+							</div>
+						</div>
+					</li>
+				</ul>
+			</div>
+			<div>
+				<ul>
+					<li>
+						<input type="hidden" name="_method" value="PUT">
+						<button type="submit">수정완료</button>
+						<button type="button" id=btn-cancel>취소</button>
+					</li>
+				</ul>
+			</div>
+		</section>
+		</form>
+	</div>
+</main>
+</html>

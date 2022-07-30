@@ -59,6 +59,7 @@ function moveCate1() {
 		console.log(">>>>>>:"+payType);
 		$("#monthPay").detach();
 	}else{
+		$("#monthPay").detach();
 		console.log(">>>>>>2:"+payType);
 		const fileHtml =
 	

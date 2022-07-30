@@ -57,6 +57,5 @@ public class BoardDetailDTO {
 		memberEmail=e.getMemberEntity().getMemberEmail();
 		memberNo=e.getMemberEntity().getMemberNo();
 		boardFiles=e.getBoardFiles();
-		attentionCount=e.getAttentionCount();
 	}
 }

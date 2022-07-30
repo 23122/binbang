@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{layout/layout1 :: layout(~{::head}, ~{::main})}">
+<head>
+<link rel="stylesheet" href="/css/board/report/list.css">
+<script src="/js/report/list.js"></script>
+</head>
+<main>
+	<div class="wrap">
+		<h1>신고게시판</h1>
+		<section id="list-search">
+			<h1>카테고리</h1>
+			<div class="flex between">
+				<ul class="search-area flex between">
+					<li class="cataPayType" value="0">
+						<span>가격상이</span>
+					</li>
+					<li class="cataPayType" value="1">
+						<span>사진상이</span>
+					</li>
+					<li class="cataPayType" value="2">
+						<span>정보오류</span>
+					</li>
+					<li class="cataPayType" value="3">
+						<span>기타</span>
+					</li>
+				</ul>
+			</div>
+		</section>
+		<section id="list" class="list">
+		</section>
+		<section style="width: 1200px; margin: 0 auto;">
+			<div class="bot-btn flex right">
+				<a href="/board/list/write/email"><button>내글보기</button></a>
+				<a href="/report/write"><button>글쓰기</button></a>
+			</div>
+		</section>
+		<section>
+			<div th:if="${!#lists.isEmpty(list)}">
+				<a th:if="${pi.start gt 1}" th:href="@{/customer/board/list(pageNo=${pi.start-1})}">
+					<button type="button">&lt;</button>
+				</a>
+				<a th:each="pno : ${#numbers.sequence(pi.start,pi.end)}" th:href="@{/customer/board/list(pageNo=${pno})}">
+					<button type="button">[[${pno}]]</button>
+				</a>
+				<a th:if="${pi.end lt pi.total}" th:href="@{/customer/board/list(pageNo=${pi.end+1})}">
+					<button type="button">&gt;</button>
+				</a>
+			</div>
+		</section>
+	</div>
+</main>
+</html>

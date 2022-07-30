@@ -18,6 +18,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 import com.project.jongin.domain.enumes.BuildType;
 import com.project.jongin.domain.enumes.OptionType;
@@ -89,17 +90,22 @@ public class BoardEntity extends BaseTimeEntity{
 	//비공개메모
 	@Column
 	private String boardHiddenMemo;
-	@Column
-	private int attentionCount;
 	
 	@JoinColumn(name = "memberNo",nullable = false)
 	@ManyToOne
 	private MemberEntity memberEntity;
 	
+	@OneToOne(mappedBy = "boardEntity")
+	private AtentionEntity atentionEntity;
+	
 	@Builder.Default
 	@JoinColumn(name = "boardNo")
 	@OneToMany(cascade = CascadeType.ALL)
 	private List<BoardFilesEntity> boardFiles = new Vector<>();
+	
+	@Builder.Default
+	@OneToMany(mappedBy = "boardEntity",cascade = CascadeType.ALL)
+	private List<ReportEntity> reportEntities=new Vector<ReportEntity>();
 	
 	public BoardEntity addFile(BoardFilesEntity boardFilesEntity) {
 		boardFiles.add(boardFilesEntity);

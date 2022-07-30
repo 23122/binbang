@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<section id="list" class="list">
+	<input id="cate1" type="text" th:value="${cate1}">
+	<div>
+		<table>
+			<thead>
+				<tr>
+					<td>신고번호</td>
+					<td>신고게시글</td>
+					<td>제목</td>
+					<td>등록일</td>
+					<td>수정일</td>
+					<td sec:authorize="hasRole('ADMIN')">작성자</td>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="dto : ${list}">
+					<td>[[${dto.reportNo}]]</td>
+					<td><a th:href="|/board/detail/${dto.boardNo}|">[[${dto.boardTitle}]]</a></td>
+					<td><a th:href="|/report/detail/${dto.reportNo}|">[[${dto.reportTitle}]]</a>
+					</td>
+					<td>[[${dto.createdDate}]]</td>
+					<td>[[${dto.updatedDate}]]</td>
+				</tr>
+				<tr th:if="${#lists.isEmpty(list)}">
+					<td colspan="5">게시글이 존재하지 않습니다.</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</section>
+</html>

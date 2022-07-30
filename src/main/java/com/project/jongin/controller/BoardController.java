@@ -31,6 +31,10 @@ public class BoardController {
 	public String list(Model model) {
 		return boardService.mapList(model);
 	}
+	@GetMapping("/customer/board/map/list")
+	public String mapList(Model model) {
+		return boardService.mapList(model);
+	}
 	@GetMapping("/customer/board/list")
 	public String list(@RequestParam(defaultValue = "1") int pageNo, Model model) {
 		return boardService.list(pageNo,model);

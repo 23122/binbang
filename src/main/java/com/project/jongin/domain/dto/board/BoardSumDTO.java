@@ -47,6 +47,5 @@ public class BoardSumDTO {
 		boardTitle=e.getBoardTitle();
 		memberNo=e.getMemberEntity().getMemberNo();
 		boardFiles=e.getBoardFiles();
-		attentionCount=e.getAttentionCount();
 	}
 }

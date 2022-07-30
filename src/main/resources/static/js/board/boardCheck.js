@@ -19,9 +19,6 @@ $(function() {
 	$("#area3").blur(area3Blured);
 	$("#area4").blur(area4Blured);
 	$("#write-check").change(writeCheck);
-	$("#isMaintenance").change(function(){
-		//alert($(this).prop("checked"));	
-	});
 });
 ////////////////////////////위치정보 정규표현식///////////////////////
 function addrBlured() {
