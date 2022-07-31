@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<div>
+	<input id="cate1" type="hidden" th:value="${cate1}">
+	<input id="cate2" type="hidden" th:value="${cate2}">
+	<input id="price1" type="hidden" th:value="${price1}">
+	<input id="price2" type="hidden" th:value="${price2}">
+	<input id="monthPrice1" type="hidden" th:value="${monthPrice1}">
+	<input id="monthPrice2" type="hidden" th:value="${monthPrice2}">
+	<input id="addr" type="hidden" th:value="${address}">
+</div>
+<div>
+	<table>
+		<thead>
+			<tr>
+				<td>지역</td>
+				<td>제목</td>
+				<td>구분</td>
+				<td>가격</td>
+				<td>등록일</td>
+				<td>수정일</td>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="dto : ${list}">
+				<td th:text="${#strings.substring(dto.boardAddress,0,6)}"></td>
+				<td>
+					<a th:href="|/board/detail/${dto.boardNo}/${#authentication.principal.memberNo}|">[[${dto.boardTitle}]]</a>
+				</td>
+				<td>[[${dto.boardPayType.title()}]]</td>
+				<td th:if="${dto.boardPayType.title() eq '월세'}">
+					<span>보증금 : [[${dto.boardDeposit}]] 만원 /</span>
+					<span>월세 : [[${dto.boardPaymonth}]] 만원</span>
+				</td>
+				<td th:if="${dto.boardPayType.title() eq '매매'}">
+					<span>매매 : [[${dto.boardDeposit}]] 만원</span>
+				</td>
+				<td th:if="${dto.boardPayType.title() eq '전세'}">
+					<span>전세 : [[${dto.boardDeposit}]] 만원</span>
+				</td>
+				<td>
+				</td>
+			</tr>
+				<tr th:if="${#lists.isEmpty(list)}">
+				<td colspan="5">게시글이 존재하지 않습니다.</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+</html>

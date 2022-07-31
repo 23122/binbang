@@ -9,6 +9,22 @@
 	<div class="wrap page">
 		<h1>관심목록</h1>
 		<section id="list" class="list">
+			<table th:if="${ atention.isEmpty()}">
+				<thead>
+					<tr>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td colspan="5">관심목록이 존재하지 않아요!</td>
+					</tr>
+				</tbody>
+			</table>
 			<div class="grid-container">
 				<ul th:each="dto : ${atention}">
 					<li>
@@ -17,7 +33,8 @@
 								<ul th:id="|fimg_${dtoStat.index}|" class="fimg flex">
 									<li th:each="file:${dto.boardFiles}"><a
 										th:style="|background-image: url(${file.boardFilesUrl+file.boardFilesChangeName});|"
-										th:href="|/board/detail/${dto.boardNo}/${#authentication.principal.memberNo}|" class="bg area"></a></li>
+										th:href="|/board/detail/${dto.boardNo}/${#authentication.principal.memberNo}|"
+										class="bg area"></a></li>
 								</ul>
 							</div>
 						</div>
@@ -26,8 +43,7 @@
 								<p class="title">[[${dto.boardTitle}]]</p>
 							</div>
 							<div>
-								<span>[[${dto.boardHouseType.title()}]] /</span>
-								<span>[[${dto.boardPayType.title()}]]/</span>
+								<span>[[${dto.boardHouseType.title()}]] /</span> <span>[[${dto.boardPayType.title()}]]/</span>
 								<span>[[${dto.boardBuildType.title()}]]</span>
 							</div>
 							<div>
@@ -44,9 +60,9 @@
 									[[${dto.boardDeposit}]] 만원</p>
 							</div>
 							<div>
-								<input type="hidden" th:value="${dto.boardNo}">
-								<input type="hidden" th:value="${dto.memberNo}">
-								<input type="hidden" th:value="${dto.boardAllFloors}"> <input
+								<input type="hidden" th:value="${dto.boardNo}"> <input
+									type="hidden" th:value="${dto.memberNo}"> <input
+									type="hidden" th:value="${dto.boardAllFloors}"> <input
 									type="hidden" th:value="${dto.boardPositonFloor}"> <input
 									type="hidden" th:value="${dto.boardExclusive}"> <input
 									type="hidden" th:value="${dto.boardSupply}"> <input

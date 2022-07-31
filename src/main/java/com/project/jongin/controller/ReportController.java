@@ -27,6 +27,10 @@ public class ReportController {
 	public String list(@RequestParam(defaultValue = "1") int pageNo,Model model) {
 		return reportService.list(pageNo,model);
 	}
+	@GetMapping("/list/index")
+	public String listIndex(@RequestParam(defaultValue = "1") int pageNo,Model model) {
+		return reportService.listIndex(pageNo,model);
+	}
 	@GetMapping("/list/{cate}")
 	public String list(@RequestParam(defaultValue = "1") int pageNo,Model model,@PathVariable int cate) {
 		return reportService.listData(cate,pageNo,model);

@@ -10,3 +10,19 @@ $(function(){
 		}
 	});
 });
+$(function(){
+	$.ajax({
+		url:"/customer/board/listIndex",
+		success:function(result){
+			$(".addList").html(result);
+		}
+	});
+});
+$(function(){
+	$.ajax({
+		url:"/report/list/index",
+		success:function(result){
+			$(".addreport").html(result);
+		}
+	});
+});

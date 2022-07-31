@@ -25,5 +25,8 @@ public interface BoardRepository extends JpaRepository<BoardEntity, Long>{
 	List<BoardEntity> findByBoardPayTypeAndBoardBuildTypeAndBoardDepositBetweenAndBoardPaymonthBetweenOrderByBoardNoDesc(
 			PayType pType, BuildType bType, int price1, int price2, int monthPrice1, int monthPrice2);
 
+	List<BoardEntity> findByBoardAddressContainingAndBoardPayTypeAndBoardBuildTypeAndBoardDepositBetweenAndBoardPaymonthBetweenOrderByBoardNoDesc(
+			String address, PayType pType, BuildType bType, int price1, int price2, int monthPrice1, int monthPrice2);
+
 
 }

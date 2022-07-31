@@ -45,7 +45,20 @@ public class ReportServiceProc implements ReportService{
 		
 		return "/board/report/list";
 	}
-	
+
+	@Override
+	public String listIndex(int pageNo, Model model) {
+		int page = pageNo - 1;
+		int size = 8;
+		Pageable pageable = PageRequest.of(page, size, Sort.by(Direction.DESC, "reportNo"));
+		Page<ReportEntity> pageObj = reportRepository.findAll(pageable);
+		int pageTotal = pageObj.getTotalPages();
+		PageInfo pageInfo = PageInfo.getInstance(pageNo, pageTotal);
+		model.addAttribute("pi", pageInfo);
+		model.addAttribute("list", pageObj.getContent().stream().map(ReportListDTO::new).collect(Collectors.toList()));
+		
+		return "/board/report/list-index";
+	}
 	@Override
 	public String listData(int cate,int pageNo, Model model) {
 		ReportType rType=null;
@@ -102,7 +115,5 @@ public class ReportServiceProc implements ReportService{
 	public void delete(long reportNo) {
 		reportRepository.deleteById(reportNo);
 	}
-
-	
 
 }

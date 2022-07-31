@@ -57,6 +57,20 @@ public class BoardServiceProc implements BoardService {
 	}
 
 	@Override
+	public String listIndex(int pageNo, Model model) {
+		int page = pageNo - 1;
+		int size = 8;
+		Pageable pageable = PageRequest.of(page, size, Sort.by(Direction.DESC, "boardNo"));
+		Page<BoardEntity> pageObj = boardRepository.findAll(pageable);
+		int pageTotal = pageObj.getTotalPages();
+		PageInfo pageInfo = PageInfo.getInstance(pageNo, pageTotal);
+		model.addAttribute("pi", pageInfo);
+		model.addAttribute("list", pageObj.getContent().stream().map(BoardListDTO::new).collect(Collectors.toList()));
+
+		return "/board/listType/list-index";
+	}
+	
+	@Override
 	public String detail(long memberNo,long boardNo, Model model) {
 		List<AtentionListDTO> entity= atentionRepository.findByMemberEntityMemberNo(memberNo).stream().map(AtentionListDTO::new).collect(Collectors.toList());
 		model.addAttribute("atention", entity);
@@ -215,7 +229,22 @@ public class BoardServiceProc implements BoardService {
 		model.addAttribute("list", result);
 		return "/board/sumType/listType";
 	}
-	
+	@Override
+	public String sumCate5(PayType pType, BuildType bType, int price1, int price2, int monthPrice1, int monthPrice2,
+			String address, Model model) {
+		System.out.println(">>>>>>>>>>5차카테고리>>>>>>>>>");
+		List<BoardSumDTO> result = boardRepository.findByBoardAddressContainingAndBoardPayTypeAndBoardBuildTypeAndBoardDepositBetweenAndBoardPaymonthBetweenOrderByBoardNoDesc(address,pType,bType,price1,price2,monthPrice1,monthPrice2).stream().map(BoardSumDTO::new)
+				.collect(Collectors.toList());
+		model.addAttribute("monthPrice1", monthPrice1);
+		model.addAttribute("monthPrice2", monthPrice2);
+		model.addAttribute("price1", price1);
+		model.addAttribute("price2", price2);
+		model.addAttribute("cate2", bType);
+		model.addAttribute("cate1", pType);
+		model.addAttribute("address", address);
+		model.addAttribute("list", result);
+		return "/board/sumType/listType";
+	}
 	@Override
 	public String mapList(Model model) {
 		List<BoardMapDTO> result=  boardRepository.findAll().stream().map(BoardMapDTO::new).collect(Collectors.toList());
@@ -223,4 +252,99 @@ public class BoardServiceProc implements BoardService {
 		return "board/mapType/list";
 	}
 
+	@Override
+	public String listCate1(int cata, Model model) {
+		System.out.println(cata);
+		PayType pType=PayType.MONTH;
+		if(cata!=0) {
+			if(cata==1) {
+				pType=PayType.LEASE;
+			}else {
+				pType=PayType.DEAL;
+			}
+		}
+		System.out.println(pType);
+		List<BoardSumDTO> result = boardRepository.findByBoardPayTypeOrderByBoardNoDesc(pType).stream().map(BoardSumDTO::new)
+				.collect(Collectors.toList());
+		model.addAttribute("cate1", pType);
+		model.addAttribute("list", result);
+		return "/board/listType/list-data";
+	}
+
+	@Override
+	public String listCate2(PayType pType, int cate, Model model) {
+		BuildType bType=null;
+		switch (cate) {
+		case 0:
+			bType=BuildType.DETACH;
+			break;
+		case 1:
+			bType=BuildType.MULTI;
+			break;
+		case 2:
+			bType=BuildType.VILLA;
+			break;
+		case 3:
+			bType=BuildType.APT;
+			break;
+		case 4:
+			bType=BuildType.STORE;
+			break;
+		}
+		List<BoardListDTO> result = boardRepository.findByBoardPayTypeAndBoardBuildTypeOrderByBoardNoDesc(pType,bType).stream().map(BoardListDTO::new)
+				.collect(Collectors.toList());
+		model.addAttribute("cate2", bType);
+		model.addAttribute("cate1", pType);
+		model.addAttribute("list", result);
+		System.out.println(">>>>>>>>>>2차카테고리>>>>>>>>>");
+		return "/board/listType/list-data";
+	}
+
+	@Override
+	public String listCate3(PayType pType, BuildType bType, int price1, int price2, Model model) {
+		System.out.println(">>>>>>>>>>3차카테고리>>>>>>>>>");
+		System.out.println(bType);
+		List<BoardListDTO> result = boardRepository.findByBoardPayTypeAndBoardBuildTypeAndBoardDepositBetweenOrderByBoardNoDesc(pType,bType,price1,price2).stream().map(BoardListDTO::new)
+				.collect(Collectors.toList());
+		model.addAttribute("price1", price1);
+		model.addAttribute("price2", price2);
+		model.addAttribute("cate2", bType);
+		model.addAttribute("cate1", pType);
+		model.addAttribute("list", result);
+		return "/board/listType/list-data";
+	}
+
+	@Override
+	public String listCate4(PayType pType, BuildType bType, int price1, int price2, int monthPrice1, int monthPrice2,
+			Model model) {
+		System.out.println(">>>>>>>>>>4차카테고리>>>>>>>>>");
+		List<BoardListDTO> result = boardRepository.findByBoardPayTypeAndBoardBuildTypeAndBoardDepositBetweenAndBoardPaymonthBetweenOrderByBoardNoDesc(pType,bType,price1,price2,monthPrice1,monthPrice2).stream().map(BoardListDTO::new)
+				.collect(Collectors.toList());
+		model.addAttribute("monthPrice1", monthPrice1);
+		model.addAttribute("monthPrice2", monthPrice2);
+		model.addAttribute("price1", price1);
+		model.addAttribute("price2", price2);
+		model.addAttribute("cate2", bType);
+		model.addAttribute("cate1", pType);
+		model.addAttribute("list", result);
+		return "/board/listType/list-data";
+	}
+
+	@Override
+	public String listCate5(PayType pType, BuildType bType, int price1, int price2, int monthPrice1, int monthPrice2,
+			String address, Model model) {
+		System.out.println(">>>>>>>>>>5차카테고리>>>>>>>>>");
+		List<BoardListDTO> result = boardRepository.findByBoardAddressContainingAndBoardPayTypeAndBoardBuildTypeAndBoardDepositBetweenAndBoardPaymonthBetweenOrderByBoardNoDesc(address,pType,bType,price1,price2,monthPrice1,monthPrice2).stream().map(BoardListDTO::new)
+				.collect(Collectors.toList());
+		model.addAttribute("monthPrice1", monthPrice1);
+		model.addAttribute("monthPrice2", monthPrice2);
+		model.addAttribute("price1", price1);
+		model.addAttribute("price2", price2);
+		model.addAttribute("cate2", bType);
+		model.addAttribute("cate1", pType);
+		model.addAttribute("address", address);
+		model.addAttribute("list", result);
+		return "/board/listType/list-data";
+	}
+	
 }

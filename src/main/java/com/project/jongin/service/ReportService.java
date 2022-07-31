@@ -19,5 +19,7 @@ public interface ReportService {
 	String detail(long reportNo, Model model);
 
 	void delete(long reportNo);
+
+	String listIndex(int pageNo, Model model);
 	
 }

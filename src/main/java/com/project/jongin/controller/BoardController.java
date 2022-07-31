@@ -39,6 +39,10 @@ public class BoardController {
 	public String list(@RequestParam(defaultValue = "1") int pageNo, Model model) {
 		return boardService.list(pageNo,model);
 	}
+	@GetMapping("/customer/board/listIndex")
+	public String listIndex(@RequestParam(defaultValue = "1") int pageNo, Model model) {
+		return boardService.listIndex(pageNo,model);
+	}
 	@GetMapping("/customer/board/sum")
 	public String sum(Model model) {
 		return boardService.sum(model);
@@ -60,6 +64,38 @@ public class BoardController {
 	public String sum(@PathVariable PayType pType,@PathVariable BuildType bType,
 			@PathVariable int price1,@PathVariable int price2,@PathVariable int monthPrice1,@PathVariable int monthPrice2,Model model) {
 		return boardService.sumCate4(pType,bType,price1,price2,monthPrice1,monthPrice2,model);
+	}
+	@GetMapping("/customer/board/sum/{pType}/{bType}/{price1}/{price2}/{monthPrice1}/{monthPrice2}/{address}")
+	public String sum(@PathVariable PayType pType,@PathVariable BuildType bType,
+			@PathVariable int price1,@PathVariable int price2,@PathVariable int monthPrice1,
+			@PathVariable String address,@PathVariable int monthPrice2,Model model) {
+		
+		return boardService.sumCate5(pType,bType,price1,price2,monthPrice1,monthPrice2,address,model);
+	}
+	@GetMapping("/customer/board/list/{cata}")
+	public String listCate1(@PathVariable int cata,Model model) {
+		return boardService.listCate1(cata,model);
+	}
+	@GetMapping("/customer/board/list/{pType}/{cate}")
+	public String listCate2(@PathVariable PayType pType,@PathVariable int cate,Model model) {
+		return boardService.listCate2(pType,cate,model);
+	}
+	@GetMapping("/customer/board/list/{pType}/{bType}/{price1}/{price2}")
+	public String listCate3(@PathVariable PayType pType,@PathVariable BuildType bType,
+			@PathVariable int price1,@PathVariable int price2,Model model) {
+		return boardService.listCate3(pType,bType,price1,price2,model);
+	}
+	@GetMapping("/customer/board/list/{pType}/{bType}/{price1}/{price2}/{monthPrice1}/{monthPrice2}")
+	public String listCate4(@PathVariable PayType pType,@PathVariable BuildType bType,
+			@PathVariable int price1,@PathVariable int price2,@PathVariable int monthPrice1,@PathVariable int monthPrice2,Model model) {
+		return boardService.listCate4(pType,bType,price1,price2,monthPrice1,monthPrice2,model);
+	}
+	@GetMapping("/customer/board/list/{pType}/{bType}/{price1}/{price2}/{monthPrice1}/{monthPrice2}/{address}")
+	public String listCate5(@PathVariable PayType pType,@PathVariable BuildType bType,
+			@PathVariable int price1,@PathVariable int price2,@PathVariable int monthPrice1,
+			@PathVariable String address,@PathVariable int monthPrice2,Model model) {
+		
+		return boardService.listCate5(pType,bType,price1,price2,monthPrice1,monthPrice2,address,model);
 	}
 	@PostMapping("/board/binbang/write")
 	public String write(BoardInsertDTO dto,MultipartFile[] file) {

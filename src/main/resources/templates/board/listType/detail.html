@@ -84,7 +84,7 @@
 							<div th:utext="${detail.boardContents}"></div>
 						</div>
 					</li>
-					<li id="wrap-detail-info" style="border: 1px dotted;">
+					<li id="wrap-detail-info">
 						<div class="flex between">
 							<div>
 								<div>
@@ -116,7 +116,7 @@
 							</div>
 						</div>
 					</li>
-					<li id="wrap-detail-info" style="border: 1px dotted;">
+					<li id="wrap-detail-info">
 						<div class="flex between">
 							<div>
 								<p>전용면적</p>
@@ -145,15 +145,14 @@
 							</div>
 						</div>
 					</li>
-					<li style="border: 1px dotted;">
+					<li>
 						<div id="def-option" class="flex">
 							<div th:each="option :${dto.boardOption}">
-								<input style="display: none;"type="checkbox"id="option"th:if="${option.title()}" checked="checked">
-								<label>[[${option.title()}]]</label>
+								<span>[[${option.title()}]]</span>
 							</div>
 						</div>
 					</li>
-					<li style="border: 1px dotted;">
+					<li>
 						<div style="margin-top:15px;">
 							<div style="min-height: 400px;" class="flex flex-center">
 								<div id="map" style=" width:700px;height:400px;position: absolute;"></div>

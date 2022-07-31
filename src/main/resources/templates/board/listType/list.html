@@ -3,6 +3,7 @@
 	th:replace="~{layout/layout1 :: layout(~{::head}, ~{::main})}">
 <head>
 <link rel="stylesheet" href="/css/board/listType/list.css">
+<script src="/js/board/list.js"></script>
 </head>
 <main>
 	<div class="wrap">
@@ -13,61 +14,54 @@
 				<ul class="search-area flex left">
 					<li>
 						<span class="boil-wrap flex">
-	                       	<select style="margin: 30px 0;" name="boilType">
-	                           	<option selected="selected">방종류</option>
-	                           	<option value="1">원룸</option>
-	                           	<option value="2">투룸</option>
-	                           	<option value="3">쓰리룸</option>
-	                           	<option value="4">오피스텔</option>
-	                       	</select>
-	                  	</span>
-					</li>
-					<li>
-						<span class="boil-wrap flex">
-	                       	<select name="boilType">
+	                       	<select id="cataPayType">
 	                           	<option selected="selected">매물종류</option>
+	                           	<option value="0">월세</option>
 	                           	<option value="1">전세</option>
-	                           	<option value="2">월세</option>
-	                           	<option value="3">매매</option>
+	                           	<option value="2">매매</option>
 	                       	</select>
 	                  	</span>
 					</li>
 					<li>
 						<span class="boil-wrap flex">
-	                       	<select name="boilType">
-	                           	<option selected="selected">가격대</option>
-	                           	<option value="1">미구현</option>
-	                       	</select>
+	                       	<select id="cateBuildType">
+							    <option selected="selected">건물형태선택</option>
+								<option value="0">단독주택</option>
+							    <option value="1">다가구주택</option>
+							    <option value="2">빌라/연립/다가구</option>
+							    <option value="3">아파트</option>
+							    <option value="4">상가</option>
+							</select>
 	                  	</span>
 					</li>
-					<li>
+					<li id="deposit" class="flex">
+						<span style=" width:100px;margin: 30px 0px;text-align: center;line-height:40px; ">보증금(전세)</span>
 						<span class="boil-wrap flex">
-	                       	<select name="boilType">
-	                           	<option selected="selected">집크기</option>
-	                           	<option value="1">미구현</option>
-	                       	</select>
+	                       	<input style="width: 70px;margin: 30px 0px;" id="price1" type="number" placeholder="0">
+							<input style="width: 70px;margin: 30px 0px;" id="price2" type="number" placeholder="0">
+							<button style="margin-left: 5px;" id="search-btn1" type="button">보증금(전세)찾기</button>
 	                  	</span>
 					</li>
-					<li>
+					<li id="monthPay" class="flex"><span style=" width:60px;margin: 30px 0px;text-align: center;line-height:40px; ">월세</span>
 						<span class="boil-wrap flex">
-	                       	<select name="boilType">
-	                           	<option selected="selected">추가 옵션</option>
-	                            <option value="1">미구현</option>
-	                       	</select>
+	                       	<input style="width: 70px;margin: 30px 0px;" id="price1" type="number" placeholder="0">
+							<input style="width: 70px;margin: 30px 0px;" id="price2" type="number" placeholder="0">
+							<button style="margin-left: 5px;" id="search-btn1" type="button">월세찾기</button>
 	                  	</span>
 					</li>
 				</ul>
 				<ul class="search-area flex left">
 					<li>
-						<input>
+						<input style="width: 200px;" id="addr" placeholder="시.구 단위로 주소를 입력하세요.">
+					
 					</li>
 					<li>
-						<button>검색</button>
+						<button style="margin-left: 5px;" id="search-btn3">검색</button>
 					</li>
 				</ul>
 			</div>
 		</section>
-		<section class="list">
+		<section id="list" class="list">
 			<div>
 				<table>
 					<thead>

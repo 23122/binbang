@@ -29,6 +29,7 @@ $(function() {
 	$("#cateBuildType").change(moveCate2);
 	$("#search-btn1").click(priceSearch1);
 	$("#search-btn2").click(priceSearch2);
+	$("#search-btn3").click(priceSearch3);
 	$(".area").hover(stop, function() { myTimeout = setTimeout(start, firstSpeed); });//비주얼 이미지에 마우스 올라갈때
 	myTimeout = setTimeout(start, firstSpeed);//처음로딩시 타이머로 이미지 시작
 });
@@ -78,7 +79,6 @@ function moveCate1() {
 
 
 function moveCate2() {
-		console.log(">>>>>>>>>>>>>>>>>");
 		var payType = $("#cate1").val();
 		var buildType=$("#cateBuildType").val();
 		var url = "/customer/board/sum/" + payType+"/"+buildType;
@@ -110,7 +110,7 @@ function priceSearch2() {
 		price1=0;
 	}
 	if(price2==""){
-		price2=0;
+		price2=99999999;
 	}
 	var monthPrice1=$("#monthPrice1").val();
 	var monthPrice2=$("#monthPrice2").val();
@@ -120,20 +120,45 @@ function priceSearch2() {
 		visualResize();
 	});
 }
+function priceSearch3() {
+	var payType = $("#cate1").val();
+	var buildType=$("#cate2").val();
+	var price1=$("#price1").val();
+	var price2=$("#price2").val();
+	var monthPrice1=$("#monthPrice1").val();
+	var monthPrice2=$("#monthPrice2").val();
+	var address=$("#addr").val();
+	if(price1==""){
+		price1=0;
+	}
+	if(price2==""){
+		price2=99999999;
+	}
+	if(monthPrice1==""){
+		monthPrice1=0;
+	}
+	if(monthPrice2==""){
+		monthPrice2=99999999;
+	}
+	console.log(monthPrice1);
+	console.log(monthPrice2);
+	var url = "/customer/board/sum/" + payType+"/"+buildType+"/"+price1+"/"+price2+"/"+monthPrice1+"/"+monthPrice2+"/"+address;
+	$.get(url, function(result) {
+		$("#list").html(result);
+		visualResize();
+	});
+}
 function stop() {
 	clearTimeout(myTimeout);
-	console.log("timmer stop");
 }
 
 function start() {
 	next();
 	myTimeout = setTimeout(start, nextSpeed);
-	console.log("timmer start");
 }
 
 function next() {
 	for (var i = 0; i <= $(".fimg").length - 1; i++) {
-		console.log("for start");
 		var tar = $("#fimg_" + i);
 		var first = $("#fimg_" + i + ">li:first-child");
 		var last = $("#fimg_" + i + ">li:last-child");

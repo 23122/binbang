@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<div style="font-size:12px;">
+		<table>
+			<tbody>
+				<tr th:each="dto : ${list}">
+					<td><a th:href="|/report/detail/${dto.reportNo}|">[[${dto.reportTitle}]]</a>
+					</td>
+				</tr>
+				<tr th:if="${#lists.isEmpty(list)}">
+					<td colspan="5">게시글이 존재하지 않습니다.</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</html>

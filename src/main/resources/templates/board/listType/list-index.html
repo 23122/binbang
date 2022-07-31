@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<div style="font-size: 12px;">
+	<table>
+		<tbody>
+			<tr th:each="dto : ${list}">
+				<td th:text="${#strings.substring(dto.boardAddress,0,2)}"></td>
+				<td>
+					<a th:href="|/board/detail/${dto.boardNo}/${#authentication.principal.memberNo}|">[[${dto.boardTitle}]]</a>
+				</td>
+			</tr>
+				<tr th:if="${#lists.isEmpty(list)}">
+				<td colspan="2">게시글이 존재하지 않습니다.</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+</html>

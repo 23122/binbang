@@ -17,5 +17,4 @@ public interface VisualService {
 	boolean updateData(long visualNo, VisualUpdateDTO dto);
 
 	boolean updateIsShow(long visualNo, boolean isShow);
-
 }
