@@ -107,7 +107,7 @@
 				<a href="/board/binbang/write"><button>글쓰기</button></a>
 			</div>
 		</section>
-		<section>
+		<section style="width: 1200px;margin: 0 auto;">
 			<div id="pageBtn" th:if="${!#lists.isEmpty(list)}">
 				<a th:if="${pi.start gt 1}" th:href="@{/customer/board/list(pageNo=${pi.start-1})}">
 					<button type="button">&lt;</button>

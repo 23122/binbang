@@ -30,7 +30,7 @@ input{
 input:read-only {
 	border: none;
 }
-#pageBtn{margin: 0 500px auto;display: flex;justify-content: space-around;}
+#pageBtn{margin: 0 400px auto;display: flex;justify-content: space-around;}
 #pageBtn button {
 	border: 0;
 	border-radius: 100px;
