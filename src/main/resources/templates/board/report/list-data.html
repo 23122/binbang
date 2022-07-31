@@ -17,7 +17,7 @@
 			<tbody>
 				<tr th:each="dto : ${list}">
 					<td>[[${dto.reportNo}]]</td>
-					<td><a th:href="|/board/detail/${dto.boardNo}|">[[${dto.boardTitle}]]</a></td>
+					<td><a th:href="|/board/detail/${dto.boardNo}/${#authentication.principal.memberNo}|">[[${dto.boardTitle}]]</a></td>
 					<td><a th:href="|/report/detail/${dto.reportNo}|">[[${dto.reportTitle}]]</a>
 					</td>
 					<td>[[${dto.createdDate}]]</td>

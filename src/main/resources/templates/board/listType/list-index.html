@@ -5,13 +5,15 @@
 	<table>
 		<tbody>
 			<tr th:each="dto : ${list}">
-				<td th:text="${#strings.substring(dto.boardAddress,0,2)}"></td>
+				<td sec:authorize="isAuthenticated()" th:text="|${#strings.substring(dto.boardAddress,0,2)}|"></td>
+				<td sec:authorize="isAnonymous" th:text="|${#strings.substring(dto.boardAddress,0,15)} :|"></td>
 				<td>
-					<a th:href="|/board/detail/${dto.boardNo}/${#authentication.principal.memberNo}|">[[${dto.boardTitle}]]</a>
+					<a sec:authorize="isAuthenticated()" th:href="|/board/detail/${dto.boardNo}/${#authentication.principal.memberNo}|">[[${dto.boardTitle}]]</a>
+					<a sec:authorize="isAnonymous" href="/customer/login"> 로그인하고 확인 </a>
 				</td>
 			</tr>
 				<tr th:if="${#lists.isEmpty(list)}">
-				<td colspan="2">게시글이 존재하지 않습니다.</td>
+				<td colspan="5">게시글이 존재하지 않습니다.</td>
 			</tr>
 		</tbody>
 	</table>

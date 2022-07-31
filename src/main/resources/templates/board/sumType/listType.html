@@ -14,9 +14,14 @@
 				<div class="img-area">
 					<div th:id="|fimg-wrap_${dtoStat.index}|" class="fimg-wrap">
 						<ul th:id="|fimg_${dtoStat.index}|" class="fimg flex">
-							<li th:each="file:${dto.boardFiles}"><a
-								th:style="|background-image: url(${file.boardFilesUrl+file.boardFilesChangeName});|"
-								th:href="|/board/detail/${dto.boardNo}/${#authentication.principal.memberNo}|" class="bg area"></a></li>
+							<li th:each="file:${dto.boardFiles}">
+								<a sec:authorize="isAnonymous" th:style="|background-image: url(${file.boardFilesUrl+file.boardFilesChangeName});|"
+									th:href="|/board/detail/${dto.boardNo}|" class="bg area">
+								</a>
+								<a sec:authorize="isAuthenticated()" th:style="|background-image: url(${file.boardFilesUrl+file.boardFilesChangeName});|"
+									th:href="|/board/detail/${dto.boardNo}/${#authentication.principal.memberNo}|" class="bg area">
+								</a>
+							</li>
 						</ul>
 					</div>
 				</div>

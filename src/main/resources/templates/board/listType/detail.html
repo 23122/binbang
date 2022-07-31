@@ -21,7 +21,7 @@
 									<span>글번호 :</span>
 									<span> [[${detail.boardNo}]]</span>
 								</div>
-								<div>
+								<div >
 									<span>작성자 :</span>
 									<span>[[${detail.memberEmail}]]</span>
 								</div>
@@ -35,7 +35,7 @@
 								<span>[[${detail.boardTitle}]]</span>
 							</div>
 							<div class="flex right">
-								<button id="report-btn" type="button">신고하기</button>
+								<button id="report-btn" type="button" style="background-color: red">신고하기</button>
 								<label class="check-at" for="atention">관심목록</label>
 								<th:bolck th:if="${not atention.isEmpty()}" th:each="at:${atention}">
 									<th:bolck th:if="${at.boardNo eq detail.boardNo}">
@@ -215,6 +215,9 @@
 						</script>
 					</li>
 					<li class="flex right">
+						<a href="/customer/board/sum">
+							<button type="button">목록으로</button>
+						</a>
 						<button type="button" id="btn-edit"	th:if="${#authentication.principal.memberNo eq detail.memberNo}">수정</button>
 						<button type="button" id="btn-del" 	th:if="${#authentication.principal.memberNo eq detail.memberNo}" th:onclick="|detailDel(${detail.boardNo})|">삭제</button>
 					</li>

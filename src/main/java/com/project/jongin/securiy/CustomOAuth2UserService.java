@@ -44,12 +44,7 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
 			name=oAuth2User.getAttribute("name");
 			email=oAuth2User.getAttribute("email");
 			pass=oAuth2User.getAttribute("sub");
-			/*
-			Map<String, Object> userInfo=oAuth2User.getAttributes();
-			userInfo.keySet().forEach(e->{
-				System.out.println(e+":"+userInfo.get(e));
-			});
-			*/
+			
 		}else if(registrationId.equals("naver")) {//네이버로그인
 			Map<String, Object> response = oAuth2User.getAttribute("response");
 			name=(String) response.get("name");

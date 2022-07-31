@@ -125,3 +125,12 @@ main{
 	border-radius: 4px;
 	
 }
+.bot-btn button{
+	margin-left: 15px;
+	height: 30px;
+	width: 80px;
+	border: 0px;
+	border-radius:4px;
+	background-color: rgb(255,164,9);
+	color: #fff;
+}

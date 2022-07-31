@@ -104,8 +104,6 @@ function priceSearch3() {
 	if(monthPrice2==""){
 		monthPrice2=99999999;
 	}
-	console.log(monthPrice1);
-	console.log(monthPrice2);
 	var url = "/customer/board/list/" + payType+"/"+buildType+"/"+price1+"/"+price2+"/"+monthPrice1+"/"+monthPrice2+"/"+address;
 	$.get(url, function(result) {
 		$("#list").html(result);

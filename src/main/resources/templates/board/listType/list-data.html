@@ -18,15 +18,16 @@
 				<td>제목</td>
 				<td>구분</td>
 				<td>가격</td>
-				<td>등록일</td>
-				<td>수정일</td>
+				<td>건물형태</td>
+				<td>내부구조</td>
 			</tr>
 		</thead>
 		<tbody>
 			<tr th:each="dto : ${list}">
 				<td th:text="${#strings.substring(dto.boardAddress,0,6)}"></td>
 				<td>
-					<a th:href="|/board/detail/${dto.boardNo}/${#authentication.principal.memberNo}|">[[${dto.boardTitle}]]</a>
+					<a sec:authorize="isAnonymous" th:href="|/board/detail/${dto.boardNo}|">[[${dto.boardTitle}]]</a>
+					<a sec:authorize="isAuthenticated()" th:href="|/board/detail/${dto.boardNo}/${#authentication.principal.memberNo}|">[[${dto.boardTitle}]]</a>
 				</td>
 				<td>[[${dto.boardPayType.title()}]]</td>
 				<td th:if="${dto.boardPayType.title() eq '월세'}">
@@ -40,6 +41,10 @@
 					<span>전세 : [[${dto.boardDeposit}]] 만원</span>
 				</td>
 				<td>
+					[[${dto.boardBuildType.title()}]]
+				</td>
+				<td>
+					[[${dto.boardHouseType.title()}]]
 				</td>
 			</tr>
 				<tr th:if="${#lists.isEmpty(list)}">

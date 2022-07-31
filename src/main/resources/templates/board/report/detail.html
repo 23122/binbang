@@ -16,10 +16,10 @@
 					<input type="hidden" name="memberNo" th:value="${detail.memberNo}">
 						<div>
 							<div sec:authorize="hasRole('ADMIN')">
-							<input type="hidden" id="reportNo" th:value="${detail.reportNo}">
-								<span >[[${detail.reportNo}]] /</span>
-								<span>[[${detail.memberEmail}]] /</span>
-								<span>[[${detail.boardNo}]]</span>
+								<input type="hidden" id="reportNo" th:value="${detail.reportNo}">
+								<span >신고번호 : [[${detail.reportNo}]] /</span>
+								<span>신고자이메일 :[[${detail.memberEmail}]] /</span>
+								<span>대상게시물번호 : [[${detail.boardNo}]]</span>
 							</div>
 							<div>
 								<span>[[${detail.reportTitle}]]</span>
@@ -40,7 +40,7 @@
 									<span>해당글</span>
 								</div>
 								<div>
-									<span>[[${detail.boardTitle}]]</span>
+									<span><a th:href="|/board/detail/${detail.boardNo}/${#authentication.principal.memberNo}|">[[${detail.boardTitle}]]</a></span>
 								</div>
 							</div>
 							<div>
@@ -70,6 +70,7 @@
 						<button type="button" id="btn-edit"	th:if="${#authentication.principal.memberNo eq detail.memberNo}">수정</button>
 						<button type="button" class="btn-del" sec:authorize="hasRole('ADMIN')" th:onclick="|detailDel(${detail.boardNo})|">삭제</button>
 						<button type="button" class="btn-del" th:if="${#authentication.principal.memberNo eq detail.memberNo}" th:onclick="|detailDel(${detail.reportNo})|">삭제</button>
+						<a href="/report/list"><button>목록으로</button></a>
 					</li>
 				</ul>
 			</div>

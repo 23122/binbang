@@ -37,9 +37,6 @@ $(function() {
 		var boardNo1= $("#boardNo").val();
 		var memberNo1=$("#memberNo").val();
 		
-		console.log(atention1);
-		console.log(boardNo1);
-		console.log(memberNo1);
 		if (atention1 == true) {
 			$.ajax({
 				beforeSend: function(xhr) { xhr.setRequestHeader(header, token); },
@@ -84,7 +81,7 @@ $(function() {
 });
 function atention(){
 	if($("#atention").prop("checked")==true){
-		$(".check-at").css("background-color","#a9a9a9").css("color","#ffffff");
+		$(".check-at").css("background-color","green").css("color","#ffffff").css("border","5px solid green");
 	};
 }
 function bulletClicked() {
