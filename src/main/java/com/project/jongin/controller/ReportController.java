@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.project.jongin.domain.dto.report.ReportInsertDTO;
 import com.project.jongin.domain.dto.report.ReportUpdateDTO;
@@ -34,24 +35,27 @@ public class ReportController {
 	public String write() {
 		return "/board/report/write";
 	}
+	@GetMapping("/write/{boardNo}")
+	public String write(@PathVariable int boardNo,Model model) {
+		model.addAttribute("boardNo",boardNo);
+		return "/board/report/write";
+	}
 	@PostMapping("/write/test")
 	public String save(ReportInsertDTO dto) {
-		ReportEntity re = dto.toEntity();
-		System.out.println(re);
 		return reportService.save(dto);
 	}
 	@PutMapping("/detail/update/{reportNo}")
 	public String update(@PathVariable long reportNo,ReportUpdateDTO dto) {
-		System.out.println("실행");
 		return reportService.update(reportNo,dto);
 	}
 	@GetMapping("/detail/{reportNo}")
 	public String detail(@PathVariable long reportNo,Model model) {
 		return reportService.detail(reportNo,model);
 	}
+	@ResponseBody
 	@DeleteMapping("/detail/{reportNo}")
-	public String delete(@PathVariable long reportNo) {
-		return reportService.delete(reportNo);
+	public void delete(@PathVariable long reportNo) {
+		reportService.delete(reportNo);
 	}
 	
 }

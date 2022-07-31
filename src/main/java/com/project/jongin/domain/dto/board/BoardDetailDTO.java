@@ -34,7 +34,6 @@ public class BoardDetailDTO {
 	private String memberEmail;
 	private long memberNo;
 	private List<BoardFilesEntity> boardFiles;
-	private int attentionCount;
 	
 	public BoardDetailDTO(BoardEntity e) {
 		boardNo=e.getBoardNo();

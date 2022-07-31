@@ -18,6 +18,6 @@ public interface ReportService {
 
 	String detail(long reportNo, Model model);
 
-	String delete(long reportNo);
+	void delete(long reportNo);
 	
 }

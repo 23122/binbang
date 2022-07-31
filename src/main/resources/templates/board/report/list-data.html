@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <section id="list" class="list">
-	<input id="cate1" type="text" th:value="${cate1}">
+	<input id="cate1" type="hidden" th:value="${cate1}">
 	<div>
 		<table>
 			<thead>
@@ -22,6 +22,7 @@
 					</td>
 					<td>[[${dto.createdDate}]]</td>
 					<td>[[${dto.updatedDate}]]</td>
+					<td sec:authorize="hasRole('ADMIN')">[[${dto.memberEmail}]]</td>
 				</tr>
 				<tr th:if="${#lists.isEmpty(list)}">
 					<td colspan="5">게시글이 존재하지 않습니다.</td>

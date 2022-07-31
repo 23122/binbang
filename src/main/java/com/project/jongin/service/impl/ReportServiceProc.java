@@ -81,8 +81,6 @@ public class ReportServiceProc implements ReportService{
 	@Transactional
 	@Override
 	public String save(ReportInsertDTO dto) {
-		ReportEntity re = dto.toEntity();
-		System.out.println(re);
 		reportRepository.save(dto.toEntity());
 		return "redirect:/report/list";
 	}
@@ -96,17 +94,13 @@ public class ReportServiceProc implements ReportService{
 	@Transactional
 	@Override
 	public String update(long reportNo, ReportUpdateDTO dto) {
-		System.out.println("실행");
-		System.out.println(reportNo);
-		System.out.println(dto);
 		reportRepository.findById(reportNo).map(e->e.update(dto));
 		return "redirect:/report/detail/"+reportNo;
 	}
 
 	@Override
-	public String delete(long reportNo) {
+	public void delete(long reportNo) {
 		reportRepository.deleteById(reportNo);
-		return "redirect:/report/list";
 	}
 
 	

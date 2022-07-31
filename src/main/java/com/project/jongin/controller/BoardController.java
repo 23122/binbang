@@ -65,9 +65,9 @@ public class BoardController {
 	public String write(BoardInsertDTO dto,MultipartFile[] file) {
 		return boardService.save(dto,file);
 	}
-	@GetMapping("/board/detail/{boardNo}")
-	public String detail(@PathVariable long boardNo,Model model) {
-		return boardService.detail(boardNo,model);
+	@GetMapping("/board/detail/{boardNo}/{memberNo}")
+	public String detail(@PathVariable long memberNo,@PathVariable long boardNo,Model model) {
+		return boardService.detail(memberNo,boardNo,model);
 	}
 	@ResponseBody
 	@DeleteMapping("/board/detail/{boardNo}")

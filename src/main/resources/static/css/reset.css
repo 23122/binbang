@@ -20,7 +20,23 @@ a:hover{text-decoration:none;color: inherit;background-color: transparent;}
 	justify-content: center;
 	align-items: center;
 }
+button{
+	cursor: pointer;
+}
 .view-size{width: 1180px; margin: 0 auto;}
+input{
+	cursor: pointer;
+}
 input:read-only {
 	border: none;
+}
+#pageBtn{margin: 0 500px auto;display: flex;justify-content: space-around;}
+#pageBtn button {
+	border: 0;
+	border-radius: 100px;
+	width: 25px;
+	height: 25px;
+	color: #fff;
+	background-color: rgb(255,164,9);
+	cursor: pointer;
 }

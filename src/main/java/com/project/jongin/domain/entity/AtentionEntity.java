@@ -32,7 +32,7 @@ public class AtentionEntity extends BaseTimeEntity{
 	private MemberEntity memberEntity;
 	
 	@JoinColumn(name = "boardNo",nullable = false)
-	@OneToOne
+	@ManyToOne
 	private BoardEntity boardEntity;
 	
 }

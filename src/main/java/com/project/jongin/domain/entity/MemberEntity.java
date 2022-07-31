@@ -60,6 +60,10 @@ public class MemberEntity extends BaseTimeEntity{
 	@OneToMany(mappedBy = "memberEntity")
 	private List<ReportEntity> reportEntities=new Vector<ReportEntity>();
 	
+	@Builder.Default
+	@OneToMany(mappedBy = "memberEntity")
+	private List<AtentionEntity> atentionEntitise=new Vector<AtentionEntity>();
+	
 	public MemberEntity memberPass(String memberPass) {
 		this.memberPass=memberPass;
 		return this;

@@ -95,13 +95,14 @@ public class BoardEntity extends BaseTimeEntity{
 	@ManyToOne
 	private MemberEntity memberEntity;
 	
-	@OneToOne(mappedBy = "boardEntity")
-	private AtentionEntity atentionEntity;
-	
 	@Builder.Default
 	@JoinColumn(name = "boardNo")
 	@OneToMany(cascade = CascadeType.ALL)
 	private List<BoardFilesEntity> boardFiles = new Vector<>();
+	
+	@Builder.Default
+	@OneToMany(mappedBy = "boardEntity",cascade = CascadeType.ALL)
+	private List<AtentionEntity> atentionEntities=new Vector<AtentionEntity>();
 	
 	@Builder.Default
 	@OneToMany(mappedBy = "boardEntity",cascade = CascadeType.ALL)

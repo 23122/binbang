@@ -1,11 +1,12 @@
 /**
  * 
  */
-var firstSpeed=3000;
-var moveSpeed=5000;
+var firstSpeed = 3000;
+var moveSpeed = 5000;
 var speed = 1000;
 var flag = 0;
 $(function() {
+	atention();
 	visualResize();
 	$(window).resize(function() {
 		visualResize();
@@ -19,19 +20,73 @@ $(function() {
 		} else if (state == "visible") {
 			myTimeout = setTimeout(start, firstSpeed);//타이머로 시작
 		}
-	
+
 	});
 	//비주얼 이미지에 마우스 올라갈때
 	$(".area, #img-btn .next, #img-btn .prev, #img-btn .bullet ol").hover(stop, function() { myTimeout = setTimeout(start, firstSpeed); });
-	
 	//처음로딩시 타이머로 이미지 시작
 	myTimeout = setTimeout(start, firstSpeed);
 	$(".bullet ol").eq(0).addClass("target");
 	$("#img-btn .next").click(nextClicked);
 	$("#img-btn .prev").click(prevClicked);
 	$("#img-btn .bullet ol").click(bulletClicked);
-});
+	$("#atention").change(function() {
+		var token = $("meta[name='_csrf']").attr("content");
+		var header = $("meta[name='_csrf_header']").attr("content");
+		var atention1 = $("#atention").prop("checked");
+		var boardNo1= $("#boardNo").val();
+		var memberNo1=$("#memberNo").val();
+		
+		console.log(atention1);
+		console.log(boardNo1);
+		console.log(memberNo1);
+		if (atention1 == true) {
+			$.ajax({
+				beforeSend: function(xhr) { xhr.setRequestHeader(header, token); },
+				url: "/atention/addAtention",
+				type: "post",
+				data: {
+					boardNo:boardNo1,
+					atention:atention1,
+					memberNo:memberNo1
+				},
+				success: function() {
+					location.href = "/board/detail/"+boardNo1+"/"+memberNo1;
+				}
+			});
+		} else {
+			$.ajax({
+				beforeSend: function(xhr) { xhr.setRequestHeader(header, token); },
+				url: "/atention/removeAtention",
+				type: "delete",
+				data: {
+					boardNo:boardNo1,
+					atention:atention1,
+					memberNo:memberNo1
+				},
+				success: function() {
+					location.href = "/board/detail/"+boardNo1+"/"+memberNo1;
+				}
+			});
+		}
+	});
+	$("#report-btn").click(function() {
+		var boardNo = $("#boardNo").val();
+		$.ajax({
+			url: "/report/write/" + boardNo,
+			type: "get",
+			success: function() {
+				location.href = "/report/write";
+			}
 
+		});
+	});
+});
+function atention(){
+	if($("#atention").prop("checked")==true){
+		$(".check-at").css("background-color","#a9a9a9").css("color","#ffffff");
+	};
+}
 function bulletClicked() {
 	//클릭한 블잇의 인덱스 번호
 	var idx = $(this).index();
@@ -91,7 +146,7 @@ function next() {
 
 }
 function prev() {
-	flag=1;
+	flag = 1;
 	var first = $(".fimg li:first-child");
 	var last = $(".fimg li:last-child");
 	var li_fv = $(".fimg li:first").val();
@@ -101,7 +156,7 @@ function prev() {
 	$(".fimg-wrap").animate({ marginLeft: 0 }, speed, function() {
 		$(".fimg-wrap").css("margin-left", 0);
 		blis.removeClass("target");
-		blis.eq(li_fv % blis.length-1).addClass("target");
+		blis.eq(li_fv % blis.length - 1).addClass("target");
 		flag = 0;
 	});
 }

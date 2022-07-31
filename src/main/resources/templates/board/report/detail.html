@@ -68,8 +68,8 @@
 				<ul>
 					<li>
 						<button type="button" id="btn-edit"	th:if="${#authentication.principal.memberNo eq detail.memberNo}">수정</button>
-						<button type="button" id="btn-del" 	sec:authorize="hasRole('ADMIN')" th:onclick="|detailDel(${detail.boardNo})|">삭제</button>
-						<button type="button" id="btn-del" 	th:if="${#authentication.principal.memberNo eq detail.memberNo}" th:onclick="|detailDel(${detail.reportNo})|">삭제</button>
+						<button type="button" class="btn-del" sec:authorize="hasRole('ADMIN')" th:onclick="|detailDel(${detail.boardNo})|">삭제</button>
+						<button type="button" class="btn-del" th:if="${#authentication.principal.memberNo eq detail.memberNo}" th:onclick="|detailDel(${detail.reportNo})|">삭제</button>
 					</li>
 				</ul>
 			</div>

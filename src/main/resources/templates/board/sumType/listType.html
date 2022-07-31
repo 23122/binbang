@@ -15,7 +15,7 @@
 						<ul th:id="|fimg_${dtoStat.index}|" class="fimg flex">
 							<li th:each="file:${dto.boardFiles}"><a
 								th:style="|background-image: url(${file.boardFilesUrl+file.boardFilesChangeName});|"
-								th:href="|/board/detail/${dto.boardNo}|" class="bg area"></a></li>
+								th:href="|/board/detail/${dto.boardNo}/${#authentication.principal.memberNo}|" class="bg area"></a></li>
 						</ul>
 					</div>
 				</div>

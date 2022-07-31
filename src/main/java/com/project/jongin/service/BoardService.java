@@ -15,8 +15,6 @@ public interface BoardService {
 
 	String save(BoardInsertDTO dto, MultipartFile[] file);
 
-	String detail(long boardNo, Model model);
-
 	String delete(long boardNo);
 
 	String sum(Model model);
@@ -31,6 +29,8 @@ public interface BoardService {
 
 	String sumCate4(PayType pType, BuildType bType, int price1, int price2, int monthPrice1, int monthPrice2,
 			Model model);
+
+	String detail(long memberNo, long boardNo, Model model);
 
 //	String save(SalesInsertDTO dto, MultipartFile[] file);
 

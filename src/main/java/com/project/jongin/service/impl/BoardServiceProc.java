@@ -18,15 +18,18 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.project.jongin.domain.dto.atention.AtentionListDTO;
 import com.project.jongin.domain.dto.board.BoardDetailDTO;
 import com.project.jongin.domain.dto.board.BoardInsertDTO;
 import com.project.jongin.domain.dto.board.BoardListDTO;
 import com.project.jongin.domain.dto.board.BoardMapDTO;
 import com.project.jongin.domain.dto.board.BoardSumDTO;
+import com.project.jongin.domain.entity.AtentionEntity;
 import com.project.jongin.domain.entity.BoardEntity;
 import com.project.jongin.domain.entity.BoardFilesEntity;
 import com.project.jongin.domain.enumes.BuildType;
 import com.project.jongin.domain.enumes.PayType;
+import com.project.jongin.domain.repository.AtentionRepository;
 import com.project.jongin.domain.repository.BoardRepository;
 import com.project.jongin.service.BoardService;
 import com.project.jongin.utils.PageInfo;
@@ -36,7 +39,9 @@ public class BoardServiceProc implements BoardService {
 
 	@Autowired
 	private BoardRepository boardRepository;
-
+	@Autowired
+	private AtentionRepository atentionRepository;
+	
 	@Override
 	public String list(int pageNo, Model model) {
 		int page = pageNo - 1;
@@ -52,7 +57,9 @@ public class BoardServiceProc implements BoardService {
 	}
 
 	@Override
-	public String detail(long boardNo, Model model) {
+	public String detail(long memberNo,long boardNo, Model model) {
+		List<AtentionListDTO> entity= atentionRepository.findByMemberEntityMemberNo(memberNo).stream().map(AtentionListDTO::new).collect(Collectors.toList());
+		model.addAttribute("atention", entity);
 		model.addAttribute("detail", boardRepository.findById(boardNo).map(BoardDetailDTO::new).get());
 		return "/board/listType/detail";
 	}

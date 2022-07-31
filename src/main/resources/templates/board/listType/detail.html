@@ -13,8 +13,19 @@
 				<ul>
 					<li id="det-title">
 					<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" >
-					<input type="hidden" name="memberNo" th:value="${detail.memberNo}">
+					<input type="hidden" id="memberNo" name="memberNo" th:value="${#authentication.principal.memberNo}">
+					<input type="hidden" id="boardNo" name="boardNo" th:value="${detail.boardNo}">
 						<div>
+							<div class="flex between">
+								<div>
+									<span>글번호 :</span>
+									<span> [[${detail.boardNo}]]</span>
+								</div>
+								<div>
+									<span>작성자 :</span>
+									<span>[[${detail.memberEmail}]]</span>
+								</div>
+							</div>
 							<div>
 								<span>[[${detail.boardHouseType.title()}]] /</span>
 								<span>[[${detail.boardPayType.title()}]] /</span>
@@ -22,6 +33,21 @@
 							</div>
 							<div>
 								<span>[[${detail.boardTitle}]]</span>
+							</div>
+							<div class="flex right">
+								<button id="report-btn" type="button">신고하기</button>
+								<label class="check-at" for="atention">관심목록</label>
+								<th:bolck th:if="${not atention.isEmpty()}" th:each="at:${atention}">
+									<th:bolck th:if="${at.boardNo eq detail.boardNo}">
+										<input id="atention" type="checkbox" checked="checked" style="display: none;">
+									</th:bolck>
+								</th:bolck>
+								<th:bolck th:if="${not atention.isEmpty()}">
+									<input id="atention" type="checkbox" style="display: none;">
+								</th:bolck>
+								<th:bolck th:if="${atention.isEmpty()}">
+									<input id="atention" type="checkbox"style="display: none;">
+								</th:bolck>
 							</div>
 						</div>
 					</li>
@@ -189,13 +215,7 @@
 							});
 						</script>
 					</li>
-				</ul>
-			</div>
-		</section>
-		<section>
-			<div>
-				<ul>
-					<li>
+					<li class="flex right">
 						<button type="button" id="btn-edit"	th:if="${#authentication.principal.memberNo eq detail.memberNo}">수정</button>
 						<button type="button" id="btn-del" 	th:if="${#authentication.principal.memberNo eq detail.memberNo}" th:onclick="|detailDel(${detail.boardNo})|">삭제</button>
 					</li>
