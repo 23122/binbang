@@ -94,17 +94,13 @@ public class BoardServiceProc implements BoardService {
 			if (!f.isEmpty()) {
 				// bin경로
 				String url = "/img/board/";
-				ClassPathResource cprTemp = new ClassPathResource("static" + url + "temp");
+				ClassPathResource cprTemp = new ClassPathResource("static" + url + "temp/");
 				String fileStr[] = dto.getBoardFilesChangeName().split(",");
 				try {
-
-					File newFile = new File(cprTemp.getFile(), dto.getBoardFilesChangeName());
-					ClassPathResource uploadDir = new ClassPathResource("static" + url);
-					File dest = new File(uploadDir.getFile(), dto.getBoardFilesChangeName());
-					newFile.renameTo(dest);
+					File newFile = new File(cprTemp.getFile(), fileStr[i]);
+					newFile.renameTo(new File(cprTemp.getFile().getParent(), fileStr[i]));
 					entity.addFile(BoardFilesEntity.builder().boardFilesUrl(url).boardFilesSize(f.getSize())
 							.boardFilesOriginalName(f.getOriginalFilename()).boardFilesChangeName(fileStr[i]).build());
-
 				} catch (IllegalStateException | IOException e) {
 					e.printStackTrace();
 				}
