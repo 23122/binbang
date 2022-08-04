@@ -34,18 +34,18 @@ class JoinJinApplicationTests {
 //	@Test
 	void 관리자생성() {
 		memberRepository.save(MemberEntity.builder()
-				.memberEmail("1")
-				.memberPass(passEncoder.encode("1"))
-				.memberName("관리자")
+				.memberEmail("")
+				.memberPass(passEncoder.encode(""))
+				.memberName("")
 				.memberIp("127.0.0.225")
 				.build().addMemberRole(MemberRole.ADMIN).addMemberRole(MemberRole.USER));
 	}
 //	@Test
 	void 회원생성() {
 		memberRepository.save(MemberEntity.builder()
-				.memberEmail("user@user.user")
-				.memberPass(passEncoder.encode("user"))
-				.memberName("유저")
+				.memberEmail("")
+				.memberPass(passEncoder.encode(""))
+				.memberName("")
 				.memberIp("127.0.0.225")
 				.build().addMemberRole(MemberRole.USER));
 	}
@@ -53,7 +53,7 @@ class JoinJinApplicationTests {
 //	@Test
 	void 회원가입테스트() {
 		memberRepository.save(MemberEntity.builder()
-				.memberEmail("3").memberPass("1").memberName("1").memberIp("127.0.0.225")
+				.memberEmail("").memberPass("").memberName("").memberIp("")
 				.build());
 	}
 	
@@ -61,7 +61,7 @@ class JoinJinApplicationTests {
 	@Transactional
 //	@Test
 	void 회원수정테스트() {
-		memberRepository.findById(2L).orElseThrow().memberName("이름변경").memberPass("2");
+		memberRepository.findById(2L).orElseThrow().memberName("이름변경").memberPass("");
 	}
 
 }
