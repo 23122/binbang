@@ -40,23 +40,33 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
 		String name=null;
 		String email=null;
 		String pass=null;
-		if(registrationId.equals("google")) {//구글로그인
-			name=oAuth2User.getAttribute("name");
-			email=oAuth2User.getAttribute("email");
-			pass=oAuth2User.getAttribute("sub");
-			
-		}else if(registrationId.equals("naver")) {//네이버로그인
-			Map<String, Object> response = oAuth2User.getAttribute("response");
-			name=(String) response.get("name");
-			email=(String) response.get("email");
-			pass=(String) response.get("id");
-		}else if(registrationId.equals("kakao")) {//카카오로그인
-			Map<String, Object> response = oAuth2User.getAttribute("properties")	;
-			Map<String, Object> response2 = oAuth2User.getAttribute("kakao_account");
-			name=(String) response.get("nickname");
-			email=(String) "(kakao)"+response2.get("email");
-			pass=oAuth2User.getAttribute("connected_at");
+		switch (registrationId) {
+			case "google": {
+				name = oAuth2User.getAttribute("name");
+				email = oAuth2User.getAttribute("email");
+				pass = oAuth2User.getAttribute("pass");
+				break;
+			}
+			case "naver": {
+				Map<String, Objects> response = oAuth2User.getAttribute("response");
+				assert response != null;
+				name = response.get("name").toString();
+				email = response.get("email").toString();
+				pass = response.get("pass").toString();
+				break;
+			}
+			case "kakao": {
+				Map<String, Objects> response = oAuth2User.getAttribute("properties");
+				Map<String, Objects> response2 = oAuth2User.getAttribute("kakao_account");
+				assert response != null;
+				assert response2 != null;
+				name = response.get("nickname").toString();
+				email = response2.get("email").toString();
+				pass = oAuth2User.getAttribute("connected_at");
+				break;
+			}
 		}
+        }
 		//중복회원체크
 		Optional<CustomUserDetails> result=memberRepository.findByMemberEmail(email).map(CustomUserDetails::new);
 		if(result.isPresent()) {
